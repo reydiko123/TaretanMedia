@@ -4,10 +4,10 @@ import { PublicNav } from '@/components/public-nav';
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
     return (
-        <div className="flex min-h-screen flex-col bg-background text-foreground">
+        <div className="bg-background text-foreground flex min-h-screen flex-col">
             <a
                 href="#main-content"
-                className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+                className="focus:bg-primary focus:text-primary-foreground sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:px-4 focus:py-2"
             >
                 Lewati ke konten
             </a>
