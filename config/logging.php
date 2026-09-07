@@ -65,6 +65,16 @@ return [
             'replace_placeholders' => true,
         ],
 
+        // Content audit trail (plan §7.15 / PRD §12.4). Never contains
+        // credentials or personal form data — only entity, id, and action.
+        'audit' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/audit.log'),
+            'level' => 'info',
+            'days' => 90,
+            'replace_placeholders' => true,
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
