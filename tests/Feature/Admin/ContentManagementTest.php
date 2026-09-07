@@ -25,7 +25,7 @@ class ContentManagementTest extends TestCase
         }
     }
 
-    public function test_admin_can_render_all_content_index_and_create_pages(): void
+    public function test_admin_can_render_all_content_index_pages(): void
     {
         $this->requireIntlExtension();
         $this->actingAs($this->admin(), 'admin');
@@ -33,6 +33,11 @@ class ContentManagementTest extends TestCase
         foreach ($this->resourceIndexRoutes() as $route) {
             $this->get(route($route))->assertOk();
         }
+    }
+
+    public function test_admin_can_render_all_content_create_pages(): void
+    {
+        $this->actingAs($this->admin(), 'admin');
 
         foreach ($this->resourceCreateRoutes() as $route) {
             $this->get(route($route))->assertOk();
