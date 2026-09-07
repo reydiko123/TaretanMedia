@@ -25,16 +25,20 @@ export default function Welcome() {
                                 Taretan Media
                             </h1>
                             <p className="mt-4 text-lg text-muted-foreground">
-                                Temukan katalog buku, jurnal, dan artikel Taretan
-                                Media. Konsultasikan kebutuhan penerbitan naskah
-                                Anda dengan mudah.
+                                Temukan katalog buku, jurnal, dan artikel
+                                Taretan Media. Konsultasikan kebutuhan
+                                penerbitan naskah Anda dengan mudah.
                             </p>
                             <div className="mt-8 flex flex-wrap gap-3">
                                 <Button asChild>
-                                    <Link href="/buku">Jelajahi Katalog Buku</Link>
+                                    <Link href="/buku">
+                                        Jelajahi Katalog Buku
+                                    </Link>
                                 </Button>
                                 <Button asChild variant="outline">
-                                    <Link href="/kirim-naskah">Kirim Naskah</Link>
+                                    <Link href="/kirim-naskah">
+                                        Kirim Naskah
+                                    </Link>
                                 </Button>
                             </div>
                         </div>

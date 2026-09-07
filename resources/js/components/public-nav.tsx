@@ -24,7 +24,10 @@ export function PublicNav() {
                 aria-label="Navigasi utama"
                 className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"
             >
-                <Link href="/" className="font-semibold tracking-tight text-foreground">
+                <Link
+                    href="/"
+                    className="font-semibold tracking-tight text-foreground"
+                >
                     Taretan Media
                 </Link>
 
@@ -61,7 +64,11 @@ export function PublicNav() {
                     aria-label={open ? 'Tutup menu' : 'Buka menu'}
                     onClick={() => setOpen((v) => !v)}
                 >
-                    {open ? <X className="size-5" /> : <Menu className="size-5" />}
+                    {open ? (
+                        <X className="size-5" />
+                    ) : (
+                        <Menu className="size-5" />
+                    )}
                 </button>
             </nav>
 
