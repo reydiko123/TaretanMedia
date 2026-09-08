@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Journal;
 use App\Models\Service;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Route;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
@@ -192,6 +193,26 @@ class PublicDiscoveryTest extends TestCase
             ->assertInertia(fn (Assert $page) => $page
                 ->component('errors/404')
                 ->where('status', 404)
+                ->where('seo.canonicalUrl', route('home'))
+                ->where('seo.openGraph.type', 'website')
+                ->where('seo.openGraph.url', route('home'))
+                ->missing('exception'));
+    }
+
+    public function test_server_error_uses_generic_inertia_500_contract(): void
+    {
+        Route::get('/uji-error-public-discovery', static function (): never {
+            throw new RuntimeException('secret exception detail');
+        });
+
+        $this->get('/uji-error-public-discovery')
+            ->assertStatus(500)
+            ->assertInertia(fn (Assert $page) => $page
+                ->component('errors/500')
+                ->where('status', 500)
+                ->where('seo.canonicalUrl', route('home'))
+                ->where('seo.openGraph.type', 'website')
+                ->where('seo.openGraph.url', route('home'))
                 ->missing('exception'));
     }
 }

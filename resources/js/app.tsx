@@ -8,14 +8,7 @@ const appName = import.meta.env.VITE_APP_NAME || 'Taretan Media';
 
 void createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
-    layout: (name) => {
-        switch (true) {
-            case name === 'welcome':
-                return null;
-            default:
-                return PublicLayout;
-        }
-    },
+    layout: () => PublicLayout,
     strictMode: true,
     withApp(app) {
         return (
