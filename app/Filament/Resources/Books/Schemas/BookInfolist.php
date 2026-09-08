@@ -16,17 +16,19 @@ class BookInfolist
                 TextEntry::make('title'),
                 TextEntry::make('slug'),
                 TextEntry::make('isbn_display')
+                    ->label('ISBN')
                     ->placeholder('-'),
                 TextEntry::make('publisher')
                     ->placeholder('-'),
                 TextEntry::make('publication_year')
-                    ->numeric()
+                    ->label('Tahun Terbit')
                     ->placeholder('-'),
                 TextEntry::make('page_count')
-                    ->numeric()
+                    ->label('Jumlah Halaman')
                     ->placeholder('-'),
                 TextEntry::make('price')
-                    ->money(),
+                    ->label('Harga')
+                    ->formatStateUsing(fn (int $state): string => 'Rp '.number_format($state, 0, ',', '.')),
                 TextEntry::make('cover_path')
                     ->placeholder('-'),
                 TextEntry::make('synopsis')

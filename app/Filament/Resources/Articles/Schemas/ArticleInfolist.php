@@ -22,6 +22,8 @@ class ArticleInfolist
                     ->placeholder('-')
                     ->columnSpanFull(),
                 TextEntry::make('body')
+                    ->label('Isi Artikel')
+                    ->html()
                     ->columnSpanFull(),
                 ImageEntry::make('featured_image_path')
                     ->placeholder('-'),

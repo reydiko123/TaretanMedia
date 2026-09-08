@@ -20,7 +20,7 @@ class JournalInfolist
                 TextEntry::make('edition_label')
                     ->placeholder('-'),
                 TextEntry::make('publication_year')
-                    ->numeric()
+                    ->label('Tahun Terbit')
                     ->placeholder('-'),
                 TextEntry::make('cover_path')
                     ->placeholder('-'),

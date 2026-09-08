@@ -37,7 +37,7 @@ class BooksTable
                     ->limitList(3),
                 TextColumn::make('price')
                     ->label('Harga')
-                    ->money('IDR', divideBy: 1)
+                    ->formatStateUsing(fn (int $state): string => 'Rp '.number_format($state, 0, ',', '.'))
                     ->sortable(),
                 TextColumn::make('publication_year')
                     ->label('Tahun')
