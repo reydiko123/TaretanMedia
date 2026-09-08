@@ -21,7 +21,7 @@ class BookFactory extends Factory
         return [
             'title' => $title,
             'slug' => null,
-            'isbn' => $this->faker->boolean(70) ? $this->faker->isbn13() : null,
+            'isbn_display' => $this->faker->boolean(70) ? $this->faker->isbn13() : null,
             'publisher' => $this->faker->company(),
             'publication_year' => $this->faker->numberBetween(2000, 2026),
             'page_count' => $this->faker->numberBetween(40, 600),

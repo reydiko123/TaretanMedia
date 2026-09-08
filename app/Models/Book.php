@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Storage;
  * @property string $title
  * @property string $slug
  * @property string|null $isbn
+ * @property string|null $isbn_display
  * @property string|null $publisher
  * @property int|null $publication_year
  * @property int|null $page_count
@@ -46,6 +47,7 @@ class Book extends Model
         'title',
         'slug',
         'isbn',
+        'isbn_display',
         'publisher',
         'publication_year',
         'page_count',
@@ -87,6 +89,31 @@ class Book extends Model
                 $normalized = strtoupper(preg_replace('/[\s-]+/', '', $value) ?? '');
 
                 return $normalized === '' ? null : $normalized;
+            },
+        );
+    }
+
+    /**
+     * Preserve the admin's exact ISBN formatting for display while keeping a
+     * normalized copy in `isbn` for uniqueness checks.
+     *
+     * @return Attribute<string|null, string|null>
+     */
+    protected function isbnDisplay(): Attribute
+    {
+        return Attribute::make(
+            set: function (?string $value): array {
+                if ($value === null || trim($value) === '') {
+                    return [
+                        'isbn_display' => null,
+                        'isbn' => null,
+                    ];
+                }
+
+                return [
+                    'isbn_display' => $value,
+                    'isbn' => strtoupper(preg_replace('/[\s-]+/', '', $value) ?? ''),
+                ];
             },
         );
     }

@@ -38,10 +38,10 @@ class BookForm
                             ->label('Slug')
                             ->maxLength(255)
                             ->helperText('Dibuat otomatis dari judul; dapat diubah.'),
-                        TextInput::make('isbn')
+                        TextInput::make('isbn_display')
                             ->label('ISBN')
                             ->maxLength(32)
-                            ->helperText('Opsional. Dinormalisasi dan wajib unik jika diisi.'),
+                            ->helperText('Ketik sesuai ISBN pada buku fisik, termasuk tanda hubung.'),
                         TextInput::make('publisher')
                             ->label('Penerbit')
                             ->maxLength(255),

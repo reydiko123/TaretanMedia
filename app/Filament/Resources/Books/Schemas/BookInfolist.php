@@ -15,7 +15,7 @@ class BookInfolist
             ->components([
                 TextEntry::make('title'),
                 TextEntry::make('slug'),
-                TextEntry::make('isbn')
+                TextEntry::make('isbn_display')
                     ->placeholder('-'),
                 TextEntry::make('publisher')
                     ->placeholder('-'),

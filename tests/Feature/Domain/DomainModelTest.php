@@ -38,23 +38,25 @@ class DomainModelTest extends TestCase
         $this->assertNotNull($book->published_at);
     }
 
-    public function test_isbn_is_normalized_and_null_when_blank(): void
+    public function test_isbn_display_is_preserved_while_isbn_is_normalized(): void
     {
-        $book = Book::factory()->create(['isbn' => '978-0-13-468599-1']);
+        $book = Book::factory()->create(['isbn_display' => '978-0-13-468599-1']);
         $this->assertSame('9780134685991', $book->isbn);
+        $this->assertSame('978-0-13-468599-1', $book->isbn_display);
 
-        $book2 = Book::factory()->create(['isbn' => '']);
+        $book2 = Book::factory()->create(['isbn_display' => '']);
         $this->assertNull($book2->isbn);
+        $this->assertNull($book2->isbn_display);
     }
 
     public function test_multiple_isbn_null_allowed_but_duplicate_rejected(): void
     {
-        Book::factory()->create(['isbn' => null]);
-        Book::factory()->create(['isbn' => null]);
-        Book::factory()->create(['isbn' => '1111111111111']);
+        Book::factory()->create(['isbn_display' => null]);
+        Book::factory()->create(['isbn_display' => null]);
+        Book::factory()->create(['isbn_display' => '978-602-4451-04-8']);
 
         $this->expectException(QueryException::class);
-        Book::factory()->create(['isbn' => '1111111111111']);
+        Book::factory()->create(['isbn_display' => '9786024451048']);
     }
 
     public function test_price_negative_rejected_by_check(): void
