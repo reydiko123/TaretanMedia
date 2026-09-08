@@ -35,4 +35,20 @@ return [
     ],
     'maps_url' => env('MAPS_URL'),
 
+    'public' => [
+        'name' => env('PUBLIC_SITE_NAME', env('APP_NAME', 'Taretan Media')),
+        'tagline' => env('PUBLIC_SITE_TAGLINE', 'Penerbitan yang mendekatkan gagasan kepada pembaca.'),
+        'address' => env('PUBLIC_ADDRESS'),
+        'profile' => [
+            'summary' => env('PUBLIC_PROFILE_SUMMARY', 'Taretan Media menghadirkan karya buku, jurnal, dan artikel untuk pembaca yang lebih luas.'),
+            'vision' => env('PUBLIC_PROFILE_VISION', 'Menjadi ruang penerbitan yang terpercaya, relevan, dan mudah diakses.'),
+            'mission' => [
+                'Mendampingi lahirnya karya yang bernilai.',
+                'Memperluas akses pembaca terhadap publikasi berkualitas.',
+                'Membangun ekosistem literasi yang kolaboratif.',
+            ],
+            'values' => ['Integritas', 'Kolaborasi', 'Kualitas', 'Aksesibilitas'],
+        ],
+    ],
+
 ];

@@ -7,6 +7,8 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -27,4 +29,27 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
+
+        $exceptions->respond(function (Response $response, Throwable $exception, Request $request): Response {
+            if ($request->expectsJson()) {
+                return $response;
+            }
+
+            $status = $response->getStatusCode();
+            if ($status !== 404 && $status < 500) {
+                return $response;
+            }
+
+            $page = $status === 404 ? 'errors/404' : 'errors/500';
+
+            return Inertia::render($page, [
+                'status' => $status === 404 ? 404 : 500,
+                'seo' => [
+                    'title' => $status === 404 ? 'Halaman tidak ditemukan' : 'Terjadi kesalahan',
+                    'description' => $status === 404
+                        ? 'Halaman yang Anda cari tidak ditemukan.'
+                        : 'Terjadi kesalahan. Silakan coba kembali nanti.',
+                ],
+            ])->toResponse($request)->setStatusCode($status);
+        });
     })->create();

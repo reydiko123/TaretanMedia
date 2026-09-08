@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\PublicSiteConfig;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -35,10 +36,14 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $public = app(PublicSiteConfig::class);
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'site' => $public->toArray(),
+            'navigation' => $public->navigation(),
         ];
     }
 }
