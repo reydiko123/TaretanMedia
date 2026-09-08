@@ -9,6 +9,7 @@ const footerLinks = [
     { label: 'Profil', href: '/profil' },
     { label: 'Layanan', href: '/layanan' },
     { label: 'Kontak', href: '/kontak' },
+    { label: 'Privasi', href: '/privasi' },
 ];
 
 export function PublicFooter() {

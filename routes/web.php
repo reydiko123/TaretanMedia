@@ -5,6 +5,8 @@ use App\Http\Controllers\Public\BookController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\JournalController;
+use App\Http\Controllers\Public\ManuscriptController;
+use App\Http\Controllers\Public\PrivacyController;
 use App\Http\Controllers\Public\ProfileController;
 use App\Http\Controllers\Public\RobotsController;
 use App\Http\Controllers\Public\ServiceController;
@@ -15,6 +17,8 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/profil', ProfileController::class)->name('profile');
 Route::get('/layanan', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/kontak', ContactController::class)->name('contact');
+Route::get('/kirim-naskah', [ManuscriptController::class, 'create'])->name('manuscripts.create');
+Route::get('/privasi', PrivacyController::class)->name('privacy');
 
 Route::get('/buku', [BookController::class, 'index'])->name('books.index');
 Route::get('/buku/{slug}', [BookController::class, 'show'])->name('books.show');

@@ -29,6 +29,21 @@ return [
     */
 
     'whatsapp_number' => env('WHATSAPP_NUMBER'),
+    'whatsapp' => [
+        'number' => env('WHATSAPP_NUMBER'),
+        'templates' => [
+            'book' => 'Halo Taretan Media, saya ingin menanyakan buku ":title". :url',
+            'service' => 'Halo Taretan Media, saya ingin berkonsultasi tentang layanan ":service".',
+            'manuscript' => "Halo Taretan Media, saya ingin berkonsultasi tentang naskah.\nNama: :name\nEmail: :email\nJudul: :title\nJenis: :publication_type",
+            'contact' => 'Halo Taretan Media, saya ingin meminta informasi.',
+        ],
+        'publication_types' => ['Buku', 'Jurnal', 'Artikel'],
+    ],
+    'analytics' => [
+        'enabled' => (bool) env('ANALYTICS_ENABLED', false),
+        'driver' => env('ANALYTICS_DRIVER', 'none'),
+        'endpoint' => env('ANALYTICS_ENDPOINT'),
+    ],
     'contact_email' => env('CONTACT_EMAIL'),
     'social' => [
         'instagram_url' => env('SOCIAL_INSTAGRAM_URL'),

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { Paginated, PublicBreadcrumbItem } from '@/types';
+import { track } from '@/lib/analytics';
 
 export function PageContainer({
     className,
@@ -203,10 +204,12 @@ export function ShareButton({
         try {
             if (navigator.share) {
                 await navigator.share({ title, text, url });
+                track('share_click', { method: 'native' });
                 setStatus('Tautan berhasil dibagikan.');
                 return;
             }
             await navigator.clipboard.writeText(url);
+            track('share_click', { method: 'clipboard' });
             setStatus('Tautan berhasil disalin.');
         } catch (error) {
             if (error instanceof DOMException && error.name === 'AbortError')

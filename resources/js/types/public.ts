@@ -8,12 +8,19 @@ export type PublicSiteContact = {
     whatsappConfigured: boolean;
     instagramUrl: string | null;
     mapsUrl: string | null;
+    address?: string | null;
+};
+
+export type PublicConversion = {
+    whatsapp: import('@/lib/whatsapp').WhatsAppConfig;
+    analytics: { enabled: boolean; endpoint: string | null };
 };
 
 export type PublicSite = {
     name: string;
     tagline: string;
     contact: PublicSiteContact;
+    conversion?: PublicConversion;
 };
 
 export type PublicSharedProps = {

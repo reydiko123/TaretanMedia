@@ -1,4 +1,3 @@
-import { Link } from '@inertiajs/react';
 import { ArrowRight, Check } from 'lucide-react';
 import {
     EmptyState,
@@ -7,7 +6,6 @@ import {
     PublicBreadcrumbs,
 } from '@/components/public/public-ui';
 import { SeoHead } from '@/components/public/seo-head';
-import { Button } from '@/components/ui/button';
 import {
     Card,
     CardContent,
@@ -16,6 +14,8 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import type { PublicService, SeoProps } from '@/types';
+import { usePage } from '@inertiajs/react';
+import { WhatsAppCta } from '@/components/conversion/whatsapp-cta';
 
 export default function ServicesIndex({
     seo,
@@ -24,6 +24,8 @@ export default function ServicesIndex({
     seo: SeoProps;
     services: PublicService[];
 }) {
+    const site = (usePage().props as { site?: import('@/types').PublicSite })
+        .site;
     return (
         <>
             <SeoHead seo={seo} />
@@ -79,13 +81,17 @@ export default function ServicesIndex({
                                     </CardContent>
                                 )}
                                 <CardFooter className="mt-auto">
-                                    <Button asChild variant="outline">
-                                        <Link href="/kontak">
-                                            {service.ctaLabel ||
-                                                'Konsultasikan layanan'}{' '}
-                                            <ArrowRight />
-                                        </Link>
-                                    </Button>
+                                    <WhatsAppCta
+                                        kind="service"
+                                        context={{ service: service.name }}
+                                        config={site?.conversion?.whatsapp}
+                                        event="service_whatsapp_click"
+                                        fallbackHref="/kontak"
+                                    >
+                                        {service.ctaLabel ||
+                                            'Konsultasikan layanan'}{' '}
+                                        <ArrowRight />
+                                    </WhatsAppCta>
                                 </CardFooter>
                             </Card>
                         ))}

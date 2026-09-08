@@ -42,7 +42,7 @@ class PublicDiscoveryTest extends TestCase
                     ->component($component)
                     ->where('site.contact.email', 'halo@example.test')
                     ->where('site.contact.whatsappConfigured', true)
-                    ->has('navigation', 7)
+                    ->has('navigation', 8)
                     ->missing('site.admin')
                     ->missing('admin'));
         }

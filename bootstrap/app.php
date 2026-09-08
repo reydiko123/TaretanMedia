@@ -2,11 +2,13 @@
 
 use App\Http\Middleware\HandleAppearance;
 use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middleware\SecurityHeaders;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Vite;
 use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -23,6 +25,7 @@ return Application::configure(basePath: dirname(__DIR__))
             HandleAppearance::class,
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
+            SecurityHeaders::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
@@ -34,6 +37,9 @@ return Application::configure(basePath: dirname(__DIR__))
             if ($request->expectsJson()) {
                 return $response;
             }
+
+            $nonce = Vite::useCspNonce();
+            $request->attributes->set('csp_nonce', $nonce);
 
             $status = $response->getStatusCode();
             if ($status !== 404 && $status < 500) {
@@ -47,7 +53,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 : 'Terjadi kesalahan. Silakan coba kembali nanti.';
             $canonicalUrl = route('home');
 
-            return Inertia::render($page, [
+            $errorResponse = Inertia::render($page, [
                 'status' => $status === 404 ? 404 : 500,
                 'seo' => [
                     'title' => $title,
@@ -62,5 +68,7 @@ return Application::configure(basePath: dirname(__DIR__))
                     ],
                 ],
             ])->toResponse($request)->setStatusCode($status);
+
+            return app(SecurityHeaders::class)->handle($request, static fn () => $errorResponse);
         });
     })->create();

@@ -1,4 +1,3 @@
-import { Link } from '@inertiajs/react';
 import {
     BookOpen,
     CalendarDays,
@@ -14,8 +13,11 @@ import {
     ShareButton,
 } from '@/components/public/public-ui';
 import { SeoHead } from '@/components/public/seo-head';
-import { Button } from '@/components/ui/button';
 import type { BookDetail, SeoProps } from '@/types';
+import { usePage } from '@inertiajs/react';
+import { useEffect } from 'react';
+import { WhatsAppCta } from '@/components/conversion/whatsapp-cta';
+import { track } from '@/lib/analytics';
 
 export default function BooksShow({
     seo,
@@ -24,6 +26,11 @@ export default function BooksShow({
     seo: SeoProps;
     book: BookDetail;
 }) {
+    const site = (usePage().props as { site?: import('@/types').PublicSite })
+        .site;
+    useEffect(() => {
+        track('book_view');
+    }, []);
     const metadata = [
         book.authors.length
             ? {
@@ -95,11 +102,17 @@ export default function BooksShow({
                             {book.formattedPrice}
                         </p>
                         <div className="mt-7 flex flex-wrap gap-3">
-                            <Button asChild size="lg">
-                                <Link href="/kontak">
-                                    Tanyakan ketersediaan
-                                </Link>
-                            </Button>
+                            <WhatsAppCta
+                                kind="book"
+                                context={{
+                                    title: book.title,
+                                    url: seo.canonicalUrl,
+                                }}
+                                config={site?.conversion?.whatsapp}
+                                event="book_whatsapp_click"
+                            >
+                                Pesan via WhatsApp
+                            </WhatsAppCta>
                             <ShareButton
                                 url={seo.canonicalUrl}
                                 title={book.title}

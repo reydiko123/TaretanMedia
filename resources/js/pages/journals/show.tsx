@@ -10,6 +10,7 @@ import {
 import { SeoHead } from '@/components/public/seo-head';
 import { Button } from '@/components/ui/button';
 import type { JournalDetail, SeoProps } from '@/types';
+import { TrackedExternalLink } from '@/components/conversion/tracked-external-link';
 
 export default function JournalsShow({
     seo,
@@ -74,14 +75,13 @@ export default function JournalsShow({
                         <div className="mt-7 flex flex-wrap gap-3">
                             {externalIsSafe && (
                                 <Button asChild size="lg">
-                                    <a
+                                    <TrackedExternalLink
                                         href={journal.externalUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        event="journal_external_click"
                                     >
                                         Buka situs jurnal eksternal{' '}
                                         <ExternalLink />
-                                    </a>
+                                    </TrackedExternalLink>
                                 </Button>
                             )}
                             <ShareButton

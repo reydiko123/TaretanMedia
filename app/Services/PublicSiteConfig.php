@@ -2,8 +2,12 @@
 
 namespace App\Services;
 
+use App\Services\Conversion\ConversionConfig;
+
 final class PublicSiteConfig
 {
+    public function __construct(private readonly ConversionConfig $conversion) {}
+
     /** @return array<string, mixed> */
     public function toArray(): array
     {
@@ -16,6 +20,21 @@ final class PublicSiteConfig
                 'instagramUrl' => $this->httpsUrl(config('taretan.social.instagram_url')),
                 'mapsUrl' => $this->httpsUrl(config('taretan.maps_url')),
                 'address' => $this->value(config('taretan.public.address')),
+            ],
+            'conversion' => [
+                'whatsapp' => $this->conversion->toPublicArray(),
+                'analytics' => [
+                    'enabled' => (bool) config('taretan.analytics.enabled', false)
+                        && config('taretan.analytics.driver') === 'plausible'
+                        && is_string(config('taretan.analytics.endpoint'))
+                        && str_starts_with(strtolower(config('taretan.analytics.endpoint')), 'https://'),
+                    'endpoint' => (bool) config('taretan.analytics.enabled', false)
+                        && config('taretan.analytics.driver') === 'plausible'
+                        && is_string(config('taretan.analytics.endpoint'))
+                        && str_starts_with(strtolower(config('taretan.analytics.endpoint')), 'https://')
+                        ? config('taretan.analytics.endpoint')
+                        : null,
+                ],
             ],
         ];
     }
@@ -30,6 +49,7 @@ final class PublicSiteConfig
             ['label' => 'Artikel', 'href' => route('articles.index', absolute: false)],
             ['label' => 'Profil', 'href' => route('profile', absolute: false)],
             ['label' => 'Layanan', 'href' => route('services.index', absolute: false)],
+            ['label' => 'Kirim Naskah', 'href' => route('manuscripts.create', absolute: false)],
             ['label' => 'Kontak', 'href' => route('contact', absolute: false)],
         ];
     }

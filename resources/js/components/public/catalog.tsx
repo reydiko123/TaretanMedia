@@ -17,6 +17,7 @@ import type {
     JournalCard,
 } from '@/types';
 import { CategoryBadges, PublicImage } from './public-ui';
+import { track } from '@/lib/analytics';
 
 type FilterProps = {
     action: string;
@@ -61,6 +62,10 @@ export function CatalogFilterForm({
         <form
             method="get"
             action={action}
+            onSubmit={() => {
+                if (kind === 'book')
+                    track('book_filter', { filter_kind: 'search' });
+            }}
             className="bg-muted/40 mb-8 rounded-xl border p-4 sm:p-5"
         >
             <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-4">
