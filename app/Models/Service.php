@@ -4,11 +4,11 @@ namespace App\Models;
 
 use App\Support\SlugGenerator;
 use Database\Factories\ServiceFactory;
-use InvalidArgumentException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use InvalidArgumentException;
 
 /**
  * @property int $id
