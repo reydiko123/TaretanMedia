@@ -94,7 +94,7 @@ Scope MVP mengikuti PRD §6.1 (Must Have) sebagai wajib, §6.2 (Should Have) dan
 | FR-M06 | Jurnal metadata + external URL (no PDF internal) | US-05 |
 | FR-M07 | Artikel rich text + kategori M2M + status | US-06 |
 | FR-M08 | Form Kirim Naskah client-only → WhatsApp, tanpa persistensi | US-07 |
-| FR-M09 | Layanan tanpa harga + CTA konsultasi | US-08 |
+| FR-M09 | Layanan dengan harga tetap + CTA konsultasi | US-08 |
 | FR-M10 | Global text dari source/config; nomor/email/social/env dari environment; layanan tetap via Filament | US-03,07,08,09 |
 | FR-M11 | Panel Filament hanya admin terautentikasi | US-10 |
 | FR-M12 | CRUD + status draft/published seluruh konten dinamis | US-11 |
@@ -116,11 +116,11 @@ FR-C01 (related), FR-C02 (impor/ekspor CSV), FR-C03 (penjadwalan publikasi), FR-
 
 ### 5.1 Won't Have (PRD §6.4) — dilarang implementasi
 
-FR-W01 akun/auth pengunjung · FR-W02 cart/checkout/payment/ongkir/inventori · FR-W03 penyimpanan submission naskah · FR-W04 hosting PDF jurnal/artikel · FR-W05 harga layanan · FR-W06 komentar/rating/newsletter/notifikasi · FR-W07 REST API publik / mobile native.
+FR-W01 akun/auth pengunjung · FR-W02 cart/checkout/payment/ongkir/inventori · FR-W03 penyimpanan submission naskah · FR-W04 hosting PDF jurnal/artikel · FR-W05 kalkulator atau paket harga dinamis layanan · FR-W06 komentar/rating/newsletter/notifikasi · FR-W07 REST API publik / mobile native.
 
 ### 5.2 Out of Scope (PRD §16)
 
-Registrasi/login/profil/wishlist pengunjung; checkout/payment/keranjang/kupon/ongkir/invoice/stok; lead/CRM internal; upload file naskah; WhatsApp Business API/chatbot; PDF jurnal internal/viewer/DOI/peer review/submission/volume-issue; harga layanan; komentar/rating/forum/newsletter/push; REST/GraphQL API publik & mobile native; multi-role editorial & multi-tenant; multibahasa & multi-currency; integrasi marketplace; pengelolaan global config via dashboard (SITE_SETTINGS).
+Registrasi/login/profil/wishlist pengunjung; checkout/payment/keranjang/kupon/ongkir/invoice/stok; lead/CRM internal; upload file naskah; WhatsApp Business API/chatbot; PDF jurnal internal/viewer/DOI/peer review/submission/volume-issue; kalkulator atau paket harga dinamis layanan; komentar/rating/forum/newsletter/push; REST/GraphQL API publik & mobile native; multi-role editorial & multi-tenant; multibahasa & multi-currency; integrasi marketplace; pengelolaan global config via dashboard (SITE_SETTINGS).
 
 ### 5.3 Rekonsiliasi konflik starter kit → non-goal
 
@@ -236,7 +236,7 @@ id PK; author_id FK; title; slug UK; excerpt text; body longtext (sanitized saat
 
 ### 8.7 Service (`SERVICES`)
 
-id PK; name; slug UK; summary text; description longtext; features json; cta_label; sort_order int; is_active bool; timestamps; deleted_at. Tanpa harga (FR-W05).
+id PK; name; price integer default 0; slug UK; summary text; description longtext; features json; cta_label; sort_order int; is_active bool; timestamps; deleted_at. Harga kosong menjadi 0 dan ditampilkan sebagai Rupiah.
 
 ### 8.8 Aturan relasi & kategori
 

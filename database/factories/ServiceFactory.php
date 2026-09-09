@@ -19,6 +19,7 @@ class ServiceFactory extends Factory
 
         return [
             'name' => $name,
+            'price' => 0,
             'slug' => null,
             'summary' => $this->faker->sentence(12),
             'description' => $this->faker->paragraph(),

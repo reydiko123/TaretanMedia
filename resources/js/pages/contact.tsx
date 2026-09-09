@@ -11,6 +11,7 @@ import {
     PageHeader,
     PublicBreadcrumbs,
 } from '@/components/public/public-ui';
+import { WhatsAppCta } from '@/components/conversion/whatsapp-cta';
 import { SeoHead } from '@/components/public/seo-head';
 import type { PublicSite, SeoProps } from '@/types';
 
@@ -21,6 +22,7 @@ export default function Contact({
     seo: SeoProps;
     site: PublicSite;
 }) {
+    const whatsapp = site.conversion?.whatsapp;
     const channels = [
         site.contact.email
             ? {
@@ -111,12 +113,33 @@ export default function Contact({
                         <MessageCircle className="text-primary mt-1 size-6 shrink-0" />
                         <div>
                             <h2 className="font-semibold">
-                                Konsultasi WhatsApp akan segera hadir
+                                {whatsapp?.available
+                                    ? 'Hubungi kami melalui WhatsApp'
+                                    : 'Konsultasi WhatsApp belum tersedia'}
                             </h2>
-                            <p className="text-muted-foreground mt-1 text-sm leading-6">
-                                Kanal telah dikonfigurasi, tetapi alur konversi
-                                final belum diaktifkan pada tahap ini.
-                            </p>
+                            {whatsapp?.available ? (
+                                <>
+                                    <p className="text-muted-foreground mt-1 text-sm leading-6">
+                                        Sampaikan pertanyaan Anda langsung
+                                        melalui WhatsApp.
+                                    </p>
+                                    <div className="mt-4">
+                                        <WhatsAppCta
+                                            kind="contact"
+                                            context={{}}
+                                            config={whatsapp}
+                                            event="contact_whatsapp_click"
+                                        >
+                                            Hubungi via WhatsApp
+                                        </WhatsAppCta>
+                                    </div>
+                                </>
+                            ) : (
+                                <p className="text-muted-foreground mt-1 text-sm leading-6">
+                                    Kanal WhatsApp sedang disiapkan. Silakan
+                                    gunakan kanal kontak lain yang tersedia.
+                                </p>
+                            )}
                         </div>
                     </div>
                 )}

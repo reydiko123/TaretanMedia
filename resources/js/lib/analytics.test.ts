@@ -2,6 +2,21 @@ import { describe, expect, it, vi } from 'vitest';
 import { createAnalytics } from './analytics';
 
 describe('analytics adapter', () => {
+    it('records contact WhatsApp events without properties', () => {
+        const send = vi.fn();
+        const analytics = createAnalytics(
+            {
+                enabled: true,
+                endpoint: 'https://analytics.example.test/api/event',
+            },
+            send,
+        );
+
+        analytics.track('contact_whatsapp_click');
+
+        expect(send).toHaveBeenCalledWith('contact_whatsapp_click', {});
+    });
+
     it('does not contact a provider while disabled', () => {
         const send = vi.fn();
         const analytics = createAnalytics(

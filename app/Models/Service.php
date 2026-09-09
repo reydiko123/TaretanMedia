@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Support\SlugGenerator;
 use Database\Factories\ServiceFactory;
+use InvalidArgumentException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property int $id
  * @property string $name
+ * @property int $price
  * @property string $slug
  * @property string|null $summary
  * @property string|null $description
@@ -31,6 +33,7 @@ class Service extends Model
 
     protected $fillable = [
         'name',
+        'price',
         'slug',
         'summary',
         'description',
@@ -43,6 +46,7 @@ class Service extends Model
     protected function casts(): array
     {
         return [
+            'price' => 'integer',
             'features' => 'array',
             'sort_order' => 'integer',
             'is_active' => 'boolean',
@@ -52,6 +56,12 @@ class Service extends Model
     protected static function booted(): void
     {
         static::saving(function (Service $service): void {
+            $service->price = (int) ($service->price ?? 0);
+
+            if ($service->price < 0) {
+                throw new InvalidArgumentException('Service price must be zero or greater.');
+            }
+
             if (blank($service->slug)) {
                 $service->slug = SlugGenerator::unique(static::class, $service->name, $service->id);
             }

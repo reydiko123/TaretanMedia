@@ -12,9 +12,9 @@ import {
     JournalCardView,
 } from '@/components/public/catalog';
 import { EmptyState, PageContainer } from '@/components/public/public-ui';
+import { ServiceCard } from '@/components/public/service-card';
 import { SeoHead } from '@/components/public/seo-head';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type {
     ArticleCard,
     BookCard,
@@ -180,14 +180,11 @@ export default function Home(props: HomeProps) {
                     {services.length > 0 ? (
                         <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
                             {services.slice(0, 6).map((service) => (
-                                <Card key={service.name}>
-                                    <CardHeader>
-                                        <CardTitle>{service.name}</CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="text-muted-foreground leading-6">
-                                        {service.summary || service.description}
-                                    </CardContent>
-                                </Card>
+                                <ServiceCard
+                                    key={service.name}
+                                    service={service}
+                                    showCta={false}
+                                />
                             ))}
                         </div>
                     ) : (

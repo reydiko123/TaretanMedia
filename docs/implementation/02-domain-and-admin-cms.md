@@ -66,7 +66,7 @@ Mengikuti PRD §6.4 dan §16 serta `AI-AGENT-GUARDRAILS.md`:
 - Tidak ada cart/checkout/payment/inventory/order.
 - Tidak ada akun pengunjung, lead DB, atau persistensi form naskah.
 - Tidak ada PDF jurnal internal, DOI, peer review, volume/issue.
-- Tidak ada harga pada Service (FR-W05).
+- Harga Service berupa satu nominal Rupiah tetap; kalkulator/paket harga dinamis tetap di luar scope.
 - Tidak ada tabel `SITE_SETTINGS` atau menu pengaturan global di Filament (Out-of-Scope #13).
 - Tidak ada multi-role editorial workflow atau multi-tenant.
 - Author tidak menyimpan foto atau slug (PRD §9.1).
@@ -330,7 +330,7 @@ Resource: `AuthorResource`, `CategoryResource`, `BookResource`, `JournalResource
 | Book | title, slug, isbn (nullable, dinormalisasi), publisher, publication_year, page_count, price (integer Rupiah), cover upload, synopsis, table_of_contents, status, published_at, is_featured; relasi authors (repeater/relation manager dengan sort_order), categories (multi-select type=book) |
 | Journal | title, slug, theme, edition_label, publication_year, cover upload, description, external_url (HTTPS), status, published_at, is_featured; categories (type=journal) |
 | Article | title, slug, author (select), excerpt, body (rich editor, disanitasi), featured_image upload, status, published_at, is_featured; categories (type=article) |
-| Service | name, slug, summary, description, features (repeater→array), cta_label, sort_order, is_active. **Tanpa field harga.** |
+| Service | name, price integer default 0, slug, summary, description, features (repeater→array), cta_label, sort_order, is_active. Harga kosong menjadi 0. |
 
 Validasi form mengikuti Domain Validation Matrix (Bagian 9).
 
@@ -478,7 +478,7 @@ Pemetaan 17 aturan domain (prompt) → mekanisme + layer.
 | 14 | Upload gagal tidak sisakan record setengah jadi | `DB::transaction` + kompensasi file | App |
 | 15 | Demo seed hanya local/testing/staging | guard `app()->environment()` | App |
 | 16 | Tidak ada SITE_SETTINGS | tidak ada tabel/menu; config/env only | Arsitektur |
-| 17 | Tidak ada harga pada Service | skema Service tanpa kolom harga | DB |
+| 17 | Harga Service berupa integer Rupiah | kolom `price` default 0; input kosong menjadi 0 | DB/App |
 
 ---
 
@@ -557,8 +557,8 @@ Format tiap task: dependency · target file/module · expected DB/UI effect · t
 
 **P2A-006 — Migration services**
 - Dependency: P2A-002 · Target: `*_create_services_table.php`
-- Efek: tabel `services` (slug UK, features json, is_active, sort_order, **tanpa harga**), soft delete.
-- Test: schema; pastikan tidak ada kolom price · S · Rollback: `migrate:rollback`.
+- Efek: tabel `services` (slug UK, price integer default 0, features json, is_active, sort_order), soft delete.
+- Test: schema dan default price 0 · S · Rollback: `migrate:rollback`.
 
 **P2A-007 — Migration pivot (4)**
 - Dependency: P2A-003..006 · Target: `*_create_author_book_table.php`, `*_create_book_category_table.php`, `*_create_journal_category_table.php`, `*_create_article_category_table.php`
@@ -652,8 +652,8 @@ Format tiap task: dependency · target file/module · expected DB/UI effect · t
 
 **P2B-008 — ServiceResource**
 - Dependency: P2B-002 · Target: `app/Filament/Resources/ServiceResource*`
-- Efek: form tanpa harga, features repeater, is_active, sort_order, lifecycle.
-- Test: tidak ada field harga; activate/deactivate · M · Rollback: git revert.
+- Efek: form harga Rupiah, features repeater, is_active, sort_order, lifecycle.
+- Test: harga default 0 dan activate/deactivate · M · Rollback: git revert.
 
 **P2B-009 — Upload validation terpusat**
 - Dependency: P2B-005..008 · Target: komponen upload + rule MIME
@@ -712,7 +712,7 @@ Format tiap task: dependency · target file/module · expected DB/UI effect · t
 | Author ordering persist | sort_order tersimpan & terbaca urut | P2B-005 |
 | Journal HTTPS enforce | non-HTTPS ditolak form | P2B-006 |
 | Article publish flow | draft→published; body tersanitasi | P2B-007 |
-| Service no price | tak ada field/kolom harga | P2B-008 |
+| Service price | field/kolom harga integer default 0 | P2B-008 |
 | Upload allowlist | SVG & >5MB ditolak; nama diubah | P2B-009 |
 | Destructive confirm | konfirmasi wajib sebelum delete | P2B-010 |
 | Audit event | tercatat tanpa data personal | P2B-010 |
@@ -757,9 +757,9 @@ Format tiap task: dependency · target file/module · expected DB/UI effect · t
 
 1. Force delete author yang punya artikel → ditolak dengan pesan ramah.
 
-### 15.7 Service tanpa harga
+### 15.7 Service dengan harga tetap
 
-1. Form Service tidak menampilkan field harga; toggle is_active & sort_order berfungsi.
+1. Form Service menampilkan field harga Rupiah dengan default 0; toggle is_active & sort_order berfungsi.
 
 ---
 
@@ -809,7 +809,7 @@ Format tiap task: dependency · target file/module · expected DB/UI effect · t
 - [ ] Policy per model aktif; guest ditolak.
 - [ ] Dashboard minimum tampil.
 - [ ] Audit event direncanakan & tercatat tanpa data personal.
-- [ ] Service tanpa harga; tidak ada SITE_SETTINGS.
+- [ ] Service memiliki harga tetap; tidak ada SITE_SETTINGS.
 - [ ] Factory + demo seeder valid & terguard non-production.
 - [ ] Acceptance admin publish ≤10 menit terbukti (Bagian 15.1).
 - [ ] `composer ci:check` lulus.
@@ -829,7 +829,7 @@ Sesuai PRD §15 M2: admin dapat menyelesaikan CRUD utama, seluruh pivot kategori
 | Data model buku + multi-author + kategori | US-02, US-11 | FR-M03, FR-M12 | §7.1 | R-11 | P2A-003/007/010, P2B-005 | M2 |
 | Jurnal metadata + external URL | US-05, US-11 | FR-M06, FR-M14 | — | R-06 | P2A-004/011, P2B-006 | M2 |
 | Artikel rich text + kategori M2M | US-06, US-11 | FR-M07 | §7.4 | R-04 | P2A-005/012, P2B-001/007 | M2 |
-| Layanan tanpa harga | US-08, US-11 | FR-M09 | — | — | P2A-006/013, P2B-008 | M2 |
+| Layanan dengan harga tetap | US-08, US-11 | FR-M09 | — | — | P2A-006/013, P2B-008 | M2 |
 | Kategori per tipe (M2M) | US-11 | FR-M07, FR-M12 | — | — | P2A-002/008, P2B-004 | M2 |
 | Upload media & validasi | US-12 | FR-M14 | §12.2 | R-05 | P2A-014, P2B-009 | M2 |
 | Status draft/published + scope | US-11 | FR-M12, FR-M13 | — | R-03 | P2A-008/014, P2B-007 | M2 |
@@ -853,4 +853,3 @@ Tidak ada blocker keras. Fondasi Phase 1 (Filament `v5.7.8`, guard `admin`, `Adm
 Aturan gate ditegakkan: Phase 2B tidak dimulai sebelum exit gate 2A (Bagian 6) lulus. Trade-off SQLite/Filament (published_at invariant, ISBN NULL-unique, price integer, preview publik) didokumentasikan tanpa mengubah keputusan produk secara diam-diam.
 
 *Catatan tata kelola: dokumen ini adalah perencanaan. Eksekusi kode Phase 2 memerlukan instruksi eksplisit pada sesi implementasi terpisah beserta `AI-AGENT-GUARDRAILS.md`. Tidak lanjut ke Phase 3.*
-

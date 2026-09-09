@@ -37,6 +37,12 @@ class ServiceForm
                             ->label('Label CTA')
                             ->maxLength(255)
                             ->default('Konsultasikan Kebutuhan Anda'),
+                        TextInput::make('price')
+                            ->label('Harga (Rp)')
+                            ->numeric()
+                            ->minValue(0)
+                            ->default(0)
+                            ->helperText('Kosong akan ditampilkan sebagai Rp 0.'),
                         TextInput::make('sort_order')
                             ->label('Urutan')
                             ->numeric()
@@ -65,6 +71,5 @@ class ServiceForm
                     ->label('Aktif')
                     ->default(true),
             ]);
-        // Catatan: TIDAK ada field harga (FR-W05 / rule #17).
     }
 }

@@ -6,6 +6,7 @@ export type AnalyticsEvent =
     | 'service_whatsapp_click'
     | 'manuscript_form_start'
     | 'manuscript_whatsapp_click'
+    | 'contact_whatsapp_click'
     | 'share_click';
 
 export type AnalyticsProperties =
@@ -31,6 +32,7 @@ const allowedEvents = new Set<AnalyticsEvent>([
     'service_whatsapp_click',
     'manuscript_form_start',
     'manuscript_whatsapp_click',
+    'contact_whatsapp_click',
     'share_click',
 ]);
 

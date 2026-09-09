@@ -53,8 +53,8 @@ class PublicDiscoveryTest extends TestCase
         $published = Book::factory()->published()->featured()->create(['title' => 'Published']);
         Book::factory()->create(['title' => 'Draft']);
         Book::factory()->published()->create(['title' => 'Future', 'published_at' => now()->addDay()]);
-        Service::factory()->create(['name' => 'Second', 'sort_order' => 2]);
-        Service::factory()->create(['name' => 'First', 'sort_order' => 1]);
+        Service::factory()->create(['name' => 'Second', 'sort_order' => 2, 'price' => 125_000]);
+        Service::factory()->create(['name' => 'First', 'sort_order' => 1, 'price' => null]);
         Service::factory()->inactive()->create(['name' => 'Hidden']);
 
         $this->get('/')
@@ -63,12 +63,20 @@ class PublicDiscoveryTest extends TestCase
                 ->where('books.0.slug', $published->slug)
                 ->has('books', 1)
                 ->where('services.0.name', 'First')
+                ->where('services.0.price', 0)
+                ->where('services.0.formattedPrice', 'Rp 0')
                 ->where('services.1.name', 'Second')
+                ->where('services.1.price', 125000)
+                ->where('services.1.formattedPrice', 'Rp 125.000')
                 ->has('services', 2));
 
         $this->get('/layanan')->assertInertia(fn (Assert $page) => $page
             ->where('services.0.name', 'First')
+            ->where('services.0.price', 0)
+            ->where('services.0.formattedPrice', 'Rp 0')
             ->where('services.1.name', 'Second')
+            ->where('services.1.price', 125000)
+            ->where('services.1.formattedPrice', 'Rp 125.000')
             ->has('services', 2));
     }
 

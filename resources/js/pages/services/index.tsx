@@ -1,4 +1,3 @@
-import { ArrowRight, Check } from 'lucide-react';
 import {
     EmptyState,
     PageContainer,
@@ -6,16 +5,9 @@ import {
     PublicBreadcrumbs,
 } from '@/components/public/public-ui';
 import { SeoHead } from '@/components/public/seo-head';
-import {
-    Card,
-    CardContent,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card';
+import { ServiceCard } from '@/components/public/service-card';
 import type { PublicService, SeoProps } from '@/types';
 import { usePage } from '@inertiajs/react';
-import { WhatsAppCta } from '@/components/conversion/whatsapp-cta';
 
 export default function ServicesIndex({
     seo,
@@ -39,61 +31,17 @@ export default function ServicesIndex({
                 <PageHeader
                     eyebrow="Layanan"
                     title="Dukungan penerbitan yang terarah"
-                    description="Kenali layanan Taretan Media tanpa paket harga tetap. Setiap kebutuhan dapat dibicarakan melalui kanal resmi kami."
+                    description="Kenali layanan Taretan Media dan harga yang tersedia. Setiap kebutuhan dapat dibicarakan melalui kanal resmi kami."
                 />
                 {services.length > 0 ? (
                     <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
                         {services.map((service) => (
-                            <Card key={service.name} className="h-full">
-                                <CardHeader>
-                                    <CardTitle className="text-xl">
-                                        {service.name}
-                                    </CardTitle>
-                                    {service.summary && (
-                                        <p className="text-muted-foreground text-sm leading-6">
-                                            {service.summary}
-                                        </p>
-                                    )}
-                                </CardHeader>
-                                {(service.description ||
-                                    service.features.length > 0) && (
-                                    <CardContent className="space-y-5">
-                                        {service.description && (
-                                            <p className="text-muted-foreground leading-7">
-                                                {service.description}
-                                            </p>
-                                        )}
-                                        {service.features.length > 0 && (
-                                            <ul className="space-y-2 text-sm">
-                                                {service.features.map(
-                                                    (feature) => (
-                                                        <li
-                                                            key={feature}
-                                                            className="flex gap-2"
-                                                        >
-                                                            <Check className="text-primary mt-0.5 size-4 shrink-0" />
-                                                            {feature}
-                                                        </li>
-                                                    ),
-                                                )}
-                                            </ul>
-                                        )}
-                                    </CardContent>
-                                )}
-                                <CardFooter className="mt-auto">
-                                    <WhatsAppCta
-                                        kind="service"
-                                        context={{ service: service.name }}
-                                        config={site?.conversion?.whatsapp}
-                                        event="service_whatsapp_click"
-                                        fallbackHref="/kontak"
-                                    >
-                                        {service.ctaLabel ||
-                                            'Konsultasikan layanan'}{' '}
-                                        <ArrowRight />
-                                    </WhatsAppCta>
-                                </CardFooter>
-                            </Card>
+                            <ServiceCard
+                                key={service.name}
+                                service={service}
+                                showCta
+                                whatsappConfig={site?.conversion?.whatsapp}
+                            />
                         ))}
                     </div>
                 ) : (

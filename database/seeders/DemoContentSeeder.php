@@ -50,7 +50,7 @@ class DemoContentSeeder extends Seeder
         });
         Article::factory()->count(2)->create();
 
-        // Services (no price).
+        // Services with fixed Rupiah prices.
         Service::factory()->count(4)->create();
         Service::factory()->inactive()->count(1)->create();
     }

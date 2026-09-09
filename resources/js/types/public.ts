@@ -127,6 +127,8 @@ export type ArticleDetail = ArticleCard & {
 
 export type PublicService = {
     name: string;
+    price: number;
+    formattedPrice: string;
     summary: string | null;
     description: string | null;
     features: string[];

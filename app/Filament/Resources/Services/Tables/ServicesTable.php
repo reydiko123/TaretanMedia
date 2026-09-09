@@ -29,6 +29,10 @@ class ServicesTable
                     ->label('Nama')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('price')
+                    ->label('Harga')
+                    ->formatStateUsing(fn (int $state): string => 'Rp '.number_format($state, 0, ',', '.'))
+                    ->sortable(),
                 IconColumn::make('is_active')
                     ->label('Aktif')
                     ->boolean(),

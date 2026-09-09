@@ -91,7 +91,7 @@ Phase 3 tidak mengaktifkan form Kirim Naskah, WhatsApp conversion behavior final
 - Tidak ada WhatsApp deep-link conversion final atau event analytics final.
 - Tidak ada penyimpanan data lead atau submission pengunjung.
 - Tidak ada PDF viewer, hosting PDF jurnal, DOI workflow, volume/issue workflow, peer review, atau artikel ilmiah internal.
-- Tidak ada harga layanan.
+- Layanan menampilkan satu harga tetap dalam format Rupiah.
 - Tidak ada `SITE_SETTINGS` atau pengaturan global melalui Filament.
 - Tidak ada preview publik untuk draft.
 - Tidak ada related content kecuali kapasitas tersisa dan disetujui sebagai scope tambahan.
@@ -152,7 +152,7 @@ Phase 3 tidak mengaktifkan form Kirim Naskah, WhatsApp conversion behavior final
 |---|---|---|---|---|---|---|---|
 | `GET /` | `home` | `HomeController` | `HomeDiscoveryQuery` | `home` | 200 | 500 | Featured hanya published/non-deleted; tes empty dan populated |
 | `GET /profil` | `profile` | `ProfileController` | `PublicSiteContent` | `profile` | 200 | 500 | Source/config content; tes heading dan metadata |
-| `GET /layanan` | `services.index` | `ServiceController@index` | `PublicServiceQuery` | `services/index` | 200 | 500 | Hanya active/non-deleted; tanpa harga |
+| `GET /layanan` | `services.index` | `ServiceController@index` | `PublicServiceQuery` | `services/index` | 200 | 500 | Hanya active/non-deleted; harga tetap diformat Rupiah |
 | `GET /kontak` | `contact` | `ContactController` | `PublicSiteConfig` | `contact` | 200 | 500 | Kanal kosong tidak dirender; props public-safe |
 | `GET /buku` | `books.index` | `BookController@index` | `BookCatalogQuery` | `books/index` | 200 | 500 | Published only; filter dan pagination tests |
 | `GET /buku/{slug}` | `books.show` | `BookController@show` | `PublishedBookQuery` | `books/show` | 200 | 404 | Draft/deleted/future/invalid slug = 404 |
@@ -456,7 +456,7 @@ Phase 3A dinyatakan lulus jika:
 3. Keyboard dapat membuka, menavigasi, dan menutup mobile menu.
 4. Skip link berfungsi.
 5. Kanal kosong tidak menghasilkan link/label kosong.
-6. Layanan hanya active dan non-deleted serta tidak menampilkan harga.
+6. Layanan hanya active dan non-deleted serta menampilkan harga tetap berformat Rupiah.
 7. Home tetap valid dengan database kosong.
 8. Broken/missing image memiliki fallback.
 9. 404 dan 500 mempertahankan status HTTP dan tidak membocorkan detail internal.
@@ -754,7 +754,7 @@ Gunakan conditional block pada seluruh label/value. Jangan menghasilkan:
 | P3A-04 | P3A-03 | Nav/footer | Lengkapi route links, active state, mobile menu, configured channels | Link valid; kanal kosong tersembunyi | Feature/component tests | Resize dan keyboard | M |
 | P3A-05 | P3A-01 | Static content service | Definisikan content source untuk profile/home/contact copy | Tidak ada DB settings baru | Unit config test | Review copy | S |
 | P3A-06 | P3A-02,P3A-05 | Informational controllers/routes | Tambah Home/Profile/Contact routes dan controllers | 200 dan props minimal | Route feature tests | Open semua route | M |
-| P3A-07 | Phase 2 domain | Service query/page | Query active services, mapper props, page cards | Active only, ordered, no price | Visibility/order tests | Empty/populated state | M |
+| P3A-07 | Phase 2 domain | Service query/page | Query active services, mapper props, page cards, fixed price | Active only, ordered, formatted price | Visibility/order/price tests | Empty/populated state | M |
 | P3A-08 | P3A-06,P3A-07 | Home | Query featured/latest content dengan limits dan fallback | Published only; empty-safe | Home props tests | Demo dan empty DB | L |
 | P3A-09 | P3A-03 | Image fallback | Buat responsive image/fallback component | Null dan broken URL aman | Component test bila setup tersedia | Putus file storage | S |
 | P3A-10 | P3A-03 | Error rendering | Tambah public 404/500 pages dan exception mapping | Status benar, no leakage | HTTP error tests | Trigger local safe errors | M |
@@ -790,7 +790,7 @@ Gunakan conditional block pada seluruh label/value. Jangan menghasilkan:
 | Informational routes | Home/Profile/Services/Contact 200; expected Inertia component; public-safe props |
 | Visibility | Published past visible; draft, deleted, future publication absent dari index dan 404 pada detail |
 | Home | Featured published returned; hidden records excluded; empty database safe; result limits respected |
-| Services | Active visible; inactive/deleted hidden; sort order respected; no price prop |
+| Services | Active visible; inactive/deleted hidden; sort order respected; fixed price prop formatted as Rupiah |
 | Book search | Match title; match author; non-match absent; hidden content absent |
 | Book filters | Category type, min/max price, year, combinations, reset/default |
 | Book sorting | Every whitelist option deterministic; invalid falls back |
@@ -907,7 +907,7 @@ Phase 3 dianggap selesai jika:
 2. Seluruh route memakai web routes dan Inertia, tanpa REST API publik.
 3. Book, Journal, Article public queries selalu published, due, dan non-deleted.
 4. Detail draft, deleted, future, atau slug invalid memberikan 404.
-5. Services hanya active/non-deleted dan tidak mempunyai price pada props/UI.
+5. Services hanya active/non-deleted dan mempunyai `price`/`formattedPrice` pada props/UI.
 6. Filter, sorting, pagination, dan URL state sesuai aturan normalisasi.
 7. Multiple author order benar.
 8. ISBN menggunakan `isbn_display` persis input admin.
@@ -967,7 +967,7 @@ Handoff Phase 3 harus menyediakan:
 | US-05 menemukan jurnal | Journal catalog/detail dan external link | P3B-06,07 |
 | US-06 membaca artikel | Article catalog/detail dan sanitized body | P3B-08,09 |
 | US-07 kirim naskah | Explicit non-goal Phase 3 | Phase 4 |
-| US-08 memahami layanan | Active services page, no price | P3A-07 |
+| US-08 memahami layanan | Active services page, fixed price and CTA | P3A-07 |
 | US-09 kontak/profil | Profile, Contact, configured channels | P3A-01,05,06 |
 | FR-M01 | Semua halaman Phase 3 kecuali Kirim Naskah yang ditunda sesuai prompt | P3A/P3B gates |
 | FR-M02 | Full book catalog discovery | P3B-01,03,04 |
@@ -977,7 +977,7 @@ Handoff Phase 3 harus menyediakan:
 | FR-M06 | Journal metadata dan external URL | P3B-06,07 |
 | FR-M07 | Article rich text, kategori, published status | P3B-08,09 |
 | FR-M08 | Tidak diaktifkan pada Phase 3 | Phase 4 |
-| FR-M09 | Services tanpa harga | P3A-07 |
+| FR-M09 | Services dengan harga tetap | P3A-07 |
 | FR-M10 | Source/config dan env public channels | P3A-01,05 |
 | FR-M13 | Published dan non-deleted only | Semua public queries/tests |
 | FR-M15 | Title, description, canonical, OG | P3B-11 |

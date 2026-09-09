@@ -7,9 +7,11 @@ use App\Models\Article;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Service;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
+use InvalidArgumentException;
 use Tests\TestCase;
 
 class DomainModelTest extends TestCase
@@ -69,6 +71,20 @@ class DomainModelTest extends TestCase
     {
         $book = Book::factory()->create(['price' => 85000]);
         $this->assertIsInt($book->fresh()->price);
+    }
+
+    public function test_service_price_defaults_to_zero_when_empty(): void
+    {
+        $service = Service::factory()->create(['price' => null]);
+
+        $this->assertSame(0, $service->fresh()->price);
+    }
+
+    public function test_service_price_rejects_negative_values(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        Service::factory()->create(['price' => -1]);
     }
 
     public function test_book_authors_are_ordered_by_sort_order(): void

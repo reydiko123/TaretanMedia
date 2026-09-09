@@ -12,7 +12,7 @@
 | Tech stack | Laravel, Inertia.js, React.js, Filament, SQLite |
 | Sasaran rilis | MVP production-ready [📌 ASSUMED] |
 
-> **Keputusan tervalidasi:** jurnal pada versi awal berupa katalog metadata yang mengarahkan pengguna ke halaman eksternal; tujuan bisnis penjualan buku, lead jasa penerbitan, dan reputasi publikasi diprioritaskan secara seimbang; layanan tidak menampilkan harga dan menggunakan CTA konsultasi; arah visual menggabungkan karakter akademis-formal dengan tampilan modern.
+> **Keputusan tervalidasi:** jurnal pada versi awal berupa katalog metadata yang mengarahkan pengguna ke halaman eksternal; tujuan bisnis penjualan buku, lead jasa penerbitan, dan reputasi publikasi diprioritaskan secara seimbang; layanan menampilkan satu harga tetap dan menggunakan CTA konsultasi; arah visual menggabungkan karakter akademis-formal dengan tampilan modern.
 
 ### Register Asumsi Terkonfirmasi
 
@@ -220,13 +220,13 @@ Analytics yang berorientasi privasi mencatat event agregat `book_view`, `book_fi
 
 ### US-08 Memahami profil dan layanan
 
-**Given** pengunjung membutuhkan informasi penerbit, **When** membuka profil atau layanan, **Then** sistem menampilkan informasi terbaru dan CTA konsultasi tanpa daftar harga.
+**Given** pengunjung membutuhkan informasi penerbit, **When** membuka profil atau layanan, **Then** sistem menampilkan informasi terbaru, harga layanan, dan CTA konsultasi.
 
 **Acceptance criteria:**
 1. Profil memuat ringkasan, visi, misi, dan nilai.
-2. Layanan memuat nama, deskripsi, cakupan/fitur, urutan, dan CTA konsultasi.
+2. Layanan memuat nama, harga tetap, deskripsi, cakupan/fitur, urutan, dan CTA konsultasi.
 3. CTA WhatsApp menyertakan nama layanan yang dipilih.
-4. Tidak ada nominal harga pada layanan.
+4. Harga layanan ditampilkan dalam format Rupiah; nilai kosong ditampilkan sebagai Rp 0.
 
 ### US-09 Menghubungi penerbit
 
@@ -286,7 +286,7 @@ Analytics yang berorientasi privasi mencatat event agregat `book_view`, `book_fi
 | FR-M06 | Jurnal menyimpan metadata serta external URL dan tidak menyimpan artikel ilmiah/PDF internal pada MVP. | US-05 |
 | FR-M07 | Artikel menyediakan katalog, detail rich text, relasi many-to-many kategori, penulis, tanggal publikasi, dan status publikasi. | US-06 |
 | FR-M08 | Form Kirim Naskah memvalidasi nama lengkap, email, judul naskah, dan jenis publikasi lalu membuat pesan WhatsApp tanpa persistensi server. | US-07 |
-| FR-M09 | Layanan ditampilkan tanpa harga dan setiap layanan dapat diarahkan ke konsultasi WhatsApp. | US-08 |
+| FR-M09 | Layanan ditampilkan dengan satu harga tetap dan setiap layanan dapat diarahkan ke konsultasi WhatsApp. | US-08 |
 | FR-M10 | Profil dan informasi global publik dibaca dari source/config; nomor WhatsApp, email, URL sosial, dan konfigurasi per-environment dibaca dari environment. Layanan tetap dapat diperbarui admin melalui Filament. | US-03, US-07, US-08, US-09 |
 | FR-M11 | Panel Filament hanya dapat diakses admin terautentikasi melalui session. | US-10 |
 | FR-M12 | Admin dapat melakukan CRUD dan mengelola status draft/published untuk seluruh konten dinamis. | US-11 |
@@ -322,7 +322,7 @@ Analytics yang berorientasi privasi mencatat event agregat `book_view`, `book_fi
 | FR-W02 | Keranjang, checkout, pembayaran, ongkir, dan inventori | Pemesanan dilakukan melalui WhatsApp. |
 | FR-W03 | Penyimpanan submission naskah atau unggah file naskah | Form hanya membentuk pesan WhatsApp. |
 | FR-W04 | Hosting PDF jurnal atau artikel ilmiah individual | Jurnal berupa metadata dan external URL. |
-| FR-W05 | Harga paket layanan | Keputusan bisnis menggunakan konsultasi tanpa harga. |
+| FR-W05 | Kalkulator atau paket harga dinamis layanan | Revisi client hanya membutuhkan satu harga tetap per layanan. |
 | FR-W06 | Komentar, rating, newsletter, dan notifikasi pengguna | Bukan kebutuhan inti MVP. [📌 ASSUMED] |
 | FR-W07 | REST API publik atau aplikasi mobile native | Data publik dikirim melalui Inertia props. |
 
@@ -642,7 +642,7 @@ Filament menggunakan route resource dan form internalnya. Kontrak minimum:
 | CRUD | `/admin/articles/*` | Admin | Validated article fields | 200, 302, 422, 403 |
 | CRUD | `/admin/authors/*` | Admin | Validated author fields | 200, 302, 422, 403 |
 | CRUD | `/admin/categories/*` | Admin | Validated category fields | 200, 302, 422, 403 |
-| CRUD | `/admin/services/*` | Admin | Service fields tanpa harga | 200, 302, 422, 403 |
+| CRUD | `/admin/services/*` | Admin | Service fields dengan harga tetap | 200, 302, 422, 403 |
 
 Upload yang terlalu besar menghasilkan 413 atau error validasi yang ramah. Server error tidak boleh mengekspos stack trace pada production.
 
@@ -867,7 +867,7 @@ Estimasi M0-M5 mengasumsikan satu tim kecil dengan product/design, satu full-sta
 4. Upload dan penyimpanan file naskah pengguna.
 5. WhatsApp Business API, chatbot, atau pengiriman pesan otomatis.
 6. PDF jurnal internal, viewer PDF, DOI minting, peer review, submission workflow, volume/issue, dan artikel ilmiah individual.
-7. Harga atau kalkulator harga layanan.
+7. Kalkulator atau paket harga dinamis layanan.
 8. Komentar, rating, forum, newsletter, dan push notification.
 9. REST/GraphQL API publik dan aplikasi mobile native.
 10. Multi-role editorial workflow, approval berlapis, dan multi-tenant publisher. [📌 ASSUMED]
@@ -893,7 +893,7 @@ Estimasi M0-M5 mengasumsikan satu tim kecil dengan product/design, satu full-sta
 
 ## VALIDATION CHECKLIST
 
-- ✅ **Consistency**: Struktur jurnal hanya metadata dengan external URL, layanan tanpa harga, form naskah tanpa persistensi, entitas author menyimpan bio singkat tanpa foto, admin minimal tanpa nama, seluruh publikasi memiliki banyak kategori, konfigurasi global bersifat statis/environment, dan shared-hosting preflight ditunda ke M6 sebagai gate production tanpa memblokir M0-M5.
+- ✅ **Consistency**: Struktur jurnal hanya metadata dengan external URL, layanan memiliki satu harga tetap, form naskah tanpa persistensi, entitas author menyimpan bio singkat tanpa foto, admin minimal tanpa nama, seluruh publikasi memiliki banyak kategori, konfigurasi global bersifat statis/environment, dan shared-hosting preflight ditunda ke M6 sebagai gate production tanpa memblokir M0-M5.
 - ✅ **Completeness**: Semua 12 user story memiliki acceptance criteria yang dapat diuji.
 - ✅ **Traceability**: Setiap functional requirement mempunyai referensi user story atau alasan out-of-scope.
 - ✅ **Measurability**: Goals menggunakan target kuantitatif, horizon waktu, atau acceptance-test threshold.
@@ -905,7 +905,7 @@ Issue yang ditemukan saat self-check dan telah diperbaiki:
 
 1. Model jurnal awal berpotensi terlalu kompleks. Diperbaiki menjadi satu entitas metadata dengan external URL, tanpa volume/issue atau artikel ilmiah internal.
 2. Kontrak form naskah berpotensi menyiratkan POST ke server. Diperbaiki menjadi client-only tanpa endpoint POST.
-3. Halaman layanan berpotensi memiliki model harga. Seluruh field dan requirement harga layanan dihapus.
+3. Halaman layanan berpotensi memiliki model harga. Revisi client menetapkan satu harga tetap per layanan; kalkulator dan paket harga dinamis tetap di luar scope.
 4. Istilah “API Contracts” berpotensi bertentangan dengan keputusan tanpa REST API. Diperjelas sebagai kontrak web route dan Inertia props.
 
 ```text

@@ -96,6 +96,8 @@ final class PublicPropsMapper
         return [
             'name' => $service->name,
             'slug' => $service->slug,
+            'price' => $service->price,
+            'formattedPrice' => 'Rp '.number_format($service->price, 0, ',', '.'),
             'summary' => $service->summary,
             'description' => $service->description,
             'features' => array_values(array_filter($service->features ?? [], 'is_string')),
