@@ -14,6 +14,7 @@ import {
 import { WhatsAppCta } from '@/components/conversion/whatsapp-cta';
 import { SeoHead } from '@/components/public/seo-head';
 import type { PublicSite, SeoProps } from '@/types';
+import { publicSurfaceClass } from '@/lib/public-theme';
 
 export default function Contact({
     seo,
@@ -67,7 +68,7 @@ export default function Contact({
                 />
                 <PageHeader
                     eyebrow="Kontak"
-                    title="Terhubung melalui kanal resmi"
+                    title="Terhubung Melalui Kanal Resmi"
                     description="Gunakan kanal yang tersedia untuk memperoleh informasi atau mendiskusikan kebutuhan penerbitan Anda."
                 />
                 {channels.length > 0 ? (
@@ -83,10 +84,10 @@ export default function Contact({
                                             ? 'noopener noreferrer'
                                             : undefined
                                     }
-                                    className="focus-visible:ring-ring group rounded-xl border p-6 transition hover:-translate-y-1 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+                                    className={`${publicSurfaceClass} focus-visible:ring-ring group hover:border-primary/30 p-6 transition hover:-translate-y-1 focus-visible:ring-2 focus-visible:outline-none`}
                                 >
                                     <Icon className="text-primary size-7" />
-                                    <h2 className="mt-5 text-xl font-semibold">
+                                    <h2 className="public-display mt-5 text-2xl font-bold">
                                         {title}
                                     </h2>
                                     <p className="text-muted-foreground mt-2 text-sm break-words">
@@ -109,7 +110,7 @@ export default function Contact({
                     />
                 )}
                 {site.contact.whatsappConfigured && (
-                    <div className="bg-muted/40 mt-8 flex gap-4 rounded-xl border p-6">
+                    <div className="border-border bg-secondary/60 mt-8 flex gap-4 rounded-2xl border p-6 shadow-sm">
                         <MessageCircle className="text-primary mt-1 size-6 shrink-0" />
                         <div>
                             <h2 className="font-semibold">

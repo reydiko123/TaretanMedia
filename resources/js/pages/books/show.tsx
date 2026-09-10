@@ -18,6 +18,7 @@ import { usePage } from '@inertiajs/react';
 import { useEffect } from 'react';
 import { WhatsAppCta } from '@/components/conversion/whatsapp-cta';
 import { track } from '@/lib/analytics';
+import { publicSurfaceClass } from '@/lib/public-theme';
 
 export default function BooksShow({
     seo,
@@ -86,7 +87,7 @@ export default function BooksShow({
                         src={book.coverUrl}
                         alt={`Sampul ${book.title}`}
                         priority
-                        className="w-full shadow-lg"
+                        className="w-full shadow-[0_25px_60px_-25px_rgba(20,83,45,0.5)]"
                     />
                     <div>
                         <CategoryBadges categories={book.categories} />
@@ -125,7 +126,7 @@ export default function BooksShow({
                                     ({ label, value, icon: Icon }) => (
                                         <div
                                             key={label}
-                                            className="bg-muted/40 rounded-lg border p-4"
+                                            className={`${publicSurfaceClass} bg-secondary/60 p-4 shadow-none`}
                                         >
                                             <dt className="text-muted-foreground flex items-center gap-2 text-sm">
                                                 <Icon className="size-4" />
@@ -144,7 +145,7 @@ export default function BooksShow({
                         <div className="space-y-10 lg:col-start-2">
                             {book.synopsis && (
                                 <section>
-                                    <h2 className="text-2xl font-semibold">
+                                    <h2 className="public-display text-3xl font-bold">
                                         Sinopsis
                                     </h2>
                                     <div className="text-muted-foreground mt-4 leading-8 whitespace-pre-line">
@@ -154,10 +155,10 @@ export default function BooksShow({
                             )}
                             {book.tableOfContents && (
                                 <section>
-                                    <h2 className="text-2xl font-semibold">
+                                    <h2 className="public-display text-3xl font-bold">
                                         Daftar isi
                                     </h2>
-                                    <div className="text-muted-foreground bg-muted/30 mt-4 rounded-xl border p-6 leading-8 whitespace-pre-line">
+                                    <div className="text-muted-foreground bg-secondary/60 mt-4 rounded-2xl border p-6 leading-8 whitespace-pre-line">
                                         {book.tableOfContents}
                                     </div>
                                 </section>

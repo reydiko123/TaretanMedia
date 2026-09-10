@@ -66,7 +66,7 @@ export function CatalogFilterForm({
                 if (kind === 'book')
                     track('book_filter', { filter_kind: 'search' });
             }}
-            className="bg-muted/40 mb-8 rounded-xl border p-4 sm:p-5"
+            className="bg-secondary/60 border-border mb-10 rounded-2xl border p-4 shadow-sm sm:p-6"
         >
             <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <label className="col-span-2 grid gap-1.5 text-sm font-medium lg:col-span-2">
@@ -76,7 +76,7 @@ export function CatalogFilterForm({
                         name="q"
                         defaultValue={filters.search}
                         placeholder={`Cari ${kind === 'book' ? 'judul atau penulis' : kind === 'journal' ? 'judul atau tema' : 'judul atau penulis'}`}
-                        className="border-input bg-background focus-visible:ring-ring h-10 rounded-md border px-3 outline-none focus-visible:ring-2"
+                        className="border-input bg-background focus-visible:ring-ring h-11 rounded-xl border px-3 outline-none focus-visible:ring-2"
                     />
                 </label>
                 <label className="grid gap-1.5 text-sm font-medium">
@@ -84,7 +84,7 @@ export function CatalogFilterForm({
                     <select
                         name="category"
                         defaultValue={filters.category ?? ''}
-                        className="border-input bg-background focus-visible:ring-ring h-10 rounded-md border px-3 outline-none focus-visible:ring-2"
+                        className="border-input bg-background focus-visible:ring-ring h-11 rounded-xl border px-3 outline-none focus-visible:ring-2"
                     >
                         <option value="">Semua kategori</option>
                         {categories.map((category) => (
@@ -99,7 +99,7 @@ export function CatalogFilterForm({
                     <select
                         name="sort"
                         defaultValue={filters.sort}
-                        className="border-input bg-background focus-visible:ring-ring h-10 rounded-md border px-3 outline-none focus-visible:ring-2"
+                        className="border-input bg-background focus-visible:ring-ring h-11 rounded-xl border px-3 outline-none focus-visible:ring-2"
                     >
                         {sortOptions[kind].map(([value, label]) => (
                             <option key={value} value={value}>
@@ -113,7 +113,7 @@ export function CatalogFilterForm({
                         <label className="grid gap-1.5 text-sm font-medium">
                             Harga minimum
                             <input
-                                className="border-input bg-background focus-visible:ring-ring h-10 rounded-md border px-3 outline-none focus-visible:ring-2"
+                                className="border-input bg-background focus-visible:ring-ring h-11 rounded-xl border px-3 outline-none focus-visible:ring-2"
                                 type="number"
                                 name="min_price"
                                 min="0"
@@ -124,7 +124,7 @@ export function CatalogFilterForm({
                         <label className="grid gap-1.5 text-sm font-medium">
                             Harga maksimum
                             <input
-                                className="border-input bg-background focus-visible:ring-ring h-10 rounded-md border px-3 outline-none focus-visible:ring-2"
+                                className="border-input bg-background focus-visible:ring-ring h-11 rounded-xl border px-3 outline-none focus-visible:ring-2"
                                 type="number"
                                 name="max_price"
                                 min="0"
@@ -135,7 +135,7 @@ export function CatalogFilterForm({
                         <label className="grid gap-1.5 text-sm font-medium">
                             Tahun terbit
                             <input
-                                className="border-input bg-background focus-visible:ring-ring h-10 rounded-md border px-3 outline-none focus-visible:ring-2"
+                                className="border-input bg-background focus-visible:ring-ring h-11 rounded-xl border px-3 outline-none focus-visible:ring-2"
                                 type="number"
                                 name="year"
                                 min="1900"
@@ -159,7 +159,7 @@ export function CatalogFilterForm({
 
 export function BookCardView({ book }: { book: BookCard }) {
     return (
-        <Card className="h-full overflow-hidden py-0 transition-shadow hover:shadow-md">
+        <Card className="group hover:border-primary/30 h-full overflow-hidden rounded-2xl py-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(20,83,45,0.45)]">
             <Link href={`/buku/${book.slug}`} className="block">
                 <PublicImage
                     src={book.coverUrl}
@@ -171,7 +171,7 @@ export function BookCardView({ book }: { book: BookCard }) {
                 <CategoryBadges categories={book.categories} />
                 <CardTitle className="text-lg leading-snug">
                     <Link
-                        className="hover:underline"
+                        className="group-hover:text-primary transition-colors hover:underline"
                         href={`/buku/${book.slug}`}
                     >
                         {book.title}
@@ -204,7 +204,7 @@ export function BookCardView({ book }: { book: BookCard }) {
 
 export function JournalCardView({ journal }: { journal: JournalCard }) {
     return (
-        <Card className="h-full overflow-hidden py-0 transition-shadow hover:shadow-md">
+        <Card className="group hover:border-primary/30 h-full overflow-hidden rounded-2xl py-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(20,83,45,0.45)]">
             <Link href={`/jurnal/${journal.slug}`}>
                 <PublicImage
                     src={journal.coverUrl}
@@ -216,7 +216,7 @@ export function JournalCardView({ journal }: { journal: JournalCard }) {
                 <CategoryBadges categories={journal.categories} />
                 <CardTitle className="text-lg leading-snug">
                     <Link
-                        className="hover:underline"
+                        className="group-hover:text-primary transition-colors hover:underline"
                         href={`/jurnal/${journal.slug}`}
                     >
                         {journal.title}
@@ -246,7 +246,7 @@ export function JournalCardView({ journal }: { journal: JournalCard }) {
 
 export function ArticleCardView({ article }: { article: ArticleCard }) {
     return (
-        <Card className="h-full overflow-hidden py-0 transition-shadow hover:shadow-md">
+        <Card className="group hover:border-primary/30 h-full overflow-hidden rounded-2xl py-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(20,83,45,0.45)]">
             <Link href={`/artikel/${article.slug}`}>
                 <PublicImage
                     src={article.featuredImageUrl}
@@ -259,7 +259,7 @@ export function ArticleCardView({ article }: { article: ArticleCard }) {
                 <CategoryBadges categories={article.categories} />
                 <CardTitle className="text-xl leading-snug">
                     <Link
-                        className="hover:underline"
+                        className="group-hover:text-primary transition-colors hover:underline"
                         href={`/artikel/${article.slug}`}
                     >
                         {article.title}

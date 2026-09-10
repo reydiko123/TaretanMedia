@@ -1,6 +1,7 @@
 import { Link, usePage } from '@inertiajs/react';
-import { ExternalLink, Instagram, Mail, MapPin } from 'lucide-react';
+import { ExternalLink, Instagram, Mail, MapPin, Send } from 'lucide-react';
 import type { PublicSharedProps } from '@/types';
+import { publishingServices } from '@/lib/public-content';
 
 const footerLinks = [
     { label: 'Buku', href: '/buku' },
@@ -46,18 +47,26 @@ export function PublicFooter() {
     );
 
     return (
-        <footer className="border-border bg-muted/30 border-t">
-            <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
+        <footer className="border-border bg-secondary/60 border-t">
+            <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
                 <div>
-                    <p className="text-foreground font-bold">
-                        {site?.name || 'Taretan Media'}
-                    </p>
-                    <p className="text-muted-foreground mt-2 max-w-sm text-sm leading-6">
+                    <img
+                        src="/images/brand/logo-footer.jpeg"
+                        alt={site?.name || 'Taretan Media'}
+                        className="h-16 w-56 object-cover object-center"
+                    />
+                    <p className="text-muted-foreground mt-5 max-w-sm text-sm leading-7">
                         {site?.tagline || 'Penerbit buku dan publikasi ilmiah.'}
                     </p>
+                    <Link
+                        href="/kirim-naskah"
+                        className="text-primary mt-5 inline-flex items-center gap-2 text-sm font-semibold hover:underline"
+                    >
+                        Kirim naskah <Send className="size-4" />
+                    </Link>
                 </div>
                 <nav aria-label="Navigasi footer">
-                    <p className="font-semibold">Jelajahi</p>
+                    <p className="public-section-label">Jelajahi</p>
                     <ul className="mt-3 grid grid-cols-2 gap-2 text-sm">
                         {footerLinks.map((item) => (
                             <li key={item.href}>
@@ -71,8 +80,23 @@ export function PublicFooter() {
                         ))}
                     </ul>
                 </nav>
+                <nav aria-label="Layanan footer">
+                    <p className="public-section-label">Layanan</p>
+                    <ul className="mt-3 space-y-2 text-sm">
+                        {publishingServices.map((service) => (
+                            <li key={service.href}>
+                                <Link
+                                    className="text-muted-foreground hover:text-foreground hover:underline"
+                                    href={service.href}
+                                >
+                                    {service.title}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
                 <div>
-                    <p className="font-semibold">Kanal resmi</p>
+                    <p className="public-section-label">Kanal resmi</p>
                     {channels.length > 0 ? (
                         <ul className="mt-3 space-y-2 text-sm">
                             {channels.map(
@@ -115,7 +139,7 @@ export function PublicFooter() {
                 </div>
             </div>
             <div className="border-border border-t">
-                <div className="text-muted-foreground mx-auto max-w-6xl px-4 py-5 text-sm sm:px-6">
+                <div className="text-muted-foreground mx-auto max-w-7xl px-4 py-5 text-sm sm:px-6">
                     &copy; {new Date().getFullYear()}{' '}
                     {site?.name || 'Taretan Media'}. Seluruh hak cipta
                     dilindungi.

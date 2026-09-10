@@ -1,10 +1,11 @@
 import { Link } from '@inertiajs/react';
-import { ImageOff, Link2, Share2 } from 'lucide-react';
+import { ChevronRight, ImageOff, Link2, Share2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { Paginated, PublicBreadcrumbItem } from '@/types';
 import { track } from '@/lib/analytics';
+import { publicSurfaceClass } from '@/lib/public-theme';
 
 export function PageContainer({
     className,
@@ -12,7 +13,7 @@ export function PageContainer({
 }: React.ComponentProps<'div'>) {
     return (
         <div
-            className={cn('mx-auto w-full max-w-6xl px-4 sm:px-6', className)}
+            className={cn('mx-auto w-full max-w-7xl px-4 sm:px-6', className)}
             {...props}
         />
     );
@@ -28,20 +29,18 @@ export function PageHeader({
     description?: string;
 }) {
     return (
-        <header className="max-w-3xl py-10 sm:py-14">
-            {eyebrow && (
-                <p className="text-primary text-sm font-semibold tracking-wide uppercase">
-                    {eyebrow}
-                </p>
-            )}
-            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-                {title}
-            </h1>
-            {description && (
-                <p className="text-muted-foreground mt-4 text-lg leading-8">
-                    {description}
-                </p>
-            )}
+        <header className="public-grid-paper border-border bg-secondary/60 relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-y">
+            <div className="public-glow mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
+                {eyebrow && <p className="public-eyebrow">{eyebrow}</p>}
+                <h1 className="public-display mt-4 text-3xl leading-tight font-bold tracking-tight sm:text-6xl">
+                    {title}
+                </h1>
+                {description && (
+                    <p className="text-muted-foreground mt-5 max-w-2xl text-base leading-7 sm:text-lg sm:leading-8">
+                        {description}
+                    </p>
+                )}
+            </div>
         </header>
     );
 }
@@ -53,13 +52,18 @@ export function PublicBreadcrumbs({
 }) {
     return (
         <nav aria-label="Breadcrumb" className="pt-6 text-sm">
-            <ol className="text-muted-foreground flex flex-wrap items-center gap-2">
+            <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-xs font-medium sm:text-sm">
                 {items.map((item, index) => (
                     <li
                         key={`${item.label}-${index}`}
                         className="flex items-center gap-2"
                     >
-                        {index > 0 && <span aria-hidden="true">/</span>}
+                        {index > 0 && (
+                            <ChevronRight
+                                className="text-muted-foreground/60 size-3.5"
+                                aria-hidden="true"
+                            />
+                        )}
                         {item.href ? (
                             <Link
                                 className="hover:text-foreground underline-offset-4 hover:underline"
@@ -109,7 +113,7 @@ export function PublicImage({
     return (
         <div
             className={cn(
-                'bg-muted text-muted-foreground relative overflow-hidden rounded-lg',
+                'bg-muted text-muted-foreground border-border/70 relative overflow-hidden rounded-2xl border',
                 aspectClass,
                 className,
             )}
@@ -175,8 +179,13 @@ export function EmptyState({
     resetHref?: string;
 }) {
     return (
-        <div className="border-border bg-muted/30 rounded-xl border border-dashed px-6 py-14 text-center">
-            <h2 className="text-lg font-semibold">{title}</h2>
+        <div
+            className={cn(
+                publicSurfaceClass,
+                'bg-muted/30 border-dashed px-6 py-14 text-center',
+            )}
+        >
+            <h2 className="public-display text-2xl font-bold">{title}</h2>
             <p className="text-muted-foreground mx-auto mt-2 max-w-lg">
                 {description}
             </p>

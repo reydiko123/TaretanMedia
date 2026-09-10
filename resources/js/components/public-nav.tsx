@@ -1,18 +1,17 @@
 import { Link, usePage } from '@inertiajs/react';
-import { Menu } from 'lucide-react';
-import { useState } from 'react';
+import { Menu, Send } from 'lucide-react';
+import { useState, type MouseEventHandler } from 'react';
 import { Button } from '@/components/ui/button';
 import {
     Sheet,
-    SheetClose,
     SheetContent,
     SheetDescription,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
-import { cn } from '@/lib/utils';
 import type { PublicNavigationItem, PublicSharedProps } from '@/types';
+import { publicNavIsActive, publicNavLinkClass } from '@/lib/public-theme';
 
 const fallbackNavigation: PublicNavigationItem[] = [
     { label: 'Beranda', href: '/' },
@@ -24,34 +23,24 @@ const fallbackNavigation: PublicNavigationItem[] = [
     { label: 'Kontak', href: '/kontak' },
 ];
 
-function isActive(currentUrl: string, href: string) {
-    const pathname = currentUrl.split('?')[0];
-    return href === '/'
-        ? pathname === '/'
-        : pathname === href || pathname.startsWith(`${href}/`);
-}
-
 function NavLink({
     item,
     currentUrl,
     mobile = false,
+    onClick,
 }: {
     item: PublicNavigationItem;
     currentUrl: string;
     mobile?: boolean;
+    onClick?: MouseEventHandler<Element>;
 }) {
-    const active = isActive(currentUrl, item.href);
+    const active = publicNavIsActive(currentUrl, item.href);
     return (
         <Link
             href={item.href}
             aria-current={active ? 'page' : undefined}
-            className={cn(
-                'focus-visible:ring-ring rounded-md font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none',
-                mobile ? 'block px-3 py-3 text-base' : 'px-3 py-2 text-sm',
-                active
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-muted-foreground hover:bg-accent hover:text-foreground',
-            )}
+            className={publicNavLinkClass(active, mobile)}
+            onClick={onClick}
         >
             {item.label}
         </Link>
@@ -71,14 +60,26 @@ export function PublicNav() {
         <header className="border-border bg-background/95 supports-[backdrop-filter]:bg-background/80 sticky top-0 z-40 w-full border-b backdrop-blur">
             <nav
                 aria-label="Navigasi utama"
-                className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"
+                className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6"
             >
                 <Link
                     href="/"
                     aria-label={`${siteName}, Beranda`}
-                    className="focus-visible:ring-ring rounded-md text-lg font-bold tracking-tight focus-visible:ring-2 focus-visible:outline-none"
+                    className="focus-visible:ring-ring flex items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:outline-none"
                 >
-                    {siteName}
+                    <img
+                        src="/images/brand/logo-pojok-kiri-atas.png"
+                        alt=""
+                        className="size-10 object-contain"
+                    />
+                    <span className="leading-tight">
+                        <span className="public-display text-foreground block text-lg font-bold tracking-tight">
+                            {siteName}
+                        </span>
+                        <span className="text-muted-foreground hidden text-[10px] font-semibold tracking-[0.16em] uppercase sm:block">
+                            Penerbit buku & publikasi ilmiah
+                        </span>
+                    </span>
                 </Link>
                 <ul className="hidden items-center gap-1 lg:flex">
                     {navigation.map((item) => (
@@ -87,6 +88,13 @@ export function PublicNav() {
                         </li>
                     ))}
                 </ul>
+                <div className="hidden items-center gap-3 lg:flex">
+                    <Button asChild className="rounded-xl px-4">
+                        <Link href="/kirim-naskah">
+                            <Send aria-hidden="true" /> Kirim naskah
+                        </Link>
+                    </Button>
+                </div>
                 <Sheet open={open} onOpenChange={setOpen}>
                     <SheetTrigger asChild>
                         <Button
@@ -98,29 +106,35 @@ export function PublicNav() {
                             <Menu className="size-5" aria-hidden="true" />
                         </Button>
                     </SheetTrigger>
-                    <SheetContent className="w-[min(22rem,88vw)]">
+                    <SheetContent className="!inset-y-auto !top-0 !right-0 !h-auto max-h-[86vh] w-[min(21rem,88vw)] overflow-x-hidden rounded-bl-3xl border-b shadow-2xl">
                         <SheetHeader>
                             <SheetTitle>{siteName}</SheetTitle>
                             <SheetDescription>
                                 Navigasi utama situs Taretan Media.
                             </SheetDescription>
                         </SheetHeader>
-                        <ul className="grid gap-1 px-4">
+                        <ul className="grid min-w-0 gap-1 px-4">
                             {navigation.map((item) => (
-                                <li key={item.href}>
-                                    <SheetClose
-                                        asChild
+                                <li key={item.href} className="min-w-0">
+                                    <NavLink
+                                        item={item}
+                                        currentUrl={page.url}
+                                        mobile
                                         onClick={() => setOpen(false)}
-                                    >
-                                        <NavLink
-                                            item={item}
-                                            currentUrl={page.url}
-                                            mobile
-                                        />
-                                    </SheetClose>
+                                    />
                                 </li>
                             ))}
                         </ul>
+                        <div className="px-4 pt-4">
+                            <Button asChild className="w-full rounded-xl">
+                                <Link
+                                    href="/kirim-naskah"
+                                    onClick={() => setOpen(false)}
+                                >
+                                    <Send aria-hidden="true" /> Kirim naskah
+                                </Link>
+                            </Button>
+                        </div>
                     </SheetContent>
                 </Sheet>
             </nav>

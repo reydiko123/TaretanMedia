@@ -49,7 +49,7 @@ final class PublicSiteConfig
             ['label' => 'Artikel', 'href' => route('articles.index', absolute: false)],
             ['label' => 'Profil', 'href' => route('profile', absolute: false)],
             ['label' => 'Layanan', 'href' => route('services.index', absolute: false)],
-            ['label' => 'Kirim Naskah', 'href' => route('manuscripts.create', absolute: false)],
+            // ['label' => 'Kirim Naskah', 'href' => route('manuscripts.create', absolute: false)],
             ['label' => 'Kontak', 'href' => route('contact', absolute: false)],
         ];
     }

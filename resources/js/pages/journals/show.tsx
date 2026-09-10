@@ -11,6 +11,7 @@ import { SeoHead } from '@/components/public/seo-head';
 import { Button } from '@/components/ui/button';
 import type { JournalDetail, SeoProps } from '@/types';
 import { TrackedExternalLink } from '@/components/conversion/tracked-external-link';
+import { publicSurfaceClass } from '@/lib/public-theme';
 
 export default function JournalsShow({
     seo,
@@ -45,7 +46,7 @@ export default function JournalsShow({
                         src={journal.coverUrl}
                         alt={`Sampul ${journal.title}`}
                         priority
-                        className="w-full shadow-lg"
+                        className="w-full shadow-[0_25px_60px_-25px_rgba(20,83,45,0.5)]"
                     />
                     <div>
                         <CategoryBadges categories={journal.categories} />
@@ -60,7 +61,9 @@ export default function JournalsShow({
                             </p>
                         )}
                         {journal.theme && (
-                            <div className="bg-muted/40 mt-7 rounded-lg border p-4">
+                            <div
+                                className={`${publicSurfaceClass} bg-secondary/60 mt-7 p-4 shadow-none`}
+                            >
                                 <p className="text-muted-foreground text-sm">
                                     Tema
                                 </p>
@@ -98,7 +101,7 @@ export default function JournalsShow({
                         )}
                         {journal.description && (
                             <section className="mt-10">
-                                <h2 className="text-2xl font-semibold">
+                                <h2 className="public-display text-3xl font-bold">
                                     Tentang jurnal
                                 </h2>
                                 <div className="text-muted-foreground mt-4 leading-8 whitespace-pre-line">

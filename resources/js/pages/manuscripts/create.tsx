@@ -26,7 +26,7 @@ export default function ManuscriptsCreate({
                 />
                 <PageHeader
                     eyebrow="Kirim Naskah"
-                    title="Mulai percakapan tentang naskah Anda"
+                    title="Mulai Percakapan Tentang Naskah Anda"
                     description="Isi informasi singkat berikut. Data hanya digunakan untuk membentuk pesan yang Anda tinjau di WhatsApp."
                 />
                 <div className="mx-auto max-w-2xl">

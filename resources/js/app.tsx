@@ -23,5 +23,5 @@ void createInertiaApp({
     },
 });
 
-// This will set light / dark mode on load...
+// Keep the public site on the light theme on every device.
 initializeTheme();

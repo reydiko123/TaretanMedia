@@ -8,6 +8,7 @@ import {
 import { SeoHead } from '@/components/public/seo-head';
 import { Button } from '@/components/ui/button';
 import type { SeoProps } from '@/types';
+import { publicSurfaceClass } from '@/lib/public-theme';
 
 type ProfileContent = {
     introduction?: string;
@@ -45,20 +46,20 @@ export default function Profile({
                     }
                 />
                 <div className="grid gap-6 pb-16 md:grid-cols-2">
-                    <section className="rounded-xl border p-6 sm:p-8">
+                    <section className={`${publicSurfaceClass} p-6 sm:p-8`}>
                         <Compass className="text-primary size-7" />
-                        <h2 className="mt-5 text-2xl font-semibold">
-                            Arah kami
+                        <h2 className="public-display mt-5 text-3xl font-bold">
+                            Arah Kami
                         </h2>
                         <p className="text-muted-foreground mt-3 leading-7">
                             {profile?.vision ||
                                 'Membangun ruang penerbitan yang terarah, mudah diakses, dan memberi tempat bagi karya yang bermakna.'}
                         </p>
                     </section>
-                    <section className="rounded-xl border p-6 sm:p-8">
+                    <section className={`${publicSurfaceClass} p-6 sm:p-8`}>
                         <Library className="text-primary size-7" />
-                        <h2 className="mt-5 text-2xl font-semibold">
-                            Fokus penerbitan
+                        <h2 className="public-display mt-5 text-3xl font-bold">
+                            Fokus Penerbitan
                         </h2>
                         <ul className="text-muted-foreground mt-3 space-y-2">
                             {focuses.map((focus) => (
@@ -72,10 +73,12 @@ export default function Profile({
                             ))}
                         </ul>
                     </section>
-                    <section className="bg-muted/40 rounded-xl border p-6 sm:col-span-2 sm:p-8">
+                    <section
+                        className={`${publicSurfaceClass} bg-secondary/60 p-6 sm:col-span-2 sm:p-8`}
+                    >
                         <Handshake className="text-primary size-7" />
-                        <h2 className="mt-5 text-2xl font-semibold">
-                            Bertumbuh bersama karya
+                        <h2 className="public-display mt-5 text-3xl font-bold">
+                            Bertumbuh Bersama Karya
                         </h2>
                         <p className="text-muted-foreground mt-3 max-w-3xl leading-7">
                             {profile?.credibility ||

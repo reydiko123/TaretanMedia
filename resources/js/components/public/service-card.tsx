@@ -1,4 +1,4 @@
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, Sparkles } from 'lucide-react';
 import type { WhatsAppConfig } from '@/lib/whatsapp';
 import type { PublicService } from '@/types';
 import { WhatsAppCta } from '@/components/conversion/whatsapp-cta';
@@ -22,15 +22,18 @@ export function ServiceCard({
     whatsappConfig,
 }: ServiceCardProps) {
     return (
-        <Card className="h-full">
+        <Card className="group border-border bg-card hover:border-primary/30 h-full rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(20,83,45,0.45)]">
             <CardHeader>
+                <span className="bg-primary/10 text-primary flex size-11 items-center justify-center rounded-xl">
+                    <Sparkles className="size-5" aria-hidden="true" />
+                </span>
                 <CardTitle className="text-xl">{service.name}</CardTitle>
                 {service.summary && (
                     <p className="text-muted-foreground text-sm leading-6">
                         {service.summary}
                     </p>
                 )}
-                <p className="mt-2 text-2xl font-bold">
+                <p className="text-primary mt-2 text-2xl font-bold">
                     {service.formattedPrice}
                 </p>
             </CardHeader>

@@ -43,7 +43,7 @@ export default function ArticlesShow({
                         <div className="flex justify-center">
                             <CategoryBadges categories={article.categories} />
                         </div>
-                        <h1 className="mt-5 text-3xl font-bold tracking-tight sm:text-5xl sm:leading-tight">
+                        <h1 className="public-display mt-5 text-4xl font-bold tracking-tight sm:text-6xl sm:leading-tight">
                             {article.title}
                         </h1>
                         {article.excerpt && (
@@ -77,7 +77,7 @@ export default function ArticlesShow({
                         alt={`Ilustrasi ${article.title}`}
                         aspect="landscape"
                         priority
-                        className="mt-10 w-full shadow-lg"
+                        className="mt-10 w-full shadow-[0_25px_60px_-25px_rgba(20,83,45,0.5)]"
                     />
                     <div
                         className="public-prose mt-10"

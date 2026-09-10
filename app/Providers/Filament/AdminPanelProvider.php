@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->favicon(asset('taretan-media.png'))
             ->authGuard('admin')
             ->login(Login::class)
             ->colors([
