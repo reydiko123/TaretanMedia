@@ -1,33 +1,27 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
     public function up(): void
     {
-        DB::statement("CREATE TABLE articles (
-            id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-            author_id integer NOT NULL,
-            title varchar NOT NULL,
-            slug varchar NOT NULL,
-            excerpt text,
-            body text NOT NULL,
-            featured_image_path varchar,
-            status varchar NOT NULL DEFAULT 'draft',
-            published_at datetime,
-            is_featured tinyint(1) NOT NULL DEFAULT 0,
-            created_at datetime,
-            updated_at datetime,
-            deleted_at datetime,
-            FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE RESTRICT,
-            CHECK (status IN ('draft','published'))
-        )");
-
-        Schema::table('articles', function ($table) {
-            $table->unique('slug');
+        Schema::create('articles', function (Blueprint $table): void {
+            $table->id();
+            $table->foreignId('author_id')->constrained('authors')->restrictOnDelete();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->text('excerpt')->nullable();
+            $table->text('body');
+            $table->string('featured_image_path')->nullable();
+            $table->enum('status', ['draft', 'published'])->default('draft');
+            $table->dateTime('published_at')->nullable();
+            $table->boolean('is_featured')->default(false);
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
             $table->index('status');
             $table->index('published_at');
             $table->index('is_featured');

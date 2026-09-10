@@ -1,26 +1,21 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
     public function up(): void
     {
-        DB::statement("CREATE TABLE categories (
-            id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-            name varchar NOT NULL,
-            slug varchar NOT NULL,
-            type varchar NOT NULL,
-            created_at datetime,
-            updated_at datetime,
-            deleted_at datetime,
-            CHECK (type IN ('book','journal','article'))
-        )");
-
-        Schema::table('categories', function ($table) {
-            $table->unique('slug');
+        Schema::create('categories', function (Blueprint $table): void {
+            $table->id();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->enum('type', ['book', 'journal', 'article']);
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
             $table->unique(['name', 'type']);
             $table->index('type');
         });
