@@ -13,6 +13,20 @@ function cleanText(value: string | null | undefined): string {
   return (value ?? "").trim()
 }
 
+function formatWhatsAppNumber(value: string): string {
+  const digits = value.replace(/\D/g, "")
+  const nationalNumber = digits.startsWith("62")
+    ? digits.slice(2)
+    : digits.startsWith("0")
+      ? digits.slice(1)
+      : ""
+
+  if (!nationalNumber) return value
+
+  const groups = [nationalNumber.slice(0, 3), nationalNumber.slice(3, 7), nationalNumber.slice(7)].filter(Boolean)
+  return `+62 ${groups.join("-")}`
+}
+
 export function createContactPageViewModel(contact: ContactContent): ContactPageViewModel {
   const title = cleanText(contact.heading) || COPY.title
   const description = cleanText(contact.description) || COPY.description
@@ -24,7 +38,7 @@ export function createContactPageViewModel(contact: ContactContent): ContactPage
   if (whatsappHref) {
     channels.push({
       id: "whatsapp",
-      label: whatsappNumber || cleanText(contact.whatsappLabel) || COPY.whatsappLabel,
+      label: whatsappNumber ? formatWhatsAppNumber(whatsappNumber) : cleanText(contact.whatsappLabel) || COPY.whatsappLabel,
       supportingText: COPY.whatsappSupport,
       href: whatsappHref,
       external: true,

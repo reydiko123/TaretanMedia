@@ -218,7 +218,7 @@ export function toServicesProps(services: BackendService[], shared: Partial<Publ
 }
 
 export function toContactProps(shared: Partial<PublicSharedProps>, seo: SeoProps): ContactProps {
-    return { ...toShellProps(shared), contact: { ...toShellProps(shared).contact, heading: seo.title, description: seo.description } }
+    return { ...toShellProps(shared), contact: { ...toShellProps(shared).contact, heading: 'Hubungi Kami', description: seo.description } }
 }
 
 export function toManuscriptProps(shared: Partial<PublicSharedProps>): ManuscriptCreateProps {
