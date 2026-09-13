@@ -52,17 +52,20 @@ return [
 
     'public' => [
         'name' => env('PUBLIC_SITE_NAME', env('APP_NAME', 'Taretan Media')),
-        'tagline' => env('PUBLIC_SITE_TAGLINE', 'Penerbitan yang mendekatkan gagasan kepada pembaca.'),
+        'tagline' => env('PUBLIC_SITE_TAGLINE', 'Mitra terpercaya bagi setiap penulis dalam membawa gagasan dan hasil penelitian menjadi karya yang bernilai, layak terbit, dan memiliki dampak akademik yang lebih luas.'),
         'address' => env('PUBLIC_ADDRESS'),
         'profile' => [
-            'summary' => env('PUBLIC_PROFILE_SUMMARY', 'Taretan Media menghadirkan karya buku, jurnal, dan berita untuk pembaca yang lebih luas.'),
-            'vision' => env('PUBLIC_PROFILE_VISION', 'Menjadi ruang penerbitan yang terpercaya, relevan, dan mudah diakses.'),
+            'summary' => env('PUBLIC_PROFILE_SUMMARY', 'Taretan Media merupakan lembaga yang bergerak di bidang penerbitan buku, jurnal ilmiah, dan pendampingan publikasi akademik. Taretan Media hadir sebagai mitra bagi akademisi, peneliti, dosen, mahasiswa, dan penulis dalam mengembangkan serta menyebarluaskan karya intelektual melalui publikasi yang berkualitas dan profesional.\n\nDalam menjalankan aktivitasnya, Taretan Media tidak hanya berfokus pada proses penerbitan, tetapi juga memberikan pendampingan dalam pengembangan dan persiapan berita ilmiah menuju publikasi. Pendampingan dilakukan untuk membantu penulis meningkatkan kualitas substansi, sistematika, bahasa akademik, kesesuaian dengan ketentuan jurnal, hingga kesiapan naskah untuk diajukan pada jurnal yang sesuai dengan bidang dan tujuan publikasinya.\n\nTaretan Media berkomitmen membangun ekosistem publikasi yang mengedepankan kualitas, integritas akademik, profesionalisme, dan kemitraan. Kami percaya bahwa karya ilmiah yang baik tidak berhenti pada proses penulisan, tetapi perlu dikembangkan, disiapkan, diterbitkan, dan disebarluaskan agar dapat memberikan manfaat yang lebih luas bagi perkembangan ilmu pengetahuan dan masyarakat.'),
+            'vision' => env('PUBLIC_PROFILE_VISION', 'Menjadi mitra publikasi akademik yang terpercaya dan profesional dalam menerbitkan serta mengembangkan karya ilmiah berkualitas untuk mendukung kemajuan ilmu pengetahuan di tingkat nasional dan internasional.'),
             'mission' => [
-                'Mendampingi lahirnya karya yang bernilai.',
-                'Memperluas akses pembaca terhadap publikasi berkualitas.',
-                'Membangun ekosistem literasi yang kolaboratif.',
+                'Menyelenggarakan penerbitan buku dan jurnal ilmiah yang berkualitas dengan mengedepankan standar profesional dan integritas akademik.',
+                'Memberikan pendampingan publikasi yang profesional dan berorientasi pada kualitas, sehingga penulis mampu mempersiapkan berita ilmiahnya secara lebih baik dan sesuai dengan standar publikasi yang dituju.',
+                'Mendukung akademisi, peneliti, dosen, mahasiswa, dan penulis dalam mengembangkan gagasan, hasil penelitian, dan karya intelektual menjadi publikasi yang bernilai.',
+                'Membangun proses penerbitan yang transparan, bertanggung jawab, dan beretika, dengan menjunjung tinggi integritas serta etika dalam publikasi ilmiah.',
+                'Mengembangkan jejaring dan kolaborasi dengan akademisi, peneliti, perguruan tinggi, lembaga, dan komunitas ilmiah untuk memperluas ekosistem publikasi dan pertukaran pengetahuan.',
+                'Memperluas akses dan dampak karya ilmiah melalui pemanfaatan teknologi dan media publikasi digital sehingga pengetahuan dapat menjangkau pembaca dan komunitas akademik yang lebih luas.',
             ],
-            'values' => ['Integritas', 'Kolaborasi', 'Kualitas', 'Aksesibilitas'],
+            'values' => ['Kualitas', 'Integritas Akademik', 'Profesionalisme', 'Kemitraan'],
         ],
     ],
 
