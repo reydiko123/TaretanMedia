@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react"
 import { motion } from "motion/react"
 import { ManuscriptForm } from "@/new-ui/components/conversion/ManuscriptForm"
 import { PrivacyNotice } from "@/new-ui/components/conversion/PrivacyNotice"
+import { SubmissionShell } from "@/new-ui/components/layout/SubmissionShell"
 import type { ManuscriptCreateProps, OpenExternalUrl } from "@/new-ui/types/public"
 
 export type ManuscriptCreatePageProps = ManuscriptCreateProps & {
@@ -19,7 +20,8 @@ export function ManuscriptCreatePage({ openExternalUrl, trackEvent, ...props }: 
   }
 
   return (
-    <div className="manuscript-page">
+    <SubmissionShell brandName={props.site.name}>
+      <div className="manuscript-page">
       <motion.div
         className="mx-auto max-w-content px-5 pb-12 sm:px-8 sm:pb-16 lg:px-12 lg:pb-20"
         initial={{ opacity: 0 }}
@@ -50,6 +52,7 @@ export function ManuscriptCreatePage({ openExternalUrl, trackEvent, ...props }: 
           />
         </div>
       </motion.div>
-    </div>
+      </div>
+    </SubmissionShell>
   )
 }

@@ -44,7 +44,8 @@ final class BookCatalogQuery
             ))
             ->when($filters->minPrice !== null, fn (Builder $query) => $query->where('price', '>=', $filters->minPrice))
             ->when($filters->maxPrice !== null, fn (Builder $query) => $query->where('price', '<=', $filters->maxPrice))
-            ->when($filters->year !== null, fn (Builder $query) => $query->where('publication_year', $filters->year));
+            ->when($filters->year !== null, fn (Builder $query) => $query->where('publication_year', $filters->year))
+            ->when($filters->hasIsbn === true, fn (Builder $query) => $query->whereNotNull('isbn_display')->where('isbn_display', '!=', ''));
 
         match ($filters->sort) {
             'oldest' => $query->oldest('published_at'),
@@ -57,6 +58,15 @@ final class BookCatalogQuery
 
         $books = $query->paginate(self::PER_PAGE, ['*'], 'page', $filters->page)->appends($filters->query());
 
-        return compact('books', 'categories', 'filters');
+        $publishedBooks = Book::query()->published();
+        $filterOptions = [
+            'years' => (clone $publishedBooks)->whereNotNull('publication_year')->distinct()->orderByDesc('publication_year')->pluck('publication_year')->map(fn (mixed $year): int => (int) $year)->values()->all(),
+            'priceBounds' => [
+                'min' => (int) ((clone $publishedBooks)->min('price') ?? 0),
+                'max' => (int) ((clone $publishedBooks)->max('price') ?? 1_000_000),
+            ],
+        ];
+
+        return compact('books', 'categories', 'filters', 'filterOptions');
     }
 }

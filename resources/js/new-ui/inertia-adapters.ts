@@ -7,9 +7,11 @@ import type {
     BookCard as BackendBookCard,
     BookDetail as BackendBookDetail,
     BookFilters as BackendBookFilters,
+    BookFilterOptions as BackendBookFilterOptions,
     CatalogFilters as BackendCatalogFilters,
     JournalCard as BackendJournalCard,
     JournalDetail as BackendJournalDetail,
+    JournalFilterOptions as BackendJournalFilterOptions,
     Paginated as BackendPaginated,
     PublicService as BackendService,
     PublicSharedProps,
@@ -73,7 +75,7 @@ export function toBookCard(book: BackendBookCard): BookCard {
         categories: book.categories.map((category) => category.name),
         price: book.price,
         publicationYear: book.publicationYear ?? 0,
-        isbn: null,
+        isbn: 'isbn' in book && typeof book.isbn === 'string' ? book.isbn : null,
     }
 }
 
@@ -148,30 +150,32 @@ function toPage<TBackend, TFrontend>(page: BackendPaginated<TBackend>, map: (val
 }
 
 function toSort(sort: string): 'latest' | 'oldest' | 'price_asc' | 'price_desc' | 'title' {
-    return sort === 'newest' ? 'latest' : (sort as 'latest' | 'oldest' | 'price_asc' | 'price_desc' | 'title')
+    if (sort === 'newest') return 'latest'
+    if (sort === 'title_asc') return 'title'
+    return sort as 'latest' | 'oldest' | 'price_asc' | 'price_desc' | 'title'
 }
 
-export function toBookIndexProps(books: BackendPaginated<BackendBookCard>, filters: BackendBookFilters, categories: Array<{ name: string; slug: string }>, shared: Partial<PublicSharedProps>): BooksIndexProps {
-    const years = [...new Set(books.data.map((book) => book.publicationYear).filter((year): year is number => year !== null))].sort((a, b) => b - a)
+export function toBookIndexProps(books: BackendPaginated<BackendBookCard>, filters: BackendBookFilters, categories: Array<{ name: string; slug: string }>, shared: Partial<PublicSharedProps>, backendFilterOptions?: BackendBookFilterOptions): BooksIndexProps {
+    const years = backendFilterOptions?.years ?? [...new Set(books.data.map((book) => book.publicationYear).filter((year): year is number => year !== null))].sort((a, b) => b - a)
     const prices = books.data.map((book) => book.price).filter((price) => Number.isFinite(price))
     return {
         ...toShellProps(shared),
         books: toPage(books, toBookCard),
-        filters: { q: filters.search, category: filters.category, minPrice: filters.minPrice, maxPrice: filters.maxPrice, year: filters.year, hasIsbn: null, sort: toSort(filters.sort) },
+        filters: { q: filters.search, category: filters.category, minPrice: filters.minPrice, maxPrice: filters.maxPrice, year: filters.year, hasIsbn: filters.hasIsbn ?? null, sort: toSort(filters.sort) },
         filterOptions: {
             categories: categories.map((category, index) => toCategory(category, index)),
             years,
-            priceBounds: { min: prices.length ? Math.min(...prices) : 0, max: prices.length ? Math.max(...prices) : 1_000_000 },
+            priceBounds: backendFilterOptions?.priceBounds ?? { min: prices.length ? Math.min(...prices) : 0, max: prices.length ? Math.max(...prices) : 1_000_000 },
         },
     }
 }
 
-export function toJournalIndexProps(journals: BackendPaginated<BackendJournalCard>, filters: BackendCatalogFilters, categories: Array<{ name: string; slug: string }>, shared: Partial<PublicSharedProps>): JournalsIndexProps {
-    const years = [...new Set(journals.data.map((journal) => journal.publicationYear).filter((year): year is number => year !== null))].sort((a, b) => b - a)
+export function toJournalIndexProps(journals: BackendPaginated<BackendJournalCard>, filters: BackendCatalogFilters, categories: Array<{ name: string; slug: string }>, shared: Partial<PublicSharedProps>, backendFilterOptions?: BackendJournalFilterOptions): JournalsIndexProps {
+    const years = backendFilterOptions?.years ?? [...new Set(journals.data.map((journal) => journal.publicationYear).filter((year): year is number => year !== null))].sort((a, b) => b - a)
     return {
         ...toShellProps(shared),
         journals: toPage(journals, toJournalCard),
-        filters: { q: filters.search, category: filters.category, year: null },
+        filters: { q: filters.search, category: filters.category, year: (filters as BackendCatalogFilters & { year?: number | null }).year ?? null },
         filterOptions: { categories: categories.map((category, index) => toCategory(category, index)), years },
     }
 }
@@ -196,12 +200,21 @@ export function toShellProps(shared: Partial<PublicSharedProps>): PublicShellPro
 }
 
 export function toProfileProps(profile: { summary?: string; vision?: string; mission?: string[]; values?: string[] }, shared: Partial<PublicSharedProps>): ProfileProps {
-    return { ...toShellProps(shared), profile: { about: profile.summary ?? '', vision: profile.vision ?? '', mission: profile.mission ?? [], values: (profile.values ?? []).map((value) => ({ title: value, description: '' })) } }
+    const descriptions: Record<string, string> = {
+        Kualitas: 'Karya ilmiah dikembangkan, disiapkan, dan diterbitkan dengan standar profesional yang terjaga.',
+        'Integritas Akademik': 'Proses publikasi dijalankan dengan kejujuran dan etika akademik yang konsisten.',
+        Profesionalisme: 'Pendampingan dan penerbitan dilakukan secara profesional dari naskah hingga terbit.',
+        Kemitraan: 'Taretan Media menjadi mitra terpercaya bagi penulis dalam menerbitkan karyanya.',
+        Kolaborasi: 'Kami membangun proses penerbitan melalui kerja sama yang terbuka dan saling menguatkan.',
+        Aksesibilitas: 'Pengetahuan dan publikasi dibuat lebih mudah dijangkau oleh pembaca yang lebih luas.',
+        Integritas: 'Setiap proses penerbitan dijalankan secara jujur, bertanggung jawab, dan beretika.',
+    }
+    return { ...toShellProps(shared), profile: { about: profile.summary ?? '', vision: profile.vision ?? '', mission: profile.mission ?? [], values: (profile.values ?? []).map((value) => ({ title: value, description: descriptions[value] ?? 'Kami menjaga kualitas proses penerbitan dengan penuh tanggung jawab.' })) } }
 }
 
 export function toServicesProps(services: BackendService[], shared: Partial<PublicSharedProps>): ServicesPageProps {
     const whatsapp = shared.site?.conversion?.whatsapp
-    return { ...toShellProps(shared), services: services.map((service, index) => ({ id: index + 1, name: service.name, slug: (service as BackendService & { slug?: string }).slug ?? `layanan-${index + 1}`, summary: service.summary ?? '', description: service.description ?? '', features: service.features ?? [], ctaLabel: service.ctaLabel ?? 'Konsultasi', price: service.price })), whatsapp: { number: whatsapp?.number ?? '', messageTemplate: whatsapp?.templates.service ?? '' } }
+    return { ...toShellProps(shared), services: services.map((service, index) => ({ id: index + 1, name: service.name, slug: (service as BackendService & { slug?: string }).slug ?? `layanan-${index + 1}`, summary: service.summary ?? '', description: service.description ?? '', features: service.features ?? [], ctaLabel: 'Hubungi Kami', price: service.price })), whatsapp: { number: whatsapp?.number ?? '', messageTemplate: whatsapp?.templates.service ?? '' } }
 }
 
 export function toContactProps(shared: Partial<PublicSharedProps>, seo: SeoProps): ContactProps {

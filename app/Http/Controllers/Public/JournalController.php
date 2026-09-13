@@ -22,7 +22,8 @@ final class JournalController extends Controller
         return Inertia::render('journals/index', [
             'journals' => PublicPropsMapper::pagination($result['journals'], fn (Journal $journal) => PublicPropsMapper::journal($journal)),
             'categories' => $result['categories']->map(fn (Category $category) => PublicPropsMapper::category($category))->all(),
-            'filters' => $result['filters']->props(),
+            'filters' => $result['filters']->props(includeYear: true),
+            'filterOptions' => $result['filterOptions'],
             'seo' => PublicSeo::make('Jurnal', 'Temukan jurnal dan halaman publikasi eksternal resmi.', route('journals.index')),
         ]);
     }

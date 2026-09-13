@@ -12,7 +12,7 @@ final readonly class CatalogFilters
     /**
      * @param  list<string>  $allowedSorts
      */
-    public static function fromRequest(Request $request, array $allowedSorts, bool $books = false): self
+    public static function fromRequest(Request $request, array $allowedSorts, bool $books = false, bool $year = false): self
     {
         $search = self::string($request->query('q'));
         $category = self::string($request->query('category'));
@@ -30,7 +30,8 @@ final readonly class CatalogFilters
             $maxPrice = null;
         }
 
-        $year = $books ? self::year($request->query('year')) : null;
+        $publicationYear = ($books || $year) ? self::year($request->query('year')) : null;
+        $hasIsbn = $books ? $request->boolean('has_isbn') : null;
 
         return new self(
             search: $search ?? '',
@@ -39,7 +40,8 @@ final readonly class CatalogFilters
             page: self::positiveInteger($request->query('page')) ?? 1,
             minPrice: $minPrice,
             maxPrice: $maxPrice,
-            year: $year,
+            year: $publicationYear,
+            hasIsbn: $hasIsbn,
         );
     }
 
@@ -51,6 +53,7 @@ final readonly class CatalogFilters
         public ?int $minPrice,
         public ?int $maxPrice,
         public ?int $year,
+        public ?bool $hasIsbn,
     ) {}
 
     /** @return array<string, string|int> */
@@ -63,11 +66,12 @@ final readonly class CatalogFilters
             'min_price' => $this->minPrice,
             'max_price' => $this->maxPrice,
             'year' => $this->year,
+            'has_isbn' => $this->hasIsbn ? '1' : null,
         ], static fn (mixed $value): bool => $value !== null && $value !== '');
     }
 
     /** @return array<string, string|int|null> */
-    public function props(bool $books = false): array
+    public function props(bool $books = false, bool $includeYear = false): array
     {
         $props = [
             'search' => $this->search,
@@ -79,6 +83,9 @@ final readonly class CatalogFilters
             $props['minPrice'] = $this->minPrice;
             $props['maxPrice'] = $this->maxPrice;
             $props['year'] = $this->year;
+            $props['hasIsbn'] = $this->hasIsbn;
+        } elseif ($includeYear) {
+            $props['year'] = $this->year;
         }
 
         return $props;
@@ -86,7 +93,7 @@ final readonly class CatalogFilters
 
     public function withoutCategory(): self
     {
-        return new self($this->search, null, $this->sort, $this->page, $this->minPrice, $this->maxPrice, $this->year);
+        return new self($this->search, null, $this->sort, $this->page, $this->minPrice, $this->maxPrice, $this->year, $this->hasIsbn);
     }
 
     private static function string(mixed $value): ?string

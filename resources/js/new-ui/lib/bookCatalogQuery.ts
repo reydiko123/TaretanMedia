@@ -33,6 +33,10 @@ export function validateBookPriceRange(
   return Object.keys(errors).length > 0 ? { valid: false, errors } : { valid: true }
 }
 
+function toBackendBookSort(sort: BookSort): Exclude<BookCatalogQuery['sort'], undefined> {
+  return sort === "title" ? "title_asc" : sort
+}
+
 export function createBookCatalogQuery(
   draft: BookFilterDraft,
   priceBounds: PriceBounds,
@@ -56,7 +60,7 @@ export function createBookCatalogQuery(
     query.year = String(parsedYear)
   }
   if (draft.hasIsbn) query.has_isbn = "1"
-  if (draft.sort !== "latest") query.sort = draft.sort
+  if (draft.sort !== "latest") query.sort = toBackendBookSort(draft.sort)
   if (Number.isInteger(page) && page > 1) query.page = String(page)
   return query
 }
@@ -79,6 +83,6 @@ export function removeBookFilter(filters: BookFilters, key: keyof BookFilters): 
   if (key !== "maxPrice" && filters.maxPrice != null) query.max_price = String(filters.maxPrice)
   if (key !== "year" && filters.year != null) query.year = String(filters.year)
   if (key !== "hasIsbn" && filters.hasIsbn) query.has_isbn = "1"
-  if (key !== "sort" && filters.sort !== "latest") query.sort = filters.sort as BookSort
+  if (key !== "sort" && filters.sort !== "latest") query.sort = toBackendBookSort(filters.sort)
   return query
 }

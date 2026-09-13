@@ -31,9 +31,22 @@ final class ArticleController extends Controller
     {
         $article = $query->find($slug);
         $data = PublicPropsMapper::article($article, detail: true);
+        $categoryIds = $article->categories->modelKeys();
+        $relatedNews = Article::query()
+            ->published()
+            ->where('id', '!=', $article->id)
+            ->with(['author:id,name', 'categories:id,name,slug'])
+            ->when($categoryIds !== [], fn ($related) => $related->whereHas('categories', fn ($categories) => $categories->whereIn('id', $categoryIds)))
+            ->latest('published_at')
+            ->limit(3)
+            ->get()
+            ->map(fn (Article $relatedArticle): array => PublicPropsMapper::article($relatedArticle))
+            ->values()
+            ->all();
 
         return Inertia::render('articles/show', [
             'article' => $data,
+            'relatedNews' => $relatedNews,
             'seo' => PublicSeo::make($article->title, $article->excerpt ?? $article->title, route('articles.show', $article->slug), 'article', $data['featuredImageUrl']),
         ]);
     }

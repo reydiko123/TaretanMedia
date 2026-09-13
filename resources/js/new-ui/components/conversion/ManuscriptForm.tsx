@@ -65,7 +65,7 @@ const fieldCopy: Record<ManuscriptField, {
 }
 
 function defaultOpenExternalUrl(url: string): Window | null {
-  return window.open(url, "_blank", "noopener,noreferrer")
+  return window.open(url, "_blank")
 }
 
 function isSafeAlternativeHref(href: string): boolean {

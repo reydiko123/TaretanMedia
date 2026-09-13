@@ -67,6 +67,8 @@ export type CatalogFilters = {
     search: string;
     category: string | null;
     sort: string;
+    hasIsbn?: boolean | null;
+    year?: number | null;
 };
 
 export type BookFilters = CatalogFilters & {
@@ -93,6 +95,7 @@ export type BookDetail = BookCard & {
     synopsis: string | null;
     tableOfContents: string | null;
     publishedAt: string;
+    relatedBooks?: BookCard[];
 };
 
 export type JournalCard = {
@@ -123,6 +126,16 @@ export type ArticleCard = {
 
 export type ArticleDetail = ArticleCard & {
     bodyHtml: string;
+    relatedNews?: ArticleCard[];
+};
+
+export type BookFilterOptions = {
+    years: number[];
+    priceBounds: { min: number; max: number };
+};
+
+export type JournalFilterOptions = {
+    years: number[];
 };
 
 export type PublicService = {

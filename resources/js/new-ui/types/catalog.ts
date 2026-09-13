@@ -27,7 +27,7 @@ export type BookCatalogQuery = Partial<{
   max_price: string
   year: string
   has_isbn: string
-  sort: BookSort
+  sort: BookSort | "title_asc" | "title_desc" | "price_asc" | "price_desc"
   page: string
 }>
 

@@ -18,7 +18,7 @@ final class JournalCatalogQuery
     {
         $filters = CatalogFilters::fromRequest($request, [
             'newest', 'oldest', 'title_asc', 'title_desc', 'year_desc', 'year_asc',
-        ]);
+        ], year: true);
         $categories = Category::query()->where('type', CategoryType::Journal->value)->orderBy('name')->get(['id', 'name', 'slug']);
         if ($filters->category !== null && ! $categories->contains('slug', $filters->category)) {
             $filters = $filters->withoutCategory();
@@ -36,7 +36,8 @@ final class JournalCatalogQuery
             ->when($filters->category, fn (Builder $query, string $slug) => $query->whereHas(
                 'categories',
                 fn (Builder $categories) => $categories->where('slug', $slug)->where('type', CategoryType::Journal->value),
-            ));
+            ))
+            ->when($filters->year !== null, fn (Builder $query) => $query->where('publication_year', $filters->year));
 
         match ($filters->sort) {
             'oldest' => $query->oldest('published_at'),
@@ -49,6 +50,10 @@ final class JournalCatalogQuery
 
         $journals = $query->paginate(self::PER_PAGE, ['*'], 'page', $filters->page)->appends($filters->query());
 
-        return compact('journals', 'categories', 'filters');
+        $filterOptions = [
+            'years' => Journal::query()->published()->whereNotNull('publication_year')->distinct()->orderByDesc('publication_year')->pluck('publication_year')->map(fn (mixed $year): int => (int) $year)->values()->all(),
+        ];
+
+        return compact('journals', 'categories', 'filters', 'filterOptions');
     }
 }

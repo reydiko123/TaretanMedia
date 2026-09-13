@@ -7,9 +7,11 @@ type BookMessageInput = {
 }
 
 export function createBookOrderMessage({ template, title, canonicalUrl }: BookMessageInput) {
-  return template
-    .replaceAll("{title}", title)
-    .replaceAll("{canonicalUrl}", canonicalUrl)
+  return replaceTemplate(template, {
+    title,
+    url: canonicalUrl,
+    canonicalUrl,
+  })
 }
 
 type WhatsAppUrlInput = {
@@ -37,7 +39,10 @@ export function buildServiceMessage(template: string, serviceName: string): stri
   const selectedTemplate = template.trim()
 
   if (!selectedTemplate) return serviceFallbackTemplate.replace("{serviceName}", name)
-  if (selectedTemplate.includes("{{serviceName}}")) return selectedTemplate.replaceAll("{{serviceName}}", name)
+  if (hasTemplatePlaceholder(selectedTemplate, ["service", "serviceName"])) {
+    const message = replaceTemplate(selectedTemplate, { service: name, serviceName: name })
+    return /(^|\n)\s*Layanan\s*:/i.test(message) ? message : `${message}\n\nLayanan: ${name}`
+  }
 
   return `${selectedTemplate}\n\nLayanan: ${name}`
 }
@@ -51,17 +56,28 @@ export function normalizeWhatsAppNumber(value: string): string | null {
 
 export function buildManuscriptMessage({ values, publicationTypeLabel, template }: ManuscriptMessageInput): string {
   const selectedTemplate = template.trim() ? template : manuscriptFallbackTemplate
-  const replacements: Record<string, string> = {
+  return replaceTemplate(selectedTemplate, {
+    name: values.fullName.trim(),
     fullName: values.fullName.trim(),
     email: values.email.trim(),
+    title: values.manuscriptTitle.trim(),
     manuscriptTitle: values.manuscriptTitle.trim(),
+    publication_type: publicationTypeLabel.trim(),
     publicationType: publicationTypeLabel.trim(),
-  }
+  })
+}
 
-  return Object.entries(replacements).reduce(
-    (message, [placeholder, value]) => message.replaceAll(`{${placeholder}}`, value),
-    selectedTemplate,
-  )
+function hasTemplatePlaceholder(template: string, keys: string[]) {
+  return keys.some((key) => template.includes(`:${key}`) || template.includes(`{${key}}`) || template.includes(`{{${key}}}`))
+}
+
+function replaceTemplate(template: string, replacements: Record<string, string>) {
+  return Object.entries(replacements).reduce((message, [placeholder, value]) => {
+    return message
+      .replaceAll(`{{${placeholder}}}`, value)
+      .replaceAll(`{${placeholder}}`, value)
+      .replaceAll(`:${placeholder}`, value)
+  }, template)
 }
 
 export function buildWhatsAppUrl(number: string, message: string): string | null
