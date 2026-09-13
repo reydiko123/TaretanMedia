@@ -11,7 +11,12 @@ type ProfileStoryProps = {
 export function ProfileStory({ about, vision, mission = [] }: ProfileStoryProps) {
   if (!about && !vision && mission.length === 0) return null
 
-  const aboutParagraphs = about?.split(/\n{2,}/).filter(Boolean) ?? []
+  const aboutParagraphs = about
+    ?.replace(/\\r\\n|\\n/g, "\n")
+    .replace(/\r\n?/g, "\n")
+    .split(/\n\s*\n+/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean) ?? []
 
   return (
     <section className="border-b border-border bg-background" aria-label="Cerita Taretan Media">
@@ -20,9 +25,9 @@ export function ProfileStory({ about, vision, mission = [] }: ProfileStoryProps)
           <BlurFade>
             <div className="min-w-0 max-w-3xl">
               <h2 className="max-w-lg text-heading-2 font-semibold tracking-[-0.04em] text-brand-teal-deep">Ruang bagi Lahirnya Karya Berkualitas</h2>
-              <div className="mt-6 max-w-3xl space-y-5 border-l-2 border-brand-green/40 pl-5 text-muted-foreground sm:pl-6">
+              <div className="mt-6 max-w-3xl space-y-6 border-l-2 border-brand-green/40 pl-5 text-base font-normal leading-8 tracking-[-0.01em] text-muted-foreground sm:space-y-7 sm:pl-6">
                 {aboutParagraphs.map((paragraph, index) => (
-                  <p key={paragraph} className={index === 0 ? "text-lg leading-8 text-brand-teal-deep" : "text-base leading-8"}>{paragraph}</p>
+                  <p key={paragraph} className={index === 0 ? "text-pretty text-lg font-medium leading-8 text-brand-teal-deep" : "text-pretty"}>{paragraph}</p>
                 ))}
               </div>
             </div>
