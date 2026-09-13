@@ -1,0 +1,65 @@
+.catalog-page {
+  overflow-x: clip;
+}
+
+.catalog-intro {
+  background: linear-gradient(180deg, var(--tm-color-canvas) 0%, var(--tm-color-canvas) 18%, var(--tm-color-surface-soft) 100%);
+}
+
+.journal-intro-dark-gradient {
+  background: linear-gradient(
+    180deg,
+    var(--tm-color-canvas) 0%,
+    var(--tm-color-brand-teal) 68%
+  );
+}
+
+.journal-intro-catalog-gradient {
+  background: linear-gradient(
+    180deg,
+    var(--tm-color-canvas) 0%,
+    var(--tm-color-canvas) 20%,
+    var(--tm-color-surface-soft) 100%
+  );
+}
+
+.journal-page {
+  overflow-x: clip;
+}
+
+.journal-page .journal-list {
+  overflow: hidden;
+}
+
+.journal-list-item h2,
+.journal-list-item p {
+  overflow-wrap: anywhere;
+}
+
+.catalog-cover {
+  contain: paint;
+}
+
+.catalog-controls input,
+.catalog-controls select {
+  transition: border-color var(--tm-duration-normal) ease, box-shadow var(--tm-duration-normal) ease, background-color var(--tm-duration-normal) ease;
+}
+
+.catalog-controls input:focus,
+.catalog-controls select:focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--tm-color-brand-green) 28%, transparent);
+}
+
+.catalog-page [aria-busy="true"] {
+  cursor: progress;
+}
+
+@media (max-width: 767px) {
+  .catalog-intro h1 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+
+  .journal-intro h1 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+}

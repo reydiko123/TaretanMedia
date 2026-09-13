@@ -1,0 +1,51 @@
+.book-detail-page {
+  overflow-x: clip;
+}
+
+.book-detail-cover img {
+  object-fit: contain;
+  background: var(--tm-color-surface);
+}
+
+.book-detail-content {
+  container-type: inline-size;
+}
+
+.book-detail-long-text p,
+.book-detail-authors p,
+.book-detail-aside p {
+  overflow-wrap: anywhere;
+}
+
+.book-detail-page a,
+.book-detail-page button,
+.book-detail-page input {
+  transition-duration: 180ms;
+  transition-timing-function: ease-out;
+}
+
+@media (max-width: 767px) {
+  .book-detail-page h1 {
+    font-size: clamp(2.5rem, 13vw, 4.5rem);
+  }
+
+  .book-detail-breadcrumbs ol {
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .book-detail-breadcrumbs li {
+    flex-shrink: 0;
+  }
+
+  .book-detail-breadcrumbs li[aria-current="page"] {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .book-detail-page .book-detail-hero article > div {
+    grid-template-columns: minmax(220px, 0.34fr) minmax(0, 0.66fr);
+  }
+}
