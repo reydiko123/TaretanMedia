@@ -42,7 +42,7 @@ class PublicDiscoveryTest extends TestCase
                     ->component($component)
                     ->where('site.contact.email', 'halo@example.test')
                     ->where('site.contact.whatsappConfigured', true)
-                    ->has('navigation', 8)
+                    ->has('navigation', 7)
                     ->missing('site.admin')
                     ->missing('admin'));
         }
@@ -167,12 +167,12 @@ class PublicDiscoveryTest extends TestCase
         $this->get('/jurnal/'.$journal->slug)->assertInertia(fn (Assert $page) => $page
             ->where('journal.externalUrl', $journal->external_url));
 
-        $this->get('/artikel?q=aman')->assertInertia(fn (Assert $page) => $page
+        $this->get('/berita?q=aman')->assertInertia(fn (Assert $page) => $page
             ->has('articles.data', 1)
             ->where('articles.data.0.slug', $article->slug));
-        $this->get('/artikel/'.$article->slug)->assertInertia(fn (Assert $page) => $page
+        $this->get('/berita/'.$article->slug)->assertInertia(fn (Assert $page) => $page
             ->where('article.bodyHtml', fn (string $body) => ! str_contains($body, '<script')));
-        $this->get('/artikel/'.$draftArticle->slug)->assertNotFound();
+        $this->get('/berita/'.$draftArticle->slug)->assertNotFound();
     }
 
     public function test_sitemap_and_robots_only_advertise_public_urls(): void

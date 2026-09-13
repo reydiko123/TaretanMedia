@@ -19,7 +19,7 @@ class ContentStatsOverview extends BaseWidget
         return [
             $this->publicationStat('Buku', Book::class),
             $this->publicationStat('Jurnal', Journal::class),
-            $this->publicationStat('Artikel', Article::class),
+            $this->publicationStat('Berita', Article::class),
             Stat::make('Layanan Aktif', (string) Service::query()->where('is_active', true)->count())
                 ->description(Service::onlyTrashed()->count().' terhapus')
                 ->color('primary'),

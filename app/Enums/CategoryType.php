@@ -16,7 +16,7 @@ enum CategoryType: string
         return match ($this) {
             self::Book => 'Buku',
             self::Journal => 'Jurnal',
-            self::Article => 'Artikel',
+            self::Article => 'Berita',
         };
     }
 

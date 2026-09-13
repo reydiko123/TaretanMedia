@@ -55,7 +55,7 @@ class ArticleForm
                             ->multiple()
                             ->preload()
                             ->rule(new CategoryMatchesType(CategoryType::Article))
-                            ->helperText('Hanya kategori bertipe Artikel yang tampil.'),
+                            ->helperText('Hanya kategori bertipe Berita yang tampil.'),
                     ]),
 
                 Section::make('Konten')
@@ -67,7 +67,7 @@ class ArticleForm
                         MediaUpload::make('featured_image_path', 'articles')
                             ->label('Gambar Utama'),
                         RichEditor::make('body')
-                            ->label('Isi Artikel')
+                            ->label('Isi Berita')
                             ->required()
                             ->helperText('Konten akan disanitasi otomatis sebelum disimpan.'),
                     ]),

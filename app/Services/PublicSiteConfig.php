@@ -46,7 +46,7 @@ final class PublicSiteConfig
             ['label' => 'Beranda', 'href' => route('home', absolute: false)],
             ['label' => 'Buku', 'href' => route('books.index', absolute: false)],
             ['label' => 'Jurnal', 'href' => route('journals.index', absolute: false)],
-            ['label' => 'Artikel', 'href' => route('articles.index', absolute: false)],
+            ['label' => 'Berita', 'href' => route('articles.index', absolute: false)],
             ['label' => 'Profil', 'href' => route('profile', absolute: false)],
             ['label' => 'Layanan', 'href' => route('services.index', absolute: false)],
             // ['label' => 'Kirim Naskah', 'href' => route('manuscripts.create', absolute: false)],

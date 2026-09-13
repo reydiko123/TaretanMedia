@@ -61,7 +61,7 @@ class ContentManagementTest extends TestCase
             ['filament.admin.resources.categories.edit', $category],
             ['filament.admin.resources.books.edit', $book],
             ['filament.admin.resources.journals.edit', $journal],
-            ['filament.admin.resources.articles.edit', $article],
+            ['filament.admin.resources.berita.edit', $article],
             ['filament.admin.resources.services.edit', $service],
         ];
 
@@ -72,7 +72,7 @@ class ContentManagementTest extends TestCase
         foreach ([
             ['filament.admin.resources.books.view', $book],
             ['filament.admin.resources.journals.view', $journal],
-            ['filament.admin.resources.articles.view', $article],
+            ['filament.admin.resources.berita.view', $article],
         ] as [$route, $record]) {
             $this->get(route($route, $record))->assertOk();
         }
@@ -97,7 +97,7 @@ class ContentManagementTest extends TestCase
             'filament.admin.resources.categories.index',
             'filament.admin.resources.books.index',
             'filament.admin.resources.journals.index',
-            'filament.admin.resources.articles.index',
+            'filament.admin.resources.berita.index',
             'filament.admin.resources.services.index',
         ];
     }
@@ -110,7 +110,7 @@ class ContentManagementTest extends TestCase
             'filament.admin.resources.categories.create',
             'filament.admin.resources.books.create',
             'filament.admin.resources.journals.create',
-            'filament.admin.resources.articles.create',
+            'filament.admin.resources.berita.create',
             'filament.admin.resources.services.create',
         ];
     }

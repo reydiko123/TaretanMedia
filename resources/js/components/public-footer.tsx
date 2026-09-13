@@ -6,7 +6,7 @@ import { publishingServices } from '@/lib/public-content';
 const footerLinks = [
     { label: 'Buku', href: '/buku' },
     { label: 'Jurnal', href: '/jurnal' },
-    { label: 'Artikel', href: '/artikel' },
+    { label: 'Berita', href: '/berita' },
     { label: 'Profil', href: '/profil' },
     { label: 'Layanan', href: '/layanan' },
     { label: 'Kontak', href: '/kontak' },

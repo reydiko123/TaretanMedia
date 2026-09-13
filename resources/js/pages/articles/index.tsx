@@ -37,16 +37,16 @@ export default function ArticlesIndex({
                 <PublicBreadcrumbs
                     items={[
                         { label: 'Beranda', href: '/' },
-                        { label: 'Artikel' },
+                        { label: 'Berita' },
                     ]}
                 />
                 <PageHeader
                     eyebrow="Wawasan"
-                    title="Artikel"
-                    description="Baca artikel terbaru dari Taretan Media dan temukan gagasan seputar karya serta penerbitan."
+                    title="Berita"
+                    description="Baca berita terbaru dari Taretan Media dan temukan gagasan seputar karya serta penerbitan."
                 />
                 <CatalogFilterForm
-                    action="/artikel"
+                    action="/berita"
                     filters={filters}
                     categories={categories}
                     kind="article"
@@ -64,15 +64,15 @@ export default function ArticlesIndex({
                     <EmptyState
                         title={
                             filtered
-                                ? 'Artikel tidak ditemukan'
-                                : 'Belum ada artikel'
+                                ? 'Berita tidak ditemukan'
+                                : 'Belum ada berita'
                         }
                         description={
                             filtered
                                 ? 'Coba ubah kata kunci atau kategori Anda.'
-                                : 'Artikel yang telah dipublikasikan akan tampil di sini.'
+                                : 'Berita yang telah dipublikasikan akan tampil di sini.'
                         }
-                        resetHref={filtered ? '/artikel' : undefined}
+                        resetHref={filtered ? '/berita' : undefined}
                     />
                 )}
                 <CatalogPagination pagination={articles} />

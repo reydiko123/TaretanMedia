@@ -247,7 +247,7 @@ export function JournalCardView({ journal }: { journal: JournalCard }) {
 export function ArticleCardView({ article }: { article: ArticleCard }) {
     return (
         <Card className="group hover:border-primary/30 h-full overflow-hidden rounded-2xl py-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgba(20,83,45,0.45)]">
-            <Link href={`/artikel/${article.slug}`}>
+            <Link href={`/berita/${article.slug}`}>
                 <PublicImage
                     src={article.featuredImageUrl}
                     alt={`Ilustrasi ${article.title}`}
@@ -260,7 +260,7 @@ export function ArticleCardView({ article }: { article: ArticleCard }) {
                 <CardTitle className="text-xl leading-snug">
                     <Link
                         className="group-hover:text-primary transition-colors hover:underline"
-                        href={`/artikel/${article.slug}`}
+                        href={`/berita/${article.slug}`}
                     >
                         {article.title}
                     </Link>
@@ -286,7 +286,7 @@ export function ArticleCardView({ article }: { article: ArticleCard }) {
             )}
             <CardFooter className="mt-auto pb-6">
                 <Button asChild variant="link" className="h-auto px-0">
-                    <Link href={`/artikel/${article.slug}`}>
+                    <Link href={`/berita/${article.slug}`}>
                         Baca artikel <ArrowRight />
                     </Link>
                 </Button>

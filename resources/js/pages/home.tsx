@@ -63,9 +63,9 @@ const shortcuts = [
         icon: LibraryBig,
     },
     {
-        title: 'Artikel Terbaru',
+        title: 'Berita Terbaru',
         description: 'Baca wawasan tentang karya, pengetahuan, dan penerbitan.',
-        href: '/artikel',
+        href: '/berita',
         icon: FileText,
     },
 ];
@@ -353,9 +353,9 @@ export default function Home(props: HomeProps) {
             <ProfessionalTeam />
 
             <DiscoverySection
-                title="Artikel Terbaru"
+                title="Berita Terbaru"
                 eyebrow="Wawasan"
-                href="/artikel"
+                href="/berita"
                 empty="Belum ada artikel yang dipublikasikan."
                 columns="lg:grid-cols-3"
                 maxItems={3}

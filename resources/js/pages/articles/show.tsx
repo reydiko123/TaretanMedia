@@ -34,7 +34,7 @@ export default function ArticlesShow({
                 <PublicBreadcrumbs
                     items={[
                         { label: 'Beranda', href: '/' },
-                        { label: 'Artikel', href: '/artikel' },
+                        { label: 'Berita', href: '/berita' },
                         { label: article.title },
                     ]}
                 />

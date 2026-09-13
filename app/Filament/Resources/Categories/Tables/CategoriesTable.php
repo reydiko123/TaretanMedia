@@ -31,7 +31,7 @@ class CategoriesTable
                     ->formatStateUsing(fn (CategoryType $state): string => $state->label()),
                 TextColumn::make('books_count')->label('Buku')->counts('books'),
                 TextColumn::make('journals_count')->label('Jurnal')->counts('journals'),
-                TextColumn::make('articles_count')->label('Artikel')->counts('articles'),
+                TextColumn::make('articles_count')->label('Berita')->counts('articles'),
                 TextColumn::make('deleted_at')
                     ->label('Dihapus')
                     ->dateTime()

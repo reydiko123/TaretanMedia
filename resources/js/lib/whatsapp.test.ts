@@ -10,7 +10,7 @@ const config: WhatsAppConfig = {
         manuscript: 'Halo, naskah :name / :email / :title / :publication_type',
         contact: 'Halo, saya ingin meminta informasi.',
     },
-    publicationTypes: ['Buku', 'Jurnal', 'Artikel'],
+        publicationTypes: ['Buku', 'Jurnal', 'Berita'],
 };
 
 describe('buildWhatsAppUrl', () => {

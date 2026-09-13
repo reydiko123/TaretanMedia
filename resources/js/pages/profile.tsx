@@ -26,7 +26,7 @@ export default function Profile({
 }) {
     const focuses = profile?.focusAreas?.length
         ? profile.focusAreas
-        : ['Buku', 'Publikasi ilmiah', 'Artikel dan pengetahuan'];
+            : ['Buku', 'Publikasi ilmiah', 'Berita dan pengetahuan'];
     return (
         <>
             <SeoHead seo={seo} />

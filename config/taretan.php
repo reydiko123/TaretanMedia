@@ -37,7 +37,7 @@ return [
             'manuscript' => "Halo Taretan Media, saya ingin berkonsultasi tentang naskah.\nNama: :name\nEmail: :email\nJudul: :title\nJenis: :publication_type",
             'contact' => 'Halo Taretan Media, saya ingin meminta informasi.',
         ],
-        'publication_types' => ['Buku', 'Jurnal', 'Artikel'],
+        'publication_types' => ['Buku', 'Jurnal', 'Berita'],
     ],
     'analytics' => [
         'enabled' => (bool) env('ANALYTICS_ENABLED', false),
@@ -55,7 +55,7 @@ return [
         'tagline' => env('PUBLIC_SITE_TAGLINE', 'Penerbitan yang mendekatkan gagasan kepada pembaca.'),
         'address' => env('PUBLIC_ADDRESS'),
         'profile' => [
-            'summary' => env('PUBLIC_PROFILE_SUMMARY', 'Taretan Media menghadirkan karya buku, jurnal, dan artikel untuk pembaca yang lebih luas.'),
+            'summary' => env('PUBLIC_PROFILE_SUMMARY', 'Taretan Media menghadirkan karya buku, jurnal, dan berita untuk pembaca yang lebih luas.'),
             'vision' => env('PUBLIC_PROFILE_VISION', 'Menjadi ruang penerbitan yang terpercaya, relevan, dan mudah diakses.'),
             'mission' => [
                 'Mendampingi lahirnya karya yang bernilai.',

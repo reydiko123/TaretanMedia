@@ -24,8 +24,10 @@ Route::get('/buku', [BookController::class, 'index'])->name('books.index');
 Route::get('/buku/{slug}', [BookController::class, 'show'])->name('books.show');
 Route::get('/jurnal', [JournalController::class, 'index'])->name('journals.index');
 Route::get('/jurnal/{slug}', [JournalController::class, 'show'])->name('journals.show');
-Route::get('/artikel', [ArticleController::class, 'index'])->name('articles.index');
-Route::get('/artikel/{slug}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/berita', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/berita/{slug}', [ArticleController::class, 'show'])->name('articles.show');
+Route::redirect('/artikel', '/berita', 301);
+Route::redirect('/artikel/{slug}', '/berita/{slug}', 301);
 
 Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
 Route::get('/robots.txt', RobotsController::class)->name('robots');

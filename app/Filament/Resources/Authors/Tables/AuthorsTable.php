@@ -31,7 +31,7 @@ class AuthorsTable
                     ->counts('books')
                     ->badge(),
                 TextColumn::make('articles_count')
-                    ->label('Jumlah Artikel')
+                    ->label('Jumlah Berita')
                     ->counts('articles')
                     ->badge(),
                 TextColumn::make('deleted_at')
