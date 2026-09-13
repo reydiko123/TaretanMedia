@@ -9,12 +9,18 @@ type AppShellProps = {
   children: ReactNode
   brandName?: string
   contact?: HomeContact
+  showHeader?: boolean
 }
 
-export function AppShell({ children, brandName = "Taretan Media", contact = homeContact }: AppShellProps) {
+export function AppShell({
+  children,
+  brandName = "Taretan Media",
+  contact = homeContact,
+  showHeader = true,
+}: AppShellProps) {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <SiteHeader brandName={brandName} navigation={publicNavigation} />
+      {showHeader ? <SiteHeader brandName={brandName} navigation={publicNavigation} /> : null}
       <main id="main-content">{children}</main>
       <HomeContactFooter contact={contact} />
     </div>

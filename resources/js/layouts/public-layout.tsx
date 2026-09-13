@@ -7,7 +7,10 @@ import type { PublicSharedProps } from '@/types';
 import type { HomeContact } from '@/new-ui/pages/Home/data/homeTypes';
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
-    const props = usePage().props as unknown as Partial<PublicSharedProps>;
+    const page = usePage();
+    const props = page.props as unknown as Partial<PublicSharedProps>;
+    const pathname = page.url.split(/[?#]/, 1)[0].replace(/\/+$/, '') || '/';
+    const isManuscriptPage = pathname === '/kirim-naskah';
     useEffect(() => {
         configureAnalytics(
             props.site?.conversion?.analytics ?? {
@@ -34,6 +37,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
         <AppShell
             brandName={props.site?.name ?? 'Taretan Media'}
             contact={contact}
+            showHeader={!isManuscriptPage}
         >
             {children}
         </AppShell>
