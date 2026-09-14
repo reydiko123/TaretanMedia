@@ -34,7 +34,7 @@ export function BusinessPartnerSection({ partners }: BusinessPartnerSectionProps
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={gridReveal} className="mx-auto mt-12 grid max-w-3xl grid-cols-2 items-center gap-8 sm:grid-cols-3 sm:gap-10">
           {partners.map((partner) => (
             <motion.div key={partner.name} variants={logoReveal} className="flex flex-col items-center gap-3">
-              <img src={partner.logo.src} alt={partner.logo.alt} loading="lazy" className="h-20 w-auto object-contain grayscale transition-all duration-300 hover:grayscale-0 sm:h-24" />
+              <img src={partner.logo.src} alt={partner.logo.alt} loading="lazy" className="h-20 w-auto object-contain transition-all duration-300 sm:h-24" />
               <p className="text-center text-xs font-medium text-muted-foreground sm:text-sm">{partner.name}</p>
             </motion.div>
           ))}
