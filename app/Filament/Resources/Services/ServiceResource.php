@@ -15,10 +15,19 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class ServiceResource extends Resource
 {
     protected static ?string $model = Service::class;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Layanan';
+
+    protected static ?string $navigationLabel = 'Layanan';
+
+    protected static ?string $modelLabel = 'Layanan';
+
+    protected static ?string $pluralModelLabel = 'Layanan';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

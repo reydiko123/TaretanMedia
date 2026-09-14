@@ -18,10 +18,19 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class BookResource extends Resource
 {
     protected static ?string $model = Book::class;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Publikasi';
+
+    protected static ?string $navigationLabel = 'Buku';
+
+    protected static ?string $modelLabel = 'Buku';
+
+    protected static ?string $pluralModelLabel = 'Buku';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

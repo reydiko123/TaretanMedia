@@ -15,10 +15,19 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class AuthorResource extends Resource
 {
     protected static ?string $model = Author::class;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Data Pendukung';
+
+    protected static ?string $navigationLabel = 'Penulis';
+
+    protected static ?string $modelLabel = 'Penulis';
+
+    protected static ?string $pluralModelLabel = 'Penulis';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

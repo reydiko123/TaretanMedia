@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Auth\Login;
+use App\Http\Middleware\SetAdminLocale;
 use App\Http\Middleware\SecurityHeaders;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -27,11 +28,19 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->brandName('Taretan Media')
+            ->brandLogo(asset('taretan-media.png'))
+            ->brandLogoHeight('2.75rem')
             ->favicon(asset('taretan-media.png'))
             ->authGuard('admin')
             ->login(Login::class)
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::hex('#0f766e'),
+            ])
+            ->navigationGroups([
+                'Publikasi',
+                'Data Pendukung',
+                'Layanan',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
@@ -50,6 +59,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                SetAdminLocale::class,
                 SecurityHeaders::class,
             ])
             ->authMiddleware([

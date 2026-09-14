@@ -17,10 +17,19 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class JournalResource extends Resource
 {
     protected static ?string $model = Journal::class;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Publikasi';
+
+    protected static ?string $navigationLabel = 'Jurnal';
+
+    protected static ?string $modelLabel = 'Jurnal';
+
+    protected static ?string $pluralModelLabel = 'Jurnal';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
