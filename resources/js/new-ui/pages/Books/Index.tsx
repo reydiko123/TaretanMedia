@@ -26,13 +26,13 @@ export function BooksIndexPage({ books, filters, filterOptions, filterNotice, na
 
   return (
     <div className="catalog-page">
-      <section className="catalog-intro border-b border-border">
+      <section className="journal-intro border-b border-brand-teal/60 journal-intro-dark-gradient">
         <div className="mx-auto max-w-content px-5 py-14 sm:px-8 sm:py-18 lg:px-12 lg:py-24">
           <BlurFade>
             <div className="max-w-3xl">
-              <p className="text-micro-uppercase font-semibold uppercase text-brand-green-dark">Publikasi Taretan Media</p>
-              <h1 className="mt-4 text-heading-1 font-semibold text-brand-teal-deep">Katalog Buku</h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-brand-teal-deep">Temukan buku untuk memperluas pengetahuan dan menemani perjalanan membaca anda</p>
+              <p className="text-micro-uppercase font-semibold uppercase text-brand-green">Publikasi Taretan Media</p>
+              <h1 className="mt-4 text-heading-1 font-semibold text-on-dark">Katalog Buku</h1>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-on-dark-muted">Temukan buku untuk memperluas pengetahuan dan menemani perjalanan membaca anda</p>
             </div>
           </BlurFade>
         </div>

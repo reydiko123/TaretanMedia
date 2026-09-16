@@ -48,7 +48,7 @@ export function JournalsIndexPage({ journals, filters, filterOptions, navigation
         title="Katalog Jurnal"
         description="Temukan jurnal berdasarkan bidang pengetahuan yang anda minati"
         showBreadcrumbs={false}
-        tone="catalog"
+        tone="dark"
       />
 
       <div className="mx-auto max-w-content px-5 py-12 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
