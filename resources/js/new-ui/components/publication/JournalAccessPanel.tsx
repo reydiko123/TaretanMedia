@@ -1,4 +1,5 @@
 import { motion } from "motion/react"
+import { Link } from "@inertiajs/react"
 import { ExternalLink } from "@/new-ui/components/conversion/ExternalLink"
 
 type JournalAccessPanelProps = {
@@ -35,9 +36,9 @@ export function JournalAccessPanel({ externalUrl, hasContactAlternative, onExter
           <p className="font-semibold text-brand-teal-deep">Tautan jurnal belum tersedia</p>
           <p>Silakan kembali lagi nanti atau hubungi Taretan Media untuk informasi lebih lanjut.</p>
           {hasContactAlternative ? (
-            <a href="/kontak" className="journal-detail-recovery-link">Lihat informasi kontak</a>
+            <Link href="/kontak" className="journal-detail-recovery-link">Lihat informasi kontak</Link>
           ) : (
-            <a href={catalogHref} className="journal-detail-recovery-link">Kembali ke katalog jurnal</a>
+            <Link href={catalogHref} className="journal-detail-recovery-link">Kembali ke katalog jurnal</Link>
           )}
         </>
       )}

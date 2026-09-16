@@ -1,3 +1,5 @@
+import { router } from "@inertiajs/react"
+
 export type NavigationVisitOptions = {
   preserveScroll?: boolean
   preserveState?: boolean
@@ -9,6 +11,6 @@ export type PublicNavigation = {
 }
 
 export const localNavigation: PublicNavigation = {
-  visit: (href) => window.location.assign(href),
+  visit: (href, options) => router.visit(href, options),
   isNavigating: false,
 }

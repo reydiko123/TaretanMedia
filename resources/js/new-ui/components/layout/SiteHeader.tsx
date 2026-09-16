@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useScroll } from "motion/react"
 import { Menu, X } from "lucide-react"
 import { useEffect, useState } from "react"
+import { Link } from "@inertiajs/react"
 import taretanLogo from "@/new-ui/assets/taretan-media.svg"
 import { NavMenu } from "@/new-ui/components/layout/NavMenu"
 import { getCurrentHref } from "@/new-ui/components/layout/navigationState"
@@ -90,23 +91,23 @@ export function SiteHeader({ brandName, navigation }: SiteHeaderProps) {
           className={`mx-auto transition-all duration-300 ${hasScrolled ? "rounded-2xl border border-border bg-background/80 px-2 shadow-card backdrop-blur-xl" : "rounded-2xl bg-background/65 px-2 shadow-subtle backdrop-blur-md sm:px-4"}`}
         >
           <div className="flex min-h-14 items-center justify-between gap-3 p-2 sm:p-3">
-            <a href="/" className="group flex shrink-0 items-center gap-2.5" aria-label={`${brandName}, kembali ke beranda`}>
+            <Link href="/" className="group flex shrink-0 items-center gap-2.5" aria-label={`${brandName}, kembali ke beranda`}>
               <img src={taretanLogo} alt="" aria-hidden="true" className="size-9 shrink-0 object-contain transition-transform duration-200 group-hover:scale-[1.03] sm:size-10" />
               <span className="flex min-w-0 flex-col justify-center leading-tight">
                 <span className="text-sm font-semibold tracking-[-0.04em] text-brand-green-dark sm:text-base">{brandName}</span>
                 <span className="text-[9px] font-medium tracking-[-0.01em] text-muted-foreground sm:text-[10px]">Penerbit Buku &amp; Publikasi Ilmiah</span>
               </span>
-            </a>
+            </Link>
 
             <NavMenu navigation={navigation} />
 
             <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-              <a
+              <Link
                 href="/kirim-naskah"
                 className="hidden min-h-10 items-center justify-center rounded-full bg-primary px-4 text-sm font-medium tracking-wide text-secondary-foreground shadow-subtle transition-all hover:bg-secondary/80 active:scale-95 lg:flex"
               >
                 Kirim Naskah
-              </a>
+              </Link>
               <button
                 type="button"
                 className="grid size-10 cursor-pointer place-items-center rounded-md border border-border bg-background/70 transition-colors hover:bg-accent lg:hidden"
@@ -148,13 +149,13 @@ export function SiteHeader({ brandName, navigation }: SiteHeaderProps) {
             >
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
-                  <a href="/" onClick={closeDrawer} className="flex items-center gap-2.5" aria-label={`${brandName}, kembali ke beranda`}>
+                  <Link href="/" onClick={closeDrawer} className="flex items-center gap-2.5" aria-label={`${brandName}, kembali ke beranda`}>
                     <img src={taretanLogo} alt="" aria-hidden="true" className="size-9 shrink-0 object-contain" />
                     <span className="flex flex-col justify-center leading-tight">
                       <span className="text-base font-semibold tracking-[-0.04em] text-brand-green-dark">{brandName}</span>
                       <span className="text-[9px] font-medium tracking-[-0.01em] text-muted-foreground">Penerbit Buku &amp; Publikasi Ilmiah</span>
                     </span>
-                  </a>
+                  </Link>
                   <button type="button" className="grid size-9 cursor-pointer place-items-center rounded-md border border-border hover:bg-accent" aria-label="Tutup menu" onClick={closeDrawer}>
                     <X className="size-5" aria-hidden="true" />
                   </button>
@@ -167,7 +168,7 @@ export function SiteHeader({ brandName, navigation }: SiteHeaderProps) {
                       variants={drawerItemVariants}
                       className={cn("relative border-b border-border last:border-b-0", item.href === activeHref && "bg-accent/70")}
                     >
-                      <a
+                      <Link
                         href={item.href}
                         onClick={closeDrawer}
                         aria-current={item.href === activeHref ? "page" : undefined}
@@ -177,19 +178,20 @@ export function SiteHeader({ brandName, navigation }: SiteHeaderProps) {
                         )}
                       >
                         {item.label}
-                      </a>
+                      </Link>
                     </motion.li>
                   ))}
                 </motion.ul>
 
-                <motion.a
-                  href="/kirim-naskah"
-                  onClick={closeDrawer}
-                  variants={drawerItemVariants}
-                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-primary px-4 text-sm font-semibold text-secondary-foreground transition-all hover:bg-secondary/80 active:scale-95"
-                >
-                  Kirim Naskah
-                </motion.a>
+                <motion.div variants={drawerItemVariants}>
+                  <Link
+                    href="/kirim-naskah"
+                    onClick={closeDrawer}
+                    className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-primary px-4 text-sm font-semibold text-secondary-foreground transition-all hover:bg-secondary/80 active:scale-95"
+                  >
+                    Kirim Naskah
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
           </>

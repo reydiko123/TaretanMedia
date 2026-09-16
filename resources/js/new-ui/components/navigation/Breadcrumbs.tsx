@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "motion/react"
+import { Link } from "@inertiajs/react"
 import type { BreadcrumbItem } from "@/new-ui/types/public"
 
 type BreadcrumbsProps = {
@@ -15,7 +16,7 @@ export function Breadcrumbs({ items, currentLabel, tone = "default" }: Breadcrum
       <ol className={`flex flex-wrap items-center gap-2 text-sm ${tone === "dark" ? "text-on-dark-muted" : "text-muted-foreground"}`}>
         {items.map((item) => (
           <li key={`${item.href}-${item.label}`} className="flex items-center gap-2">
-            {item.href ? <a href={item.href} className={`rounded-sm transition-colors ${tone === "dark" ? "hover:text-brand-green" : "hover:text-brand-green-dark"}`}>{item.label}</a> : item.label}
+            {item.href ? <Link href={item.href} className={`rounded-sm transition-colors ${tone === "dark" ? "hover:text-brand-green" : "hover:text-brand-green-dark"}`}>{item.label}</Link> : item.label}
             <span aria-hidden="true" className={tone === "dark" ? "text-on-dark-muted/60" : "text-border"}>/</span>
           </li>
         ))}

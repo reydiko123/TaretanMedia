@@ -1,5 +1,6 @@
 import { ArrowRight, BookmarkPlus, Send } from "lucide-react"
 import { motion } from "motion/react"
+import { Link } from "@inertiajs/react"
 import taretanLogo from "@/new-ui/assets/taretan-media.png"
 
 type HomeHeroProps = {
@@ -30,20 +31,20 @@ export function HomeHero({ manuscriptHref = "/kirim-naskah", manuscriptLabel = "
           </p>
 
           <div className="mt-8 flex w-full flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center">
-            <a
+            <Link
               href="/buku"
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-all hover:bg-primary-deep active:scale-[0.98] sm:w-auto"
             >
               Jelajahi Buku
               <ArrowRight className="size-4" aria-hidden="true" />
-            </a>
-            <a
+            </Link>
+            <Link
               href={manuscriptHref}
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border bg-background/60 px-5 text-sm font-semibold text-brand-teal-deep transition-all hover:border-brand-green-dark hover:bg-background active:scale-[0.98] sm:w-auto"
             >
               <Send className="size-4" aria-hidden="true" />
               {manuscriptLabel}
-            </a>
+            </Link>
           </div>
         </motion.div>
 

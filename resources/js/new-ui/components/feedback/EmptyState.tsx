@@ -1,5 +1,6 @@
 import { BookOpen, Search } from "lucide-react"
 import { motion, useReducedMotion } from "motion/react"
+import { Link } from "@inertiajs/react"
 import type { PublicNavigation } from "@/new-ui/app/navigation"
 
 type EmptyStateProps = {
@@ -29,7 +30,7 @@ export function EmptyState({ filtered, navigation, title, description, emptyHref
           <button type="button" onClick={() => navigation?.visit(resetHref, { preserveScroll: false, preserveState: resetPreserveState })} className="inline-flex min-h-11 items-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground hover:bg-primary-deep">Reset filter</button>
             <button type="button" onClick={() => document.getElementById(focusTargetId)?.focus()} className="inline-flex min-h-11 items-center rounded-full border border-border px-5 text-sm font-semibold text-brand-teal-deep hover:bg-accent">Ubah pencarian</button>
           </>
-        ) : <a href={emptyHref} className="inline-flex min-h-11 items-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground hover:bg-primary-deep">{emptyLabel}</a>}
+        ) : <Link href={emptyHref} className="inline-flex min-h-11 items-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground hover:bg-primary-deep">{emptyLabel}</Link>}
       </div>
     </motion.section>
   )

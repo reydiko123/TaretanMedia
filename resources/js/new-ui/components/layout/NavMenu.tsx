@@ -1,5 +1,6 @@
 import { motion } from "motion/react"
 import { useEffect, useState } from "react"
+import { Link } from "@inertiajs/react"
 import { cn } from "@/new-ui/lib/utils"
 import { getCurrentHref } from "@/new-ui/components/layout/navigationState"
 import type { NavigationItem } from "@/new-ui/types/navigation"
@@ -51,14 +52,14 @@ export function NavMenu({ navigation, onNavigate }: NavMenuProps) {
                   className="pointer-events-none absolute inset-1.5 rounded-full border border-border bg-accent/70"
                 />
               ) : null}
-              <a
+              <Link
                 href={item.href}
                 onClick={() => handleClick(item)}
                 aria-current={isActive ? "page" : undefined}
                 className="relative z-10 whitespace-nowrap"
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           )
         })}

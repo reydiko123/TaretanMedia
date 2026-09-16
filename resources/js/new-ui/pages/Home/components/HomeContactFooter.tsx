@@ -1,5 +1,6 @@
 import { Mail, MessageCircle } from "lucide-react"
 import { motion, type Variants } from "motion/react"
+import { Link } from "@inertiajs/react"
 
 import taretanLogo from "@/new-ui/assets/taretan-media.svg"
 import { buildWhatsAppUrl } from "@/new-ui/lib/whatsapp"
@@ -22,24 +23,24 @@ export function HomeContactFooter({ contact }: HomeContactFooterProps) {
       <div className="mx-auto max-w-content">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr_0.8fr] lg:gap-16">
           <div>
-            <a href="/" className="group inline-flex items-center gap-2.5 rounded-sm text-on-dark outline-none">
+            <Link href="/" className="group inline-flex items-center gap-2.5 rounded-sm text-on-dark outline-none">
               <img src={taretanLogo} alt="" aria-hidden="true" className="size-10 shrink-0 rounded-xl bg-background/90 p-1 object-contain transition-transform duration-200 group-hover:scale-[1.03]" />
               <span className="flex min-w-0 flex-col justify-center leading-tight">
                 <span className="text-base font-semibold tracking-[-0.04em]">Taretan Media</span>
                 <span className="text-[9px] font-medium tracking-[-0.01em] text-on-dark-muted">Penerbit Buku &amp; Publikasi Ilmiah</span>
               </span>
-            </a>
+            </Link>
             <p className="mt-6 max-w-sm text-sm leading-7 text-on-dark-muted">Menerbitkan gagasan, mengabadikan pengetahuan melalui buku, publikasi ilmiah, dan layanan penerbitan.</p>
           </div>
 
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">Jelajahi</h2>
             <nav aria-label="Tautan footer" className="mt-5 grid gap-3 text-sm text-on-dark-muted">
-              <a href="/buku" className="transition-colors hover:text-on-dark">Katalog Buku</a>
-              <a href="/jurnal" className="transition-colors hover:text-on-dark">Jurnal</a>
-              <a href="/berita" className="transition-colors hover:text-on-dark">Berita</a>
-              <a href="/layanan" className="transition-colors hover:text-on-dark">Layanan</a>
-              <a href="/profil" className="transition-colors hover:text-on-dark">Profil</a>
+              <Link href="/buku" className="transition-colors hover:text-on-dark">Katalog Buku</Link>
+              <Link href="/jurnal" className="transition-colors hover:text-on-dark">Jurnal</Link>
+              <Link href="/berita" className="transition-colors hover:text-on-dark">Berita</Link>
+              <Link href="/layanan" className="transition-colors hover:text-on-dark">Layanan</Link>
+              <Link href="/profil" className="transition-colors hover:text-on-dark">Profil</Link>
             </nav>
           </div>
 

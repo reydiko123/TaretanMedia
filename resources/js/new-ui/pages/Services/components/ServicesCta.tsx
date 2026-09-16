@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react"
 import { motion, useReducedMotion } from "motion/react"
+import { Link } from "@inertiajs/react"
 
 export function ServicesCta() {
   const shouldReduceMotion = useReducedMotion()
@@ -28,23 +29,17 @@ export function ServicesCta() {
             transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
             className="relative mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row lg:mt-0 lg:shrink-0"
           >
-            <motion.a
-              href="/kirim-naskah"
-              whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-              whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-brand-green px-5 text-sm font-semibold text-on-primary transition-colors hover:bg-primary-deep"
-            >
-              Kirim Naskah
-              <ArrowRight aria-hidden="true" className="size-4" />
-            </motion.a>
-            <motion.a
-              href="/kontak"
-              whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-              whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-hairline-dark px-5 text-sm font-semibold text-on-dark transition-colors hover:border-brand-green hover:text-brand-green"
-            >
-              Hubungi Kami
-            </motion.a>
+            <motion.div whileHover={shouldReduceMotion ? undefined : { y: -2 }} whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}>
+              <Link href="/kirim-naskah" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-brand-green px-5 text-sm font-semibold text-on-primary transition-colors hover:bg-primary-deep">
+                Kirim Naskah
+                <ArrowRight aria-hidden="true" className="size-4" />
+              </Link>
+            </motion.div>
+            <motion.div whileHover={shouldReduceMotion ? undefined : { y: -2 }} whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}>
+              <Link href="/kontak" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-hairline-dark px-5 text-sm font-semibold text-on-dark transition-colors hover:border-brand-green hover:text-brand-green">
+                Hubungi Kami
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </div>

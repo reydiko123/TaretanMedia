@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "@inertiajs/react"
 import { motion } from "motion/react"
 import { CalendarDays, FileText } from "lucide-react"
 import { buildNewsDetailUrl } from "@/new-ui/lib/newsCatalog"
@@ -57,7 +58,7 @@ export function NewsCard({ news, headingLevel = 3, index = 0 }: NewsCardProps) {
       whileTap={{ scale: 0.99 }}
       className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-subtle transition-shadow duration-200 hover:shadow-card"
     >
-      <a href={href} aria-label={`Buka berita ${news.title}`} className="flex h-full flex-col focus-visible:outline-offset-[-3px]">
+      <Link href={href} aria-label={`Buka berita ${news.title}`} className="flex h-full flex-col focus-visible:outline-offset-[-3px]">
         <div className="overflow-hidden">
           <NewsImage news={news} />
         </div>
@@ -83,7 +84,7 @@ export function NewsCard({ news, headingLevel = 3, index = 0 }: NewsCardProps) {
           {news.excerpt?.trim() ? <p className="mt-2 line-clamp-3 text-sm leading-6 text-muted-foreground">{news.excerpt}</p> : null}
           {news.authorName.trim() ? <p className="mt-4 text-xs font-medium text-brand-teal-deep/70">Oleh {news.authorName}</p> : null}
         </div>
-      </a>
+      </Link>
     </motion.article>
   )
 }

@@ -1,5 +1,6 @@
 import { ArrowUpRight, Check } from "lucide-react"
 import { motion } from "motion/react"
+import { Link } from "@inertiajs/react"
 
 import { formatRupiah } from "@/new-ui/lib/formatting"
 import type { ServiceCardProps } from "@/new-ui/pages/Services/servicesTypes"
@@ -81,9 +82,9 @@ export function ServiceCard({ service, onWhatsAppClick }: ServiceCardProps) {
         ) : (
           <div className="rounded-xl border border-warning-bg bg-warning-bg px-4 py-3 text-sm leading-6 text-warning-text">
             <p>Konsultasi WhatsApp sedang tidak tersedia.</p>
-            <a href="/kontak" className="mt-1 inline-flex min-h-11 items-center font-semibold underline decoration-1 underline-offset-4 hover:no-underline">
+            <Link href="/kontak" className="mt-1 inline-flex min-h-11 items-center font-semibold underline decoration-1 underline-offset-4 hover:no-underline">
               Hubungi kami melalui halaman kontak
-            </a>
+            </Link>
           </div>
         )}
       </div>

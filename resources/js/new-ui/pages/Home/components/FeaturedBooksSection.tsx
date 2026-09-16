@@ -1,6 +1,7 @@
 import { ArrowRight, BookmarkPlus } from "lucide-react"
 import { useState } from "react"
 import { motion, type Variants } from "motion/react"
+import { Link } from "@inertiajs/react"
 
 import { cn } from "@/new-ui/lib/utils"
 import type { BookCard as FeaturedBook } from "@/new-ui/types/public"
@@ -111,9 +112,9 @@ function FeaturedBookCard({ book, index, className }: { book: FeaturedBook; inde
           </div>
 
           <h3 className="mt-3 min-h-[3.5rem] line-clamp-2 overflow-hidden text-xl font-semibold leading-tight tracking-[-0.045em] text-brand-teal-deep">
-            <a href={`/buku/${book.slug}`} className="rounded-sm outline-none transition-colors hover:text-brand-green-dark">
+            <Link href={`/buku/${book.slug}`} className="rounded-sm outline-none transition-colors hover:text-brand-green-dark">
               {book.title}
-            </a>
+            </Link>
           </h3>
 
           <p className="mt-2 min-h-[3rem] line-clamp-2 overflow-hidden text-sm leading-6 text-muted-foreground">
@@ -173,31 +174,23 @@ export function FeaturedBooksSection({ books }: FeaturedBooksSectionProps) {
                   <FeaturedBookCard key={book.slug} book={book} index={index} className="w-[min(78vw,18rem)] shrink-0 lg:w-auto" />
               ))}
                 <motion.div variants={bookCardReveal} className="flex w-[min(78vw,18rem)] shrink-0 items-center justify-center lg:hidden">
-                  <motion.a
-                    href="/buku"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep"
-                  >
-                    Lihat semua buku
-                    <ArrowRight className="size-4" aria-hidden="true" />
-                  </motion.a>
+                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.2, ease: "easeOut" }}>
+                    <Link href="/buku" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep">
+                      Lihat semua buku
+                      <ArrowRight className="size-4" aria-hidden="true" />
+                    </Link>
+                  </motion.div>
                 </motion.div>
               </motion.div>
             </div>
 
             <div className="mt-10 hidden justify-center lg:flex">
-              <motion.a
-                href="/buku"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep active:scale-[0.98]"
-              >
-                Lihat semua buku
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </motion.a>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.2, ease: "easeOut" }}>
+                <Link href="/buku" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep active:scale-[0.98]">
+                  Lihat semua buku
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+              </motion.div>
             </div>
           </>
         ) : (

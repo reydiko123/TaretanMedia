@@ -1,5 +1,6 @@
 import { ArrowRight, BookOpen, CalendarDays } from "lucide-react"
 import { motion, type Variants } from "motion/react"
+import { Link } from "@inertiajs/react"
 
 import type { FeaturedJournal } from "@/new-ui/pages/Home/data/homeTypes"
 
@@ -48,12 +49,12 @@ function FeaturedJournalCard({ journal, index }: { journal: FeaturedJournal; ind
             <span className="inline-flex shrink-0 items-center gap-1"><CalendarDays className="size-3" aria-hidden="true" />{journal.publicationYear}</span>
           </div>
           <h3 className="mt-3 min-h-[4.5rem] line-clamp-2 overflow-hidden text-xl font-semibold leading-tight tracking-[-0.045em] text-brand-teal-deep">
-            <a href={`/jurnal/${journal.slug}`} className="rounded-sm outline-none transition-colors hover:text-brand-green-dark">{journal.title}</a>
+            <Link href={`/jurnal/${journal.slug}`} className="rounded-sm outline-none transition-colors hover:text-brand-green-dark">{journal.title}</Link>
           </h3>
           <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted-foreground">{journal.theme}</p>
-          <a href={`/jurnal/${journal.slug}`} className="mt-auto inline-flex min-h-11 items-center gap-2 pt-5 text-sm font-semibold text-brand-green-dark transition-colors hover:text-brand-teal-deep">
+          <Link href={`/jurnal/${journal.slug}`} className="mt-auto inline-flex min-h-11 items-center gap-2 pt-5 text-sm font-semibold text-brand-green-dark transition-colors hover:text-brand-teal-deep">
             Lihat detail jurnal <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-          </a>
+          </Link>
         </div>
       </div>
     </motion.article>
@@ -80,12 +81,12 @@ export function FeaturedJournalsSection({ journals }: FeaturedJournalsSectionPro
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={{ hidden: { opacity: 1 }, visible: { opacity: 1, transition: { delayChildren: 0.08, staggerChildren: 0.1 } } }} className="flex w-max gap-5 lg:grid lg:w-full lg:grid-cols-4">
                 {visibleJournals.map((journal, index) => <FeaturedJournalCard key={journal.slug} journal={journal} index={index} />)}
                 <motion.div variants={cardReveal} className="flex w-[min(82vw,21rem)] shrink-0 items-center justify-center lg:hidden">
-                  <a href="/jurnal" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep">Lihat semua jurnal <ArrowRight className="size-4" aria-hidden="true" /></a>
+                  <Link href="/jurnal" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep">Lihat semua jurnal <ArrowRight className="size-4" aria-hidden="true" /></Link>
                 </motion.div>
               </motion.div>
             </div>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }} variants={sectionReveal} className="mt-10 hidden justify-center lg:flex">
-              <a href="/jurnal" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep">Lihat semua jurnal <ArrowRight className="size-4" aria-hidden="true" /></a>
+              <Link href="/jurnal" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep">Lihat semua jurnal <ArrowRight className="size-4" aria-hidden="true" /></Link>
             </motion.div>
           </>
         ) : (

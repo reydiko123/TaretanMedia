@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react"
 import { motion } from "motion/react"
+import { Link } from "@inertiajs/react"
 import { ManuscriptForm } from "@/new-ui/components/conversion/ManuscriptForm"
 import { PrivacyNotice } from "@/new-ui/components/conversion/PrivacyNotice"
 import { SubmissionShell } from "@/new-ui/components/layout/SubmissionShell"
@@ -28,16 +29,12 @@ export function ManuscriptCreatePage({ openExternalUrl, trackEvent, ...props }: 
         animate={{ opacity: 1 }}
         transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
       >
-        <motion.a
-          href="/"
-          whileHover={{ x: -4 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ duration: 0.18, ease: "easeOut" }}
-          className="mb-8 inline-flex min-h-11 items-center gap-2 rounded-full border border-brand-green-dark px-4 py-2 text-sm font-semibold text-brand-green-dark transition-colors hover:bg-surface-feature hover:text-brand-teal-deep focus-visible:outline-offset-4 sm:px-5"
-        >
-          <ArrowLeft className="size-4" aria-hidden="true" />
-          Kembali ke beranda
-        </motion.a>
+        <motion.div whileHover={{ x: -4 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.18, ease: "easeOut" }} className="mb-8 inline-flex">
+          <Link href="/" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-brand-green-dark px-4 py-2 text-sm font-semibold text-brand-green-dark transition-colors hover:bg-surface-feature hover:text-brand-teal-deep focus-visible:outline-offset-4 sm:px-5">
+            <ArrowLeft className="size-4" aria-hidden="true" />
+            Kembali ke beranda
+          </Link>
+        </motion.div>
 
         <div className="manuscript-layout grid items-start gap-6 lg:grid-cols-[minmax(240px,0.38fr)_minmax(0,0.62fr)] lg:gap-8">
           <div className="lg:sticky lg:top-8">

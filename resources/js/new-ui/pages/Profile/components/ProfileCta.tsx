@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react"
 import { motion } from "motion/react"
+import { Link } from "@inertiajs/react"
 
 import { BlurFade } from "@/new-ui/components/magicui/BlurFade"
 
@@ -24,10 +25,10 @@ export function ProfileCta() {
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             className="relative mt-8 flex w-full sm:w-auto lg:mt-0 lg:shrink-0"
           >
-            <a href="/kirim-naskah" className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-brand-green px-5 text-sm font-semibold text-on-primary transition-colors hover:bg-primary-deep sm:w-auto">
+            <Link href="/kirim-naskah" className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-brand-green px-5 text-sm font-semibold text-on-primary transition-colors hover:bg-primary-deep sm:w-auto">
               Mulai Terbitkan Karya Anda
               <ArrowRight aria-hidden="true" className="size-4" />
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>

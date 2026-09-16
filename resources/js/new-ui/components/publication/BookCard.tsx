@@ -1,4 +1,5 @@
 import { motion } from "motion/react"
+import { Link } from "@inertiajs/react"
 import { ArrowUpRight } from "lucide-react"
 import { formatRupiah } from "@/new-ui/lib/formatting"
 import { cn } from "@/new-ui/lib/utils"
@@ -27,9 +28,9 @@ export function BookCard({ book, headingLevel = 2, index = 0 }: BookCardProps) {
       whileTap={{ scale: 0.99 }}
       className="group flex h-full flex-col rounded-xl border border-border bg-card p-3 shadow-subtle transition-shadow hover:shadow-card"
     >
-      <a href={detailHref} className="block rounded-xl focus-visible:outline-offset-4" aria-label={`Buka detail ${book.title}`}>
+      <Link href={detailHref} className="block rounded-xl focus-visible:outline-offset-4" aria-label={`Buka detail ${book.title}`}>
         <CoverImage image={book.cover} title={book.title} index={index} />
-      </a>
+      </Link>
 
       <div className="flex flex-1 flex-col px-2 pb-2 pt-4">
         <div className="flex min-h-6 flex-wrap items-center gap-1.5">
@@ -52,9 +53,9 @@ export function BookCard({ book, headingLevel = 2, index = 0 }: BookCardProps) {
         </div>
 
         <Heading className="mt-3 line-clamp-2 text-lg font-semibold leading-snug tracking-[-0.04em] text-brand-teal-deep">
-          <a href={detailHref} className="rounded-sm transition-colors hover:text-brand-green-dark">
+          <Link href={detailHref} className="rounded-sm transition-colors hover:text-brand-green-dark">
             {book.title}
-          </a>
+          </Link>
         </Heading>
         <p className="mt-1.5 line-clamp-2 text-sm leading-6 text-muted-foreground">
           {book.authors.filter(Boolean).join(", ") || "Penulis tidak dicantumkan"}
@@ -62,10 +63,10 @@ export function BookCard({ book, headingLevel = 2, index = 0 }: BookCardProps) {
 
         <div className="mt-auto flex items-end justify-between gap-3 border-t border-border pt-4">
           <p className="text-base font-semibold text-brand-green-dark">{formatRupiah(book.price)}</p>
-          <a href={detailHref} className="inline-flex min-h-11 items-center gap-1 rounded-full border border-brand-green-dark/30 px-3 text-xs font-semibold text-brand-green-dark transition-colors hover:bg-accent focus-visible:outline-offset-2">
+          <Link href={detailHref} className="inline-flex min-h-11 items-center gap-1 rounded-full border border-brand-green-dark/30 px-3 text-xs font-semibold text-brand-green-dark transition-colors hover:bg-accent focus-visible:outline-offset-2">
             Detail
             <ArrowUpRight className="size-3.5" aria-hidden="true" />
-          </a>
+          </Link>
         </div>
       </div>
     </motion.article>

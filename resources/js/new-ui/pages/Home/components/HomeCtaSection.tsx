@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react"
 import { motion, type Variants } from "motion/react"
+import { Link } from "@inertiajs/react"
 
 const sectionReveal: Variants = {
   hidden: { opacity: 0, y: 18, scale: 0.98 },
@@ -23,8 +24,8 @@ export function HomeCtaSection({ manuscriptLabel, manuscriptHref }: HomeCtaSecti
           <h2 id="home-cta-title" className="mt-6 text-3xl font-semibold tracking-[-0.06em] text-on-dark sm:text-5xl">Punya naskah yang ingin dibicarakan?</h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-on-dark-muted sm:text-lg">Jangan biarkan gagasan Anda berhenti sebagai naskah. Mari bersama Taretan Media menjadikannya karya yang dapat dibaca, dibagikan, dan memberikan manfaat.</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href={manuscriptHref} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep">{manuscriptLabel || "Kirim Naskah"} <ArrowUpRight className="size-4" aria-hidden="true" /></a>
-            <a href="/kontak" className="inline-flex min-h-11 items-center justify-center rounded-full border border-on-dark/30 px-5 text-sm font-semibold text-on-dark transition-colors hover:bg-on-dark/10">Hubungi Taretan Media</a>
+            <Link href={manuscriptHref} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep">{manuscriptLabel || "Kirim Naskah"} <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
+            <Link href="/kontak" className="inline-flex min-h-11 items-center justify-center rounded-full border border-on-dark/30 px-5 text-sm font-semibold text-on-dark transition-colors hover:bg-on-dark/10">Hubungi Taretan Media</Link>
           </div>
         </div>
       </motion.div>
