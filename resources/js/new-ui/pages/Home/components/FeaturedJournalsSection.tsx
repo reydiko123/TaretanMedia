@@ -28,7 +28,7 @@ function JournalCover({ journal, index }: { journal: FeaturedJournal; index: num
       <div className="absolute -bottom-16 -left-10 size-40 rounded-full border border-current/20" />
       <div className="relative flex h-full flex-col justify-between">
         <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.18em] opacity-80">
-          <span>Taretan Media</span>
+          <span>CV Taretan Media Publishing</span>
           <BookOpen className="size-4" aria-hidden="true" />
         </div>
         <p className="max-w-[15rem] text-2xl font-semibold leading-[0.98] tracking-[-0.06em]">{journal.title}</p>

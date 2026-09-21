@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-    <title>Terjadi kesalahan &middot; Taretan Media</title>
+    <title>Terjadi kesalahan &middot; CV Taretan Media Publishing</title>
     <style>
         :root { color-scheme: light dark; }
         body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: #fafaf9; color: #1c1917; display: flex; min-height: 100vh; align-items: center; justify-content: center; }

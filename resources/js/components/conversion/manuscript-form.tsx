@@ -93,7 +93,7 @@ export function ManuscriptForm({ config }: { config: WhatsAppConfig }) {
                 id="manuscript-privacy-note"
                 className="bg-muted/40 rounded-lg border p-4 text-sm"
             >
-                Informasi ini belum dikirim ke Taretan Media. Setelah WhatsApp
+                Informasi ini belum dikirim ke CV Taretan Media Publishing. Setelah WhatsApp
                 terbuka, tinjau pesan dan tekan Send sendiri. Pemrosesan
                 berikutnya mengikuti kebijakan WhatsApp.
             </div>

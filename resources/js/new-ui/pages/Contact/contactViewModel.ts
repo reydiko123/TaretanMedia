@@ -4,7 +4,7 @@ import type { ContactChannelViewModel, ContactContent, ContactPageViewModel } fr
 const COPY = {
   title: "Hubungi Kami",
   description: "Konsultasikan kebutuhan penerbitan dan publikasi ilmiah anda",
-  whatsappLabel: "WhatsApp Taretan Media",
+  whatsappLabel: "WhatsApp CV Taretan Media Publishing",
   whatsappSupport: "Lanjutkan percakapan melalui WhatsApp.",
   emailSupport: "Kirim pesan melalui aplikasi email Anda.",
 } as const

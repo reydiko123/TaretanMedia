@@ -35,7 +35,7 @@ export function ProfileHero({ title, description }: ProfileHeroProps) {
               <div>
                 <div className="flex items-center justify-between gap-4">
                   <img src={taretanLogo} alt="" aria-hidden="true" className="size-14 rounded-xl bg-background/90 p-2 object-contain shadow-subtle" />
-                  <p className="text-micro-uppercase font-semibold uppercase tracking-[0.18em] text-brand-green">Taretan Media</p>
+                  <p className="text-micro-uppercase font-semibold uppercase tracking-[0.18em] text-brand-green">CV Taretan Media Publishing</p>
                 </div>
                 <p className="mt-7 max-w-xs text-3xl font-semibold leading-tight tracking-[-0.04em] text-on-dark">Penerbit Buku &amp; Publikasi Ilmiah</p>
               </div>

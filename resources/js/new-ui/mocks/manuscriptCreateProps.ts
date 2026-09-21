@@ -3,7 +3,7 @@ import type { ManuscriptCreateProps } from "@/new-ui/types/public"
 export function getLocalManuscriptCreateProps(): ManuscriptCreateProps {
   return {
     site: {
-      name: "Taretan Media",
+      name: "CV Taretan Media Publishing",
       tagline: "Penerbit Buku & Publikasi Ilmiah",
       shortDescription: "Penerbitan buku dan publikasi ilmiah yang bertumbuh bersama penulis.",
     },

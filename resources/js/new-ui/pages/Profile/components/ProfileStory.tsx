@@ -19,7 +19,7 @@ export function ProfileStory({ about, vision, mission = [] }: ProfileStoryProps)
     .filter(Boolean) ?? []
 
   return (
-    <section className="border-b border-border bg-background" aria-label="Cerita Taretan Media">
+    <section className="border-b border-border bg-background" aria-label="Cerita CV Taretan Media Publishing">
       <div className="mx-auto flex max-w-content flex-col gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:gap-14 lg:px-12 lg:py-24">
         {about ? (
           <BlurFade>

@@ -3,7 +3,7 @@ import type { HomeFaq } from "@/new-ui/pages/Home/data/homeTypes"
 export const faqs: HomeFaq[] = [
   {
     id: "publish-book",
-    question: "Bagaimana cara menerbitkan buku di Taretan Media?",
+    question: "Bagaimana cara menerbitkan buku di CV Taretan Media Publishing?",
     answer: "Cukup kirimkan naskah Anda melalui halaman Kirim Naskah atau WhatsApp kami. Tim kami akan melakukan review awal, lalu menghubungi Anda untuk konsultasi layanan dan proses penerbitan.",
   },
   {

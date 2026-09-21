@@ -15,17 +15,17 @@ final class PublicPropsMapper
     /** @return array{name: string, slug: string} */
     public static function category(Category $category): array
     {
-        return ['name' => $category->name, 'slug' => $category->slug];
+        return ['name' => self::brandRequired($category->name), 'slug' => $category->slug];
     }
 
     /** @return array<string, mixed> */
     public static function book(Book $book, bool $detail = false): array
     {
         $data = [
-            'title' => $book->title,
+            'title' => self::brand($book->title),
             'slug' => $book->slug,
             'coverUrl' => self::media($book->cover_path),
-            'authors' => $book->authors->pluck('name')->values()->all(),
+            'authors' => $book->authors->map(fn ($author): string => self::brandRequired($author->name))->values()->all(),
             'categories' => $book->categories->map(self::category(...))->values()->all(),
             'price' => $book->price,
             'formattedPrice' => 'Rp '.number_format($book->price, 0, ',', '.'),
@@ -35,10 +35,10 @@ final class PublicPropsMapper
         if ($detail) {
             $data += [
                 'isbn' => $book->isbn_display,
-                'publisher' => $book->publisher,
+                'publisher' => self::brand($book->publisher),
                 'pageCount' => $book->page_count,
-                'synopsis' => $book->synopsis,
-                'tableOfContents' => $book->table_of_contents,
+                'synopsis' => self::brand($book->synopsis),
+                'tableOfContents' => self::brand($book->table_of_contents),
                 'publishedAt' => $book->published_at?->toIso8601String(),
             ];
         }
@@ -50,10 +50,10 @@ final class PublicPropsMapper
     public static function journal(Journal $journal, bool $detail = false): array
     {
         $data = [
-            'title' => $journal->title,
+            'title' => self::brand($journal->title),
             'slug' => $journal->slug,
             'coverUrl' => self::media($journal->cover_path),
-            'theme' => $journal->theme,
+            'theme' => self::brand($journal->theme),
             'editionLabel' => $journal->edition_label,
             'publicationYear' => $journal->publication_year,
             'categories' => $journal->categories->map(self::category(...))->values()->all(),
@@ -61,7 +61,7 @@ final class PublicPropsMapper
 
         if ($detail) {
             $data += [
-                'description' => $journal->description,
+                'description' => self::brand($journal->description),
                 'externalUrl' => $journal->external_url,
                 'publishedAt' => $journal->published_at?->toIso8601String(),
             ];
@@ -74,17 +74,17 @@ final class PublicPropsMapper
     public static function article(Article $article, bool $detail = false): array
     {
         $data = [
-            'title' => $article->title,
+            'title' => self::brand($article->title),
             'slug' => $article->slug,
-            'excerpt' => $article->excerpt,
+            'excerpt' => self::brand($article->excerpt),
             'featuredImageUrl' => self::media($article->featured_image_path),
-            'author' => ['name' => $article->author->name],
+            'author' => ['name' => self::brand($article->author->name)],
             'categories' => $article->categories->map(self::category(...))->values()->all(),
             'publishedAt' => $article->published_at?->toIso8601String(),
         ];
 
         if ($detail) {
-            $data['bodyHtml'] = $article->body;
+            $data['bodyHtml'] = self::brand($article->body);
         }
 
         return $data;
@@ -94,13 +94,13 @@ final class PublicPropsMapper
     public static function service(Service $service): array
     {
         return [
-            'name' => $service->name,
+            'name' => self::brand($service->name),
             'slug' => $service->slug,
             'price' => $service->price,
             'formattedPrice' => 'Rp '.number_format($service->price, 0, ',', '.'),
-            'summary' => $service->summary,
-            'description' => $service->description,
-            'features' => array_values(array_filter($service->features ?? [], 'is_string')),
+            'summary' => self::brand($service->summary),
+            'description' => self::brand($service->description),
+            'features' => array_values(array_map(fn (string $feature): string => self::brandRequired($feature), array_filter($service->features ?? [], 'is_string'))),
             'ctaLabel' => $service->cta_label,
         ];
     }
@@ -131,5 +131,15 @@ final class PublicPropsMapper
     private static function media(?string $path): ?string
     {
         return filled($path) ? Storage::disk('public')->url($path) : null;
+    }
+
+    private static function brand(?string $value): ?string
+    {
+        return $value === null ? null : str_replace('Taretan Media', 'CV Taretan Media Publishing', $value);
+    }
+
+    private static function brandRequired(string $value): string
+    {
+        return self::brand($value) ?? '';
     }
 }

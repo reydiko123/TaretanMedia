@@ -26,7 +26,7 @@ export function HomeContactFooter({ contact }: HomeContactFooterProps) {
             <Link href="/" className="group inline-flex items-center gap-2.5 rounded-sm text-on-dark outline-none">
               <img src={taretanLogo} alt="" aria-hidden="true" className="size-10 shrink-0 rounded-xl bg-background/90 p-1 object-contain transition-transform duration-200 group-hover:scale-[1.03]" />
               <span className="flex min-w-0 flex-col justify-center leading-tight">
-                <span className="text-base font-semibold tracking-[-0.04em]">Taretan Media</span>
+                <span className="text-base font-semibold tracking-[-0.04em]">CV Taretan Media Publishing</span>
                 <span className="text-[9px] font-medium tracking-[-0.01em] text-on-dark-muted">Penerbit Buku &amp; Publikasi Ilmiah</span>
               </span>
             </Link>
@@ -47,13 +47,13 @@ export function HomeContactFooter({ contact }: HomeContactFooterProps) {
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">Kontak</h2>
             <div className="mt-5 grid gap-3 text-sm text-on-dark-muted">
-              {whatsappHref ? <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-on-dark"><MessageCircle className="size-4 shrink-0 text-primary" aria-hidden="true" />{contact.whatsappLabel ?? "WhatsApp Taretan Media"}</a> : null}
+              {whatsappHref ? <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-on-dark"><MessageCircle className="size-4 shrink-0 text-primary" aria-hidden="true" />{contact.whatsappLabel ?? "WhatsApp CV Taretan Media Publishing"}</a> : null}
               {contact.email ? <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-on-dark"><Mail className="size-4 shrink-0 text-primary" aria-hidden="true" />{contact.email}</a> : null}
               {contact.mapUrl ? <a href={contact.mapUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-start gap-2 transition-colors hover:text-on-dark"><img src="/google-maps-platform.svg" alt="" aria-hidden="true" className="mt-0.5 size-4 shrink-0" />Pamekasan, Jawa Timur</a> : null}
             </div>
           </div>
         </div>
-        <div className="mt-12 border-t border-on-dark/15 pt-5 text-xs text-on-dark-muted"><span>© 2026 Taretan Media. Semua hak cipta dilindungi.</span></div>
+        <div className="mt-12 border-t border-on-dark/15 pt-5 text-xs text-on-dark-muted"><span>© 2026 CV Taretan Media Publishing. Semua hak cipta dilindungi.</span></div>
       </div>
     </motion.footer>
   )

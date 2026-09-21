@@ -1,7 +1,7 @@
 import type { NewsShowProps, ImageAsset } from "@/new-ui/types/public"
 
 const site = {
-  name: "Taretan Media",
+  name: "CV Taretan Media Publishing",
   tagline: "Penerbit Buku & Publikasi Ilmiah",
   shortDescription: "Penerbitan buku dan publikasi ilmiah yang bertumbuh bersama penulis.",
 }
@@ -55,7 +55,7 @@ const catalogNewsShowProps: NewsShowProps[] = [
       excerpt: "Membaca bukan sekadar menambah jumlah buku yang selesai, melainkan membangun cara berpikir yang lebih sabar, kritis, dan kaya gagasan.",
       featuredImage: { ...featuredImage, alt: "Ilustrasi kebiasaan membaca dan mencatat gagasan" },
       authorName: "Taretan Editorial",
-      author: { id: 20, name: "Taretan Editorial", about: "Tim editorial Taretan Media." },
+      author: { id: 20, name: "Taretan Editorial", about: "Tim editorial CV Taretan Media Publishing." },
       categories: ["Literasi", "Edukasi"],
       publishedAt: "2026-04-05T00:00:00.000Z",
       bodyHtml: `
@@ -223,7 +223,7 @@ const catalogNewsShowProps: NewsShowProps[] = [
       excerpt: "Memahami alur publikasi membantu penulis menyiapkan naskah dan berkomunikasi dengan lebih baik.",
       featuredImage: null,
       authorName: "Taretan Editorial",
-      author: { id: 18, name: "Taretan Editorial", about: "Tim editorial Taretan Media." },
+      author: { id: 18, name: "Taretan Editorial", about: "Tim editorial CV Taretan Media Publishing." },
       categories: ["Edukasi", "Penerbitan"],
       publishedAt: "2025-10-18T00:00:00.000Z",
       bodyHtml: `<p>Publikasi ilmiah membutuhkan naskah yang terarah, referensi yang kuat, dan komunikasi yang terbuka.</p><h2>Siapkan naskah</h2><p>Pastikan struktur, data, dan tujuan tulisan sudah jelas sebelum mengirimkan naskah.</p><h2>Pahami proses review</h2><p>Masukan editor dan reviewer menjadi bagian penting untuk memperkuat kualitas publikasi.</p>`,

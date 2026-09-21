@@ -5,7 +5,7 @@ export const testimonies: Testimony[] = [
     id: "1",
     name: "Siti Rahmawati",
     role: "Penulis Buku Anak",
-    quote: "Proses editing di Taretan Media sangat rapi dan komunikatif. Setiap masukan disampaikan dengan jelas sehingga naskah saya jadi lebih matang sebelum terbit.",
+    quote: "Proses editing di CV Taretan Media Publishing sangat rapi dan komunikatif. Setiap masukan disampaikan dengan jelas sehingga naskah saya jadi lebih matang sebelum terbit.",
   },
   {
     id: "2",
@@ -17,7 +17,7 @@ export const testimonies: Testimony[] = [
     id: "3",
     name: "Maya Kusuma",
     role: "Penulis Novel",
-    quote: "Desain dan layout buku saya melebihi ekspektasi. Taretan Media benar-benar memperhatikan detail dari sampul hingga tata letak isi.",
+    quote: "Desain dan layout buku saya melebihi ekspektasi. CV Taretan Media Publishing benar-benar memperhatikan detail dari sampul hingga tata letak isi.",
   },
   {
     id: "4",
@@ -29,6 +29,6 @@ export const testimonies: Testimony[] = [
     id: "5",
     name: "Dewi Anggraini",
     role: "Akademisi & Penulis Monograf",
-    quote: "Kolaborasi dengan Taretan Media terasa profesional dan hangat. Mereka memahami kebutuhan akademis sekaligus menjaga kualitas visual buku.",
+    quote: "Kolaborasi dengan CV Taretan Media Publishing terasa profesional dan hangat. Mereka memahami kebutuhan akademis sekaligus menjaga kualitas visual buku.",
   },
 ]

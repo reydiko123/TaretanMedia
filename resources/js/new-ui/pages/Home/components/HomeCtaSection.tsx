@@ -22,10 +22,10 @@ export function HomeCtaSection({ manuscriptLabel, manuscriptHref }: HomeCtaSecti
         <div aria-hidden="true" className="absolute -bottom-36 -left-24 size-96 rounded-full border border-primary/20" />
         <div className="relative z-10 mx-auto max-w-3xl">
           <h2 id="home-cta-title" className="mt-6 text-3xl font-semibold tracking-[-0.06em] text-on-dark sm:text-5xl">Punya naskah yang ingin dibicarakan?</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-on-dark-muted sm:text-lg">Jangan biarkan gagasan Anda berhenti sebagai naskah. Mari bersama Taretan Media menjadikannya karya yang dapat dibaca, dibagikan, dan memberikan manfaat.</p>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-on-dark-muted sm:text-lg">Jangan biarkan gagasan Anda berhenti sebagai naskah. Mari bersama CV Taretan Media Publishing menjadikannya karya yang dapat dibaca, dibagikan, dan memberikan manfaat.</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href={manuscriptHref} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep">{manuscriptLabel || "Kirim Naskah"} <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
-            <Link href="/kontak" className="inline-flex min-h-11 items-center justify-center rounded-full border border-on-dark/30 px-5 text-sm font-semibold text-on-dark transition-colors hover:bg-on-dark/10">Hubungi Taretan Media</Link>
+            <Link href="/kontak" className="inline-flex min-h-11 items-center justify-center rounded-full border border-on-dark/30 px-5 text-sm font-semibold text-on-dark transition-colors hover:bg-on-dark/10">Hubungi CV Taretan Media Publishing</Link>
           </div>
         </div>
       </motion.div>

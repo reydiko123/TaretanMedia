@@ -170,7 +170,7 @@ export function ProfessionalTeam() {
                                         className="size-4"
                                         aria-hidden="true"
                                     />{' '}
-                                    Tim Taretan Media
+                                    Tim CV Taretan Media Publishing
                                 </div>
                                 <h3 className="public-display mt-3 text-2xl font-bold">
                                     {member.name}

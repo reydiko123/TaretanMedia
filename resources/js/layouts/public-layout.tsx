@@ -23,7 +23,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
     const contact: HomeContact = {
         whatsappNumber: props.site?.conversion?.whatsapp?.number ?? null,
         whatsappLabel: props.site?.conversion?.whatsapp?.number
-            ? 'WhatsApp Taretan Media'
+            ? 'WhatsApp CV Taretan Media Publishing'
             : null,
         whatsappGreeting:
             props.site?.conversion?.whatsapp?.templates.contact ?? null,
@@ -35,7 +35,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
 
     return (
         <AppShell
-            brandName={props.site?.name ?? 'Taretan Media'}
+            brandName={props.site?.name ?? 'CV Taretan Media Publishing'}
             contact={contact}
             showHeader={!isManuscriptPage}
         >

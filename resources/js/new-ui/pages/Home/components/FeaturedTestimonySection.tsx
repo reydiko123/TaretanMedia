@@ -40,7 +40,7 @@ export function FeaturedTestimonySection({ testimonies }: FeaturedTestimonySecti
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.45 }} variants={sectionReveal} className="mx-auto max-w-3xl text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-green-dark">Kata Mereka</span>
           <h2 id="testimony-title" className="mt-5 text-4xl font-semibold tracking-[-0.065em] text-brand-teal-deep sm:text-6xl">Apa Kata Penulis Kami</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">Pengalaman nyata dari penulis dan peneliti yang telah menerbitkan karyanya bersama Taretan Media</p>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">Pengalaman nyata dari penulis dan peneliti yang telah menerbitkan karyanya bersama CV Taretan Media Publishing</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, ease: "easeOut" }} className="mt-12">

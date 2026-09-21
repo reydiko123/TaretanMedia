@@ -24,7 +24,7 @@ final class BookController extends Controller
             'categories' => $result['categories']->map(fn (Category $category) => PublicPropsMapper::category($category))->all(),
             'filters' => $result['filters']->props(books: true),
             'filterOptions' => $result['filterOptions'],
-            'seo' => PublicSeo::make('Buku', 'Temukan buku terbitan Taretan Media.', route('books.index')),
+            'seo' => PublicSeo::make('Buku', 'Temukan buku terbitan CV Taretan Media Publishing.', route('books.index')),
         ]);
     }
 

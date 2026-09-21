@@ -273,7 +273,7 @@ export function ManuscriptForm({ publicationTypes, whatsapp, alternativeContact,
         })}
       </div>
 
-      <p className="mt-7 text-sm leading-6 text-muted-foreground">Data belum dikirim ke Taretan Media. Anda akan meninjau pesan terlebih dahulu di WhatsApp.</p>
+      <p className="mt-7 text-sm leading-6 text-muted-foreground">Data belum dikirim ke CV Taretan Media Publishing. Anda akan meninjau pesan terlebih dahulu di WhatsApp.</p>
 
       <div className="mt-5 flex flex-col items-start gap-3">
         <motion.div

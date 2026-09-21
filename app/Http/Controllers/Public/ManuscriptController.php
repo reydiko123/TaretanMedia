@@ -14,7 +14,7 @@ final class ManuscriptController extends Controller
         return Inertia::render('manuscripts/create', [
             'seo' => PublicSeo::make(
                 'Kirim Naskah',
-                'Sampaikan informasi awal naskah melalui WhatsApp Taretan Media.',
+                'Sampaikan informasi awal naskah melalui WhatsApp CV Taretan Media Publishing.',
                 route('manuscripts.create'),
             ),
         ]);

@@ -46,7 +46,7 @@ export function NewsIndexPage({ news, filters, filterOptions, navigation, naviga
   return (
     <div className="news-page catalog-page">
       <PageIntro
-        eyebrow="Wawasan Taretan Media"
+        eyebrow="Wawasan CV Taretan Media Publishing"
         title="Berita & Informasi"
         description="Temukan gagasan, panduan, dan informasi seputar buku, penerbitan, serta publikasi ilmiah"
         currentLabel="Berita"

@@ -14,7 +14,7 @@ export function ProfileCta() {
             <div className="relative max-w-2xl">
               <p className="text-micro-uppercase font-semibold uppercase text-brand-green">Langkah berikutnya</p>
               <h2 id="profile-cta-heading" className="mt-4 text-heading-2 font-semibold tracking-[-0.04em] text-on-dark">Mulai Terbitkan Karya Anda</h2>
-              <p className="mt-4 max-w-xl text-base leading-7 text-on-dark-muted">Bawa gagasan Anda menuju terbitan yang profesional bersama Taretan Media.</p>
+              <p className="mt-4 max-w-xl text-base leading-7 text-on-dark-muted">Bawa gagasan Anda menuju terbitan yang profesional bersama CV Taretan Media Publishing.</p>
             </div>
           </BlurFade>
 

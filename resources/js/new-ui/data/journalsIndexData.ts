@@ -25,7 +25,7 @@ const journals: JournalsIndexProps["journals"]["data"] = [
 ]
 
 export const populatedJournalsIndexProps: JournalsIndexProps = {
-  site: { name: "Taretan Media", tagline: "Penerbit Buku & Publikasi Ilmiah", shortDescription: "Penerbitan buku dan publikasi ilmiah yang bertumbuh bersama penulis." },
+  site: { name: "CV Taretan Media Publishing", tagline: "Penerbit Buku & Publikasi Ilmiah", shortDescription: "Penerbitan buku dan publikasi ilmiah yang bertumbuh bersama penulis." },
   contact: {},
   journals: { data: journals.slice(0, 10), pagination: { currentPage: 1, lastPage: Math.max(Math.ceil(journals.length / 10), 1), total: journals.length, perPage: 10, from: 1, to: Math.min(journals.length, 10) } },
   filters: {},

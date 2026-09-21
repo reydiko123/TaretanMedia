@@ -16,7 +16,7 @@ final class ServiceController extends Controller
     {
         return Inertia::render('services/index', [
             'services' => $query->get()->map(fn (Service $service) => PublicPropsMapper::service($service))->all(),
-            'seo' => PublicSeo::make('Layanan', 'Layanan penerbitan dan pendampingan karya dari Taretan Media.', route('services.index')),
+            'seo' => PublicSeo::make('Layanan', 'Layanan penerbitan dan pendampingan karya dari CV Taretan Media Publishing.', route('services.index')),
         ]);
     }
 }

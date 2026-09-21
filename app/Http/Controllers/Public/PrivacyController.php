@@ -14,7 +14,7 @@ final class PrivacyController extends Controller
         return Inertia::render('privacy', [
             'seo' => PublicSeo::make(
                 'Privasi',
-                'Informasi privasi dan pemrosesan data pada Taretan Media.',
+                'Informasi privasi dan pemrosesan data pada CV Taretan Media Publishing.',
                 route('privacy'),
             ),
         ]);

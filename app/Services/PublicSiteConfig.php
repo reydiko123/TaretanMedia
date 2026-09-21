@@ -12,7 +12,7 @@ final class PublicSiteConfig
     public function toArray(): array
     {
         return [
-            'name' => $this->value(config('taretan.public.name')) ?? 'Taretan Media',
+            'name' => $this->value(config('taretan.public.name')) ?? 'CV Taretan Media Publishing',
             'tagline' => $this->value(config('taretan.public.tagline')) ?? '',
             'contact' => [
                 'email' => $this->value(config('taretan.contact_email')),

@@ -34,7 +34,7 @@ export function JournalAccessPanel({ externalUrl, hasContactAlternative, onExter
       ) : (
         <>
           <p className="font-semibold text-brand-teal-deep">Tautan jurnal belum tersedia</p>
-          <p>Silakan kembali lagi nanti atau hubungi Taretan Media untuk informasi lebih lanjut.</p>
+          <p>Silakan kembali lagi nanti atau hubungi CV Taretan Media Publishing untuk informasi lebih lanjut.</p>
           {hasContactAlternative ? (
             <Link href="/kontak" className="journal-detail-recovery-link">Lihat informasi kontak</Link>
           ) : (

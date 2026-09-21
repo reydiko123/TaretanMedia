@@ -45,7 +45,7 @@ export function PublicationProcessSection({ steps, contactHref = "/kontak" }: Pu
         ) : (
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.35 }} variants={sectionReveal} className="mx-auto mt-12 max-w-2xl rounded-[1.65rem] border border-dashed border-border bg-background px-6 py-12 text-center">
             <p className="text-lg font-semibold tracking-[-0.03em] text-brand-teal-deep">Informasi proses penerbitan sedang disiapkan.</p>
-            <a href={contactHref} className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep">Hubungi Taretan Media</a>
+            <a href={contactHref} className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-subtle transition-colors hover:bg-primary-deep">Hubungi CV Taretan Media Publishing</a>
           </motion.div>
         )}
       </div>

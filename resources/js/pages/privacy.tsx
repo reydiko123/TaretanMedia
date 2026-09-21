@@ -20,13 +20,13 @@ export default function Privacy({ seo }: { seo: SeoProps }) {
                 <PageHeader
                     eyebrow="Privasi"
                     title="Privasi dan pemrosesan data"
-                    description="Taretan Media meminimalkan data yang dikumpulkan dari pengunjung."
+                    description="CV Taretan Media Publishing meminimalkan data yang dikumpulkan dari pengunjung."
                 />
                 <article className="public-prose max-w-3xl">
                     <h2>Form Kirim Naskah</h2>
                     <p>
                         Data pada form tidak dikirim atau disimpan oleh server
-                        Taretan Media. Setelah Anda memilih tombol WhatsApp,
+                        CV Taretan Media Publishing. Setelah Anda memilih tombol WhatsApp,
                         pesan dibuka untuk Anda tinjau dan kirim sendiri.
                         Pemrosesan selanjutnya mengikuti kebijakan WhatsApp.
                     </p>

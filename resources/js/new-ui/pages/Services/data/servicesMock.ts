@@ -1,7 +1,7 @@
 import type { ServicesProps } from "@/new-ui/pages/Services/servicesTypes"
 
 const site = {
-  name: "Taretan Media",
+  name: "CV Taretan Media Publishing",
   tagline: "Penerbit Buku & Publikasi Ilmiah",
   shortDescription: "Penerbitan buku dan publikasi ilmiah yang bertumbuh bersama penulis.",
 }
@@ -58,7 +58,7 @@ function createProps(services: ServicesProps["services"], number = "628581770222
     services,
     whatsapp: {
       number,
-      messageTemplate: "Halo Taretan Media, saya ingin berkonsultasi mengenai paket {{serviceName}}.",
+      messageTemplate: "Halo CV Taretan Media Publishing, saya ingin berkonsultasi mengenai paket {{serviceName}}.",
     },
   }
 }

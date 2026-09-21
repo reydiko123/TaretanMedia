@@ -40,7 +40,7 @@ export function LatestNewsSection({ news }: LatestNewsSectionProps) {
       <div className="mx-auto max-w-content">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.45 }} variants={sectionReveal} className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-3xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-green-dark">Wawasan Taretan Media</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-green-dark">Wawasan CV Taretan Media Publishing</span>
             <h2 id="latest-news-title" className="mt-5 text-4xl font-semibold tracking-[-0.065em] text-brand-teal-deep sm:text-6xl">Berita Terbaru</h2>
             <p className="mt-5 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">Gagasan, catatan, dan percakapan seputar buku, penerbitan, dan publikasi ilmiah</p>
           </div>
@@ -55,7 +55,7 @@ export function LatestNewsSection({ news }: LatestNewsSectionProps) {
                 <div className="p-3 pb-4 pt-5 sm:p-4 sm:pb-5">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground"><span className="inline-flex items-center gap-1"><CalendarDays className="size-3" aria-hidden="true" />{formatIndonesianDate(item.publishedAt)}</span><span>{item.categories[0] ?? "Berita"}</span></div>
                   <h3 className="mt-4 min-h-[3.5rem] line-clamp-2 text-xl font-semibold leading-tight tracking-[-0.045em] text-brand-teal-deep"><Link href={`/berita/${item.slug}`} className="rounded-sm outline-none transition-colors hover:text-brand-green-dark">{item.title}</Link></h3>
-                  <p className="mt-3 line-clamp-3 text-sm leading-7 text-muted-foreground">{item.excerpt ?? "Baca catatan terbaru dari Taretan Media."}</p>
+                  <p className="mt-3 line-clamp-3 text-sm leading-7 text-muted-foreground">{item.excerpt ?? "Baca catatan terbaru dari CV Taretan Media Publishing."}</p>
                   <p className="mt-5 text-xs font-medium text-muted-foreground">Oleh {item.authorName}</p>
                 </div>
               </motion.article>

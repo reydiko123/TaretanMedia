@@ -2,19 +2,19 @@ import type { BookDetail, BookShowProps } from "@/new-ui/types/public"
 import { localBookCards } from "@/new-ui/mocks/booksIndexProps"
 
 const site = {
-  name: "Taretan Media",
+  name: "CV Taretan Media Publishing",
   tagline: "Penerbit Buku & Publikasi Ilmiah",
   shortDescription: "Penerbitan buku dan publikasi ilmiah yang bertumbuh bersama penulis.",
 }
 
-const messageTemplate = 'Halo Taretan Media, saya ingin memesan buku "{title}".\nURL buku: {canonicalUrl}'
+const messageTemplate = 'Halo CV Taretan Media Publishing, saya ingin memesan buku "{title}".\nURL buku: {canonicalUrl}'
 
 const completeBook = {
   id: 101,
   title: "Merawat Ingatan Madura",
   slug: "merawat-ingatan-madura",
   isbn: "978-623-0000-01-2",
-  publisher: "Taretan Media",
+  publisher: "CV Taretan Media Publishing",
   pageCount: 248,
   publicationYear: 2025,
   price: 85000,
@@ -77,7 +77,7 @@ const relatedBooks: NonNullable<BookShowProps["relatedBooks"]> = [
 ]
 
 function createLocalPreviewDetails(catalogBook: (typeof localBookCards)[number], index: number) {
-  const authorName = catalogBook.authors.find(Boolean) ?? "Penulis Taretan Media"
+  const authorName = catalogBook.authors.find(Boolean) ?? "Penulis CV Taretan Media Publishing"
   const categoryName = catalogBook.categories.find(Boolean) ?? "Publikasi"
 
   return {
@@ -203,7 +203,7 @@ export function getLocalBookShowProps(slug: string, search = ""): BookShowProps 
       categories,
       synopsis: previewDetails.synopsis,
       tableOfContents: previewDetails.tableOfContents,
-      publisher: "Taretan Media",
+      publisher: "CV Taretan Media Publishing",
       pageCount: previewDetails.pageCount,
       isbn: catalogBook.isbn ?? null,
     },

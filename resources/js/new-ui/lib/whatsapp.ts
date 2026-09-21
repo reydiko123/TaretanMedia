@@ -25,14 +25,14 @@ export type ManuscriptMessageInput = {
   template: string
 }
 
-const manuscriptFallbackTemplate = `Halo Taretan Media, saya ingin berkonsultasi mengenai naskah.
+const manuscriptFallbackTemplate = `Halo CV Taretan Media Publishing, saya ingin berkonsultasi mengenai naskah.
 
 Nama: {fullName}
 Email: {email}
 Judul naskah: {manuscriptTitle}
 Jenis publikasi: {publicationType}`
 
-const serviceFallbackTemplate = "Halo Taretan Media, saya ingin berkonsultasi mengenai layanan {serviceName}."
+const serviceFallbackTemplate = "Halo CV Taretan Media Publishing, saya ingin berkonsultasi mengenai layanan {serviceName}."
 
 export function buildServiceMessage(template: string, serviceName: string): string {
   const name = serviceName.trim()

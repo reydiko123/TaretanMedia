@@ -27,7 +27,7 @@ export function HomeHero({ manuscriptHref = "/kirim-naskah", manuscriptLabel = "
           </h1>
 
           <p className="mt-6 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:mt-7 sm:text-lg sm:leading-8">
-            Taretan Media hadir sebagai mitra penerbitan buku dan publikasi ilmiah bagi penulis, akademisi, peneliti, pendidik, dan praktisi untuk menghadirkan karya berkualitas kepada masyarakat.
+            CV Taretan Media Publishing hadir sebagai mitra penerbitan buku dan publikasi ilmiah bagi penulis, akademisi, peneliti, pendidik, dan praktisi untuk menghadirkan karya berkualitas kepada masyarakat.
           </p>
 
           <div className="mt-8 flex w-full flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center">
@@ -77,7 +77,7 @@ export function HomeHero({ manuscriptHref = "/kirim-naskah", manuscriptLabel = "
 
           <div className="relative z-10 flex aspect-[0.82] w-[min(74%,19rem)] flex-col overflow-hidden rounded-[1.75rem] border border-brand-teal-deep/15 bg-background p-5 shadow-mockup sm:w-[min(70%,22rem)] sm:p-7">
             <div className="flex items-center justify-between text-[9px] font-semibold uppercase tracking-[0.2em] text-muted-foreground sm:text-[10px]">
-              <span>/ Taretan Media</span>
+              <span>/ CV Taretan Media Publishing</span>
               <span>2026</span>
             </div>
             <div className="my-auto flex flex-col items-center text-center">

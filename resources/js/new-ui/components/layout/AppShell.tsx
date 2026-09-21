@@ -14,7 +14,7 @@ type AppShellProps = {
 
 export function AppShell({
   children,
-  brandName = "Taretan Media",
+  brandName = "CV Taretan Media Publishing",
   contact = homeContact,
   showHeader = true,
 }: AppShellProps) {

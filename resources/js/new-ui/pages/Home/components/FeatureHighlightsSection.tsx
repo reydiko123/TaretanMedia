@@ -101,7 +101,7 @@ export function FeatureHighlightsSection({ services }: FeatureHighlightsSectionP
             Layanan Penerbitan
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
-            Diskusikan kebutuhan penerbitan anda bersama Taretan Media dan temukan dukungan yang sesuai untuk karya anda
+            Diskusikan kebutuhan penerbitan anda bersama CV Taretan Media Publishing dan temukan dukungan yang sesuai untuk karya anda
           </p>
         </motion.div>
 

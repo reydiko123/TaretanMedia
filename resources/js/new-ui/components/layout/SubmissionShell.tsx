@@ -12,9 +12,9 @@ type SubmissionShellProps = {
 
 export function SubmissionShell({
   children,
-  brandName = "Taretan Media",
+  brandName = "CV Taretan Media Publishing",
   pageTitle = "Mari Bicarakan Naskah Anda",
-  pageDescription = "Isi informasi singkat berikut untuk menyiapkan konsultasi awal bersama Taretan Media",
+  pageDescription = "Isi informasi singkat berikut untuk menyiapkan konsultasi awal bersama CV Taretan Media Publishing",
 }: SubmissionShellProps) {
   return (
     <div className="submission-shell min-h-screen overflow-hidden bg-surface-soft text-foreground">

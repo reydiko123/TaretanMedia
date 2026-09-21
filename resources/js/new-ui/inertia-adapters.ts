@@ -194,8 +194,8 @@ export function toShellProps(shared: Partial<PublicSharedProps>): PublicShellPro
     const contact = site?.contact
     const whatsapp = site?.conversion?.whatsapp
     return {
-        site: { name: site?.name ?? 'Taretan Media', tagline: site?.tagline ?? '', shortDescription: site?.tagline ?? '', about: null, vision: null, mission: [], values: [] },
-        contact: { whatsappNumber: whatsapp?.number ?? null, whatsappLabel: whatsapp?.number ? 'WhatsApp Taretan Media' : null, whatsappGreeting: whatsapp?.templates.contact ?? null, email: contact?.email ?? null, instagramUrl: contact?.instagramUrl ?? null, mapUrl: contact?.mapsUrl ?? null, address: contact?.address ?? null },
+        site: { name: site?.name ?? 'CV Taretan Media Publishing', tagline: site?.tagline ?? '', shortDescription: site?.tagline ?? '', about: null, vision: null, mission: [], values: [] },
+        contact: { whatsappNumber: whatsapp?.number ?? null, whatsappLabel: whatsapp?.number ? 'WhatsApp CV Taretan Media Publishing' : null, whatsappGreeting: whatsapp?.templates.contact ?? null, email: contact?.email ?? null, instagramUrl: contact?.instagramUrl ?? null, mapUrl: contact?.mapsUrl ?? null, address: contact?.address ?? null },
     }
 }
 
@@ -204,7 +204,7 @@ export function toProfileProps(profile: { summary?: string; vision?: string; mis
         Kualitas: 'Karya ilmiah dikembangkan, disiapkan, dan diterbitkan dengan standar profesional yang terjaga.',
         'Integritas Akademik': 'Proses publikasi dijalankan dengan kejujuran dan etika akademik yang konsisten.',
         Profesionalisme: 'Pendampingan dan penerbitan dilakukan secara profesional dari naskah hingga terbit.',
-        Kemitraan: 'Taretan Media menjadi mitra terpercaya bagi penulis dalam menerbitkan karyanya.',
+        Kemitraan: 'CV Taretan Media Publishing menjadi mitra terpercaya bagi penulis dalam menerbitkan karyanya.',
         Kolaborasi: 'Kami membangun proses penerbitan melalui kerja sama yang terbuka dan saling menguatkan.',
         Aksesibilitas: 'Pengetahuan dan publikasi dibuat lebih mudah dijangkau oleh pembaca yang lebih luas.',
         Integritas: 'Setiap proses penerbitan dijalankan secara jujur, bertanggung jawab, dan beretika.',

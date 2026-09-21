@@ -41,7 +41,7 @@ export function CoverImage({ image, title, index = 0, className, loading = "lazy
           className={cn("flex h-full flex-col justify-between p-5", fallbackTones[index % fallbackTones.length])}
         >
           <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.16em] opacity-80">
-            <span>Taretan Media</span>
+            <span>CV Taretan Media Publishing</span>
             <BookmarkPlus className="size-4" aria-hidden="true" />
           </div>
           {showFallbackTitle ? <p className="max-w-[12rem] text-2xl font-semibold leading-[0.98] tracking-[-0.06em]">{fallbackTitle ?? title}</p> : null}

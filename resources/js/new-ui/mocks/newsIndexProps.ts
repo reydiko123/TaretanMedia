@@ -20,7 +20,7 @@ const newsItems: NewsCardData[] = [
 ]
 
 const baseProps: Omit<NewsIndexProps, "news" | "filters"> = {
-  site: { name: "Taretan Media", tagline: "Penerbit Buku & Publikasi Ilmiah", shortDescription: "Penerbitan buku dan publikasi ilmiah yang bertumbuh bersama penulis." },
+  site: { name: "CV Taretan Media Publishing", tagline: "Penerbit Buku & Publikasi Ilmiah", shortDescription: "Penerbitan buku dan publikasi ilmiah yang bertumbuh bersama penulis." },
   contact: { email: "halo@taretan.media" },
   filterOptions: { categories },
 }

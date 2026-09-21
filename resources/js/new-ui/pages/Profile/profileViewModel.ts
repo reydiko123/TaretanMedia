@@ -23,7 +23,7 @@ function normalizeValues(values: ProfileValue[] | null | undefined) {
 }
 
 export function createProfilePageViewModel(props: ProfileProps): ProfilePageViewModel {
-  const siteName = trimOptional(props.site.name) ?? "Taretan Media"
+  const siteName = trimOptional(props.site.name) ?? "CV Taretan Media Publishing"
   const description = trimOptional(props.site.tagline) ?? trimOptional(props.site.shortDescription)
   const mission = compactStrings(props.profile.mission)
 

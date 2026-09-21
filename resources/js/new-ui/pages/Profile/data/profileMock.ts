@@ -4,7 +4,7 @@ import { homeContact } from "@/new-ui/pages/Home/data/homeContact"
 // Fixture lokal untuk preview/test; bukan sumber data production dan tidak berisi kontak personal.
 export const completeProfileProps = {
   site: {
-    name: "Taretan Media",
+    name: "CV Taretan Media Publishing",
     tagline: "Mitra terpercaya bagi setiap penulis dalam membawa gagasan dan hasil penelitian menjadi karya yang bernilai, layak terbit, dan memiliki dampak akademik yang lebih luas.",
     shortDescription: "Lembaga penerbitan buku, jurnal ilmiah, dan pendampingan publikasi akademik.",
     about: "",
@@ -14,7 +14,7 @@ export const completeProfileProps = {
   },
   contact: homeContact,
   profile: {
-    about: "Taretan Media merupakan lembaga yang bergerak di bidang penerbitan buku, jurnal ilmiah, dan pendampingan publikasi akademik. Taretan Media hadir sebagai mitra bagi akademisi, peneliti, dosen, mahasiswa, dan penulis dalam mengembangkan serta menyebarluaskan karya intelektual melalui publikasi yang berkualitas dan profesional.\n\nDalam menjalankan aktivitasnya, Taretan Media tidak hanya berfokus pada proses penerbitan, tetapi juga memberikan pendampingan dalam pengembangan dan persiapan berita ilmiah menuju publikasi. Pendampingan dilakukan untuk membantu penulis meningkatkan kualitas substansi, sistematika, bahasa akademik, kesesuaian dengan ketentuan jurnal, hingga kesiapan naskah untuk diajukan pada jurnal yang sesuai dengan bidang dan tujuan publikasinya.\n\nTaretan Media berkomitmen membangun ekosistem publikasi yang mengedepankan kualitas, integritas akademik, profesionalisme, dan kemitraan. Kami percaya bahwa karya ilmiah yang baik tidak berhenti pada proses penulisan, tetapi perlu dikembangkan, disiapkan, diterbitkan, dan disebarluaskan agar dapat memberikan manfaat yang lebih luas bagi perkembangan ilmu pengetahuan dan masyarakat.",
+    about: "CV Taretan Media Publishing merupakan lembaga yang bergerak di bidang penerbitan buku, jurnal ilmiah, dan pendampingan publikasi akademik. CV Taretan Media Publishing hadir sebagai mitra bagi akademisi, peneliti, dosen, mahasiswa, dan penulis dalam mengembangkan serta menyebarluaskan karya intelektual melalui publikasi yang berkualitas dan profesional.\n\nDalam menjalankan aktivitasnya, CV Taretan Media Publishing tidak hanya berfokus pada proses penerbitan, tetapi juga memberikan pendampingan dalam pengembangan dan persiapan berita ilmiah menuju publikasi. Pendampingan dilakukan untuk membantu penulis meningkatkan kualitas substansi, sistematika, bahasa akademik, kesesuaian dengan ketentuan jurnal, hingga kesiapan naskah untuk diajukan pada jurnal yang sesuai dengan bidang dan tujuan publikasinya.\n\nCV Taretan Media Publishing berkomitmen membangun ekosistem publikasi yang mengedepankan kualitas, integritas akademik, profesionalisme, dan kemitraan. Kami percaya bahwa karya ilmiah yang baik tidak berhenti pada proses penulisan, tetapi perlu dikembangkan, disiapkan, diterbitkan, dan disebarluaskan agar dapat memberikan manfaat yang lebih luas bagi perkembangan ilmu pengetahuan dan masyarakat.",
     vision: "Menjadi mitra publikasi akademik yang terpercaya dan profesional dalam menerbitkan serta mengembangkan karya ilmiah berkualitas untuk mendukung kemajuan ilmu pengetahuan di tingkat nasional dan internasional.",
     mission: [
       "Menyelenggarakan penerbitan buku dan jurnal ilmiah yang berkualitas dengan mengedepankan standar profesional dan integritas akademik.",
@@ -28,14 +28,14 @@ export const completeProfileProps = {
       { title: "Kualitas", description: "Karya ilmiah dikembangkan, disiapkan, dan diterbitkan dengan standar profesional yang terjaga." },
       { title: "Integritas Akademik", description: "Proses publikasi dijalankan dengan kejujuran dan etika akademik yang konsisten." },
       { title: "Profesionalisme", description: "Pendampingan dan penerbitan dilakukan secara profesional dari naskah hingga terbit." },
-      { title: "Kemitraan", description: "Taretan Media menjadi mitra terpercaya bagi penulis dalam menerbitkan karyanya." },
+      { title: "Kemitraan", description: "CV Taretan Media Publishing menjadi mitra terpercaya bagi penulis dalam menerbitkan karyanya." },
     ],
   },
 } satisfies ProfileProps
 
 export const minimalProfileProps = {
   site: {
-    name: "Taretan Media",
+    name: "CV Taretan Media Publishing",
     tagline: "",
     shortDescription: "Penerbitan yang bertumbuh bersama penulis.",
     about: "Tentang dari site.",
@@ -54,7 +54,7 @@ export const minimalProfileProps = {
 
 export const emptyProfileProps = {
   site: {
-    name: "Taretan Media",
+    name: "CV Taretan Media Publishing",
     tagline: "",
     shortDescription: "",
     about: " ",

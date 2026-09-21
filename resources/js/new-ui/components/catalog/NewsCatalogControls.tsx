@@ -82,7 +82,7 @@ export function NewsCatalogControls({ filters, filterOptions, navigation }: News
         </div>
 
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
-          <p className="text-sm text-muted-foreground">Jelajahi wawasan terbaru Taretan Media</p>
+          <p className="text-sm text-muted-foreground">Jelajahi wawasan terbaru CV Taretan Media Publishing</p>
           <Button type="button" variant="brand-outline" size="pill-sm" onClick={() => navigate({})} disabled={!hasActiveFilters || navigation.isNavigating}>
             Reset filter
           </Button>

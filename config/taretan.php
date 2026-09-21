@@ -32,10 +32,10 @@ return [
     'whatsapp' => [
         'number' => env('WHATSAPP_NUMBER'),
         'templates' => [
-            'book' => 'Halo Taretan Media, saya ingin menanyakan buku ":title". :url',
-            'service' => 'Halo Taretan Media, saya ingin berkonsultasi tentang layanan ":service".',
-            'manuscript' => "Halo Taretan Media, saya ingin berkonsultasi tentang naskah.\nNama: :name\nEmail: :email\nJudul: :title\nJenis: :publication_type",
-            'contact' => 'Halo Taretan Media, saya ingin meminta informasi.',
+            'book' => 'Halo CV Taretan Media Publishing, saya ingin menanyakan buku ":title". :url',
+            'service' => 'Halo CV Taretan Media Publishing, saya ingin berkonsultasi tentang layanan ":service".',
+            'manuscript' => "Halo CV Taretan Media Publishing, saya ingin berkonsultasi tentang naskah.\nNama: :name\nEmail: :email\nJudul: :title\nJenis: :publication_type",
+            'contact' => 'Halo CV Taretan Media Publishing, saya ingin meminta informasi.',
         ],
         'publication_types' => ['Buku', 'Jurnal', 'Berita'],
     ],
@@ -51,11 +51,11 @@ return [
     'maps_url' => env('MAPS_URL'),
 
     'public' => [
-        'name' => env('PUBLIC_SITE_NAME', env('APP_NAME', 'Taretan Media')),
+        'name' => env('PUBLIC_SITE_NAME', env('APP_NAME', 'CV Taretan Media Publishing')),
         'tagline' => env('PUBLIC_SITE_TAGLINE', 'Mitra terpercaya bagi setiap penulis dalam membawa gagasan dan hasil penelitian menjadi karya yang bernilai, layak terbit, dan memiliki dampak akademik yang lebih luas.'),
         'address' => env('PUBLIC_ADDRESS'),
         'profile' => [
-            'summary' => env('PUBLIC_PROFILE_SUMMARY', "Taretan Media merupakan lembaga yang bergerak di bidang penerbitan buku, jurnal ilmiah, dan pendampingan publikasi akademik. Taretan Media hadir sebagai mitra bagi akademisi, peneliti, dosen, mahasiswa, dan penulis dalam mengembangkan serta menyebarluaskan karya intelektual melalui publikasi yang berkualitas dan profesional.\n\nDalam menjalankan aktivitasnya, Taretan Media tidak hanya berfokus pada proses penerbitan, tetapi juga memberikan pendampingan dalam pengembangan dan persiapan berita ilmiah menuju publikasi. Pendampingan dilakukan untuk membantu penulis meningkatkan kualitas substansi, sistematika, bahasa akademik, kesesuaian dengan ketentuan jurnal, hingga kesiapan naskah untuk diajukan pada jurnal yang sesuai dengan bidang dan tujuan publikasinya.\n\nTaretan Media berkomitmen membangun ekosistem publikasi yang mengedepankan kualitas, integritas akademik, profesionalisme, dan kemitraan. Kami percaya bahwa karya ilmiah yang baik tidak berhenti pada proses penulisan, tetapi perlu dikembangkan, disiapkan, diterbitkan, dan disebarluaskan agar dapat memberikan manfaat yang lebih luas bagi perkembangan ilmu pengetahuan dan masyarakat."),
+            'summary' => env('PUBLIC_PROFILE_SUMMARY', "CV Taretan Media Publishing merupakan lembaga yang bergerak di bidang penerbitan buku, jurnal ilmiah, dan pendampingan publikasi akademik. CV Taretan Media Publishing hadir sebagai mitra bagi akademisi, peneliti, dosen, mahasiswa, dan penulis dalam mengembangkan serta menyebarluaskan karya intelektual melalui publikasi yang berkualitas dan profesional.\n\nDalam menjalankan aktivitasnya, CV Taretan Media Publishing tidak hanya berfokus pada proses penerbitan, tetapi juga memberikan pendampingan dalam pengembangan dan persiapan berita ilmiah menuju publikasi. Pendampingan dilakukan untuk membantu penulis meningkatkan kualitas substansi, sistematika, bahasa akademik, kesesuaian dengan ketentuan jurnal, hingga kesiapan naskah untuk diajukan pada jurnal yang sesuai dengan bidang dan tujuan publikasinya.\n\nCV Taretan Media Publishing berkomitmen membangun ekosistem publikasi yang mengedepankan kualitas, integritas akademik, profesionalisme, dan kemitraan. Kami percaya bahwa karya ilmiah yang baik tidak berhenti pada proses penulisan, tetapi perlu dikembangkan, disiapkan, diterbitkan, dan disebarluaskan agar dapat memberikan manfaat yang lebih luas bagi perkembangan ilmu pengetahuan dan masyarakat."),
             'vision' => env('PUBLIC_PROFILE_VISION', 'Menjadi mitra publikasi akademik yang terpercaya dan profesional dalam menerbitkan serta mengembangkan karya ilmiah berkualitas untuk mendukung kemajuan ilmu pengetahuan di tingkat nasional dan internasional.'),
             'mission' => [
                 'Menyelenggarakan penerbitan buku dan jurnal ilmiah yang berkualitas dengan mengedepankan standar profesional dan integritas akademik.',

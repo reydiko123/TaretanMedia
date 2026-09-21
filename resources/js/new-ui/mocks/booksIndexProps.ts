@@ -39,7 +39,7 @@ export const localBookCards = baseBooks
 
 export const populatedBooksIndexProps: BooksIndexProps = {
   site: {
-    name: "Taretan Media",
+    name: "CV Taretan Media Publishing",
     tagline: "Penerbit Buku & Publikasi Ilmiah",
     shortDescription: "Penerbitan buku dan publikasi ilmiah yang bertumbuh bersama penulis.",
   },

@@ -18,7 +18,7 @@ type EmptyStateProps = {
 export function EmptyState({ filtered, navigation, title, description, emptyHref = "/", emptyLabel = "Kembali ke beranda", focusTargetId = "book-search", resetHref = "/buku", resetPreserveState = false }: EmptyStateProps) {
   const shouldReduceMotion = useReducedMotion()
   const resolvedTitle = title ?? (filtered ? "Buku tidak ditemukan" : "Katalog buku sedang disiapkan")
-  const resolvedDescription = description ?? (filtered ? "Belum ada buku yang cocok dengan pencarian atau filter Anda. Coba ubah kata kunci, rentang harga, kategori, atau tahun terbit." : "Belum ada buku yang dapat ditampilkan saat ini. Silakan kembali lagi atau jelajahi publikasi Taretan Media lainnya.")
+  const resolvedDescription = description ?? (filtered ? "Belum ada buku yang cocok dengan pencarian atau filter Anda. Coba ubah kata kunci, rentang harga, kategori, atau tahun terbit." : "Belum ada buku yang dapat ditampilkan saat ini. Silakan kembali lagi atau jelajahi publikasi CV Taretan Media Publishing lainnya.")
   return (
     <motion.section initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: shouldReduceMotion ? 0 : 0.35, ease: "easeOut" }} className="rounded-2xl border border-dashed border-border bg-surface-soft px-6 py-16 text-center" aria-labelledby="empty-content-title">
       {filtered ? <Search className="mx-auto size-10 text-brand-green-dark/60" aria-hidden="true" /> : <BookOpen className="mx-auto size-10 text-brand-green-dark/60" aria-hidden="true" />}

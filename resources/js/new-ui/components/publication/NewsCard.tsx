@@ -24,7 +24,7 @@ function NewsImage({ news }: { news: NewsCardData }) {
           <span className="grid size-11 place-items-center rounded-full border border-brand-green/40 bg-brand-green/10 text-brand-green">
             <FileText className="size-5" aria-hidden="true" />
           </span>
-          <span className="text-xs font-semibold tracking-wide text-on-dark-muted">Taretan Media</span>
+          <span className="text-xs font-semibold tracking-wide text-on-dark-muted">CV Taretan Media Publishing</span>
         </div>
       </div>
     )

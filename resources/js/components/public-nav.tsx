@@ -53,7 +53,7 @@ export function PublicNav() {
     const navigation = props.navigation?.length
         ? props.navigation
         : fallbackNavigation;
-    const siteName = props.site?.name || 'Taretan Media';
+    const siteName = props.site?.name || 'CV Taretan Media Publishing';
     const [open, setOpen] = useState(false);
 
     return (
@@ -110,7 +110,7 @@ export function PublicNav() {
                         <SheetHeader>
                             <SheetTitle>{siteName}</SheetTitle>
                             <SheetDescription>
-                                Navigasi utama situs Taretan Media.
+                                Navigasi utama situs CV Taretan Media Publishing.
                             </SheetDescription>
                         </SheetHeader>
                         <ul className="grid min-w-0 gap-1 px-4">

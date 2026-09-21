@@ -52,7 +52,7 @@ export function PublicFooter() {
                 <div>
                     <img
                         src="/images/brand/logo-footer.jpeg"
-                        alt={site?.name || 'Taretan Media'}
+                        alt={site?.name || 'CV Taretan Media Publishing'}
                         className="h-16 w-56 object-cover object-center"
                     />
                     <p className="text-muted-foreground mt-5 max-w-sm text-sm leading-7">
@@ -141,7 +141,7 @@ export function PublicFooter() {
             <div className="border-border border-t">
                 <div className="text-muted-foreground mx-auto max-w-7xl px-4 py-5 text-sm sm:px-6">
                     &copy; {new Date().getFullYear()}{' '}
-                    {site?.name || 'Taretan Media'}. Seluruh hak cipta
+                    {site?.name || 'CV Taretan Media Publishing'}. Seluruh hak cipta
                     dilindungi.
                 </div>
             </div>

@@ -36,10 +36,10 @@ export function FeatureMarquee({ items }: FeatureMarqueeProps) {
   return (
     <section aria-labelledby="feature-marquee-title" className="border-y border-border bg-background py-4 sm:py-5">
       <h2 id="feature-marquee-title" className="sr-only">
-        Fitur Taretan Media
+        Fitur CV Taretan Media Publishing
       </h2>
       <div className="mx-auto max-w-content px-5 sm:px-8 lg:px-12">
-        <ul className="sr-only" aria-label="Fitur Taretan Media">
+        <ul className="sr-only" aria-label="Fitur CV Taretan Media Publishing">
           {items.map((item, index) => (
             <li key={`${item}-${index}`}>{item}</li>
           ))}

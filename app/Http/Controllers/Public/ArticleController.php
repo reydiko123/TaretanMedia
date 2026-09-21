@@ -23,7 +23,7 @@ final class ArticleController extends Controller
             'articles' => PublicPropsMapper::pagination($result['articles'], fn (Article $article) => PublicPropsMapper::article($article)),
             'categories' => $result['categories']->map(fn (Category $category) => PublicPropsMapper::category($category))->all(),
             'filters' => $result['filters']->props(),
-            'seo' => PublicSeo::make('Berita', 'Baca berita terbaru dari Taretan Media.', route('articles.index')),
+            'seo' => PublicSeo::make('Berita', 'Baca berita terbaru dari CV Taretan Media Publishing.', route('articles.index')),
         ]);
     }
 

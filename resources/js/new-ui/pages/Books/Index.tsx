@@ -30,7 +30,7 @@ export function BooksIndexPage({ books, filters, filterOptions, filterNotice, na
         <div className="mx-auto max-w-content px-5 py-14 sm:px-8 sm:py-18 lg:px-12 lg:py-24">
           <BlurFade>
             <div className="max-w-3xl">
-              <p className="text-micro-uppercase font-semibold uppercase text-brand-green">Publikasi Taretan Media</p>
+              <p className="text-micro-uppercase font-semibold uppercase text-brand-green">Publikasi CV Taretan Media Publishing</p>
               <h1 className="mt-4 text-heading-1 font-semibold text-on-dark">Katalog Buku</h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-on-dark-muted">Temukan buku untuk memperluas pengetahuan dan menemani perjalanan membaca anda</p>
             </div>

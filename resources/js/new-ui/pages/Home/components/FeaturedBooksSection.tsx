@@ -155,7 +155,7 @@ export function FeaturedBooksSection({ books }: FeaturedBooksSectionProps) {
               Buku Unggulan
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg">
-              Jelajahi pilihan buku yang tersedia dari Taretan Media
+              Jelajahi pilihan buku yang tersedia dari CV Taretan Media Publishing
             </p>
           </div>
         </motion.div>

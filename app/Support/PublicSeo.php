@@ -10,6 +10,8 @@ final class PublicSeo
     public static function make(string $title, string $description, string $canonicalUrl, string $type = 'website', ?string $imageUrl = null): array
     {
         $siteName = (string) config('taretan.public.name', config('app.name'));
+        $title = self::brand($title);
+        $description = self::brand($description);
         $description = Str::limit(trim(strip_tags($description)), 160, '');
         $fullTitle = $title === $siteName ? $title : $title.' | '.$siteName;
 
@@ -25,5 +27,10 @@ final class PublicSeo
                 'imageUrl' => $imageUrl,
             ],
         ];
+    }
+
+    private static function brand(string $value): string
+    {
+        return str_replace('Taretan Media', 'CV Taretan Media Publishing', $value);
     }
 }

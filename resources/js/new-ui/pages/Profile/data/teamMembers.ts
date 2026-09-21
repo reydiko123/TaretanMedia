@@ -4,15 +4,15 @@ export const teamMembers: TeamMember[] = [
   {
     id: 1,
     name: "Muhammad Isbad Addainuri, M.E",
-    team: "Tim Taretan Media",
-    role: "Managing Director CV Taretan Media",
-    image: { src: "/images/team/isbad.jpeg", alt: "Potret Managing Director CV Taretan Media", width: 768, height: 1024 },
+    team: "Tim CV Taretan Media Publishing",
+    role: "Managing Director CV Taretan Media Publishing",
+    image: { src: "/images/team/isbad.jpeg", alt: "Potret Managing Director CV Taretan Media Publishing", width: 768, height: 1024 },
   },
   {
     id: 2,
     name: "Moh. Sofwan Kastir Al Aziz, M.E",
-    team: "Tim Taretan Media",
-    role: "Publishing Director CV Taretan Media",
-    image: { src: "/images/team/sofwan.jpeg", alt: "Potret Publishing Director CV Taretan Media", width: 768, height: 1024 },
+    team: "Tim CV Taretan Media Publishing",
+    role: "Publishing Director CV Taretan Media Publishing",
+    image: { src: "/images/team/sofwan.jpeg", alt: "Potret Publishing Director CV Taretan Media Publishing", width: 768, height: 1024 },
   },
 ]
