@@ -83,11 +83,13 @@ class Article extends Model
     }
 
     /**
+     * Includes soft-deleted authors so published articles keep their byline.
+     *
      * @return BelongsTo<Author, $this>
      */
     public function author(): BelongsTo
     {
-        return $this->belongsTo(Author::class);
+        return $this->belongsTo(Author::class)->withTrashed();
     }
 
     /**

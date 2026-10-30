@@ -175,6 +175,19 @@ class PublicDiscoveryTest extends TestCase
         $this->get('/berita/'.$draftArticle->slug)->assertNotFound();
     }
 
+    public function test_published_article_with_soft_deleted_author_still_renders(): void
+    {
+        $author = Author::factory()->create(['name' => 'Penulis Terhapus']);
+        $article = Article::factory()->published()->create(['author_id' => $author->id]);
+        $author->delete();
+
+        $this->get('/')->assertOk();
+        $this->get('/berita')->assertOk()->assertInertia(fn (Assert $page) => $page
+            ->where('articles.data.0.author.name', 'Penulis Terhapus'));
+        $this->get('/berita/'.$article->slug)->assertOk()->assertInertia(fn (Assert $page) => $page
+            ->where('article.author.name', 'Penulis Terhapus'));
+    }
+
     public function test_sitemap_and_robots_only_advertise_public_urls(): void
     {
         $book = Book::factory()->published()->create();
