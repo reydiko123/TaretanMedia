@@ -2,18 +2,24 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Filament\Resources\Articles\Pages\CreateArticle;
+use App\Filament\Resources\Articles\Pages\EditArticle;
 use App\Filament\Resources\Authors\Pages\EditAuthor;
 use App\Filament\Resources\Authors\Pages\ListAuthors;
 use App\Filament\Resources\Books\Pages\CreateBook;
+use App\Filament\Resources\Books\Pages\EditBook;
+use App\Filament\Resources\Books\RelationManagers\AuthorsRelationManager;
 use App\Models\Admin;
 use App\Models\Article;
 use App\Models\Author;
 use App\Models\Book;
+use Filament\Actions\AttachAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\Testing\TestAction;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Livewire;
@@ -87,6 +93,54 @@ class AuthorBookAdminTest extends TestCase
         $undoRepeaterFake();
 
         $this->assertDatabaseMissing('books', ['title' => 'Buku Penulis Ganda']);
+    }
+
+    public function test_author_pickers_hide_soft_deleted_authors(): void
+    {
+        $active = Author::factory()->create();
+        $trashed = Author::factory()->create();
+        $trashed->delete();
+        $book = Book::factory()->create();
+
+        $assertOnlyActive = function (Select $field) use ($active, $trashed): bool {
+            $options = $field->getOptions();
+
+            return array_key_exists($active->id, $options) && ! array_key_exists($trashed->id, $options);
+        };
+
+        Livewire::test(CreateArticle::class)
+            ->assertFormFieldExists('author_id', $assertOnlyActive);
+
+        $undoRepeaterFake = Repeater::fake();
+        Livewire::test(CreateBook::class)
+            ->assertFormFieldExists('author_entries.0.author_id', $assertOnlyActive);
+        $undoRepeaterFake();
+
+        Livewire::test(AuthorsRelationManager::class, ['ownerRecord' => $book, 'pageClass' => EditBook::class])
+            ->mountAction(TestAction::make(AttachAction::class)->table())
+            ->assertFormFieldExists('recordId', $assertOnlyActive);
+
+        Livewire::test(ListAuthors::class)
+            ->filterTable('trashed', false)
+            ->assertCanSeeTableRecords([$trashed]);
+    }
+
+    public function test_article_with_soft_deleted_author_can_still_be_edited(): void
+    {
+        $other = Author::factory()->create();
+        $other->delete();
+        $author = Author::factory()->create();
+        $article = Article::factory()->published()->create(['author_id' => $author->id]);
+        $author->delete();
+
+        Livewire::test(EditArticle::class, ['record' => $article->getRouteKey()])
+            ->assertFormFieldExists('author_id', fn (Select $field): bool => array_key_exists($author->id, $field->getOptions())
+                && ! array_key_exists($other->id, $field->getOptions()))
+            ->fillForm(['title' => 'Judul Diperbarui'])
+            ->call('save')
+            ->assertHasNoFormErrors();
+
+        $this->assertSame('Judul Diperbarui', $article->fresh()->title);
     }
 
     public function test_author_with_works_cannot_be_soft_deleted(): void

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Articles\Schemas;
 use App\Enums\CategoryType;
 use App\Enums\PublicationStatus;
 use App\Filament\Support\MediaUpload;
+use App\Models\Article;
 use App\Rules\CategoryMatchesType;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\RichEditor;
@@ -41,7 +42,14 @@ class ArticleForm
                             ->helperText('Dibuat otomatis dari judul; dapat diubah.'),
                         Select::make('author_id')
                             ->label('Penulis')
-                            ->relationship('author', 'name')
+                            ->relationship(
+                                name: 'author',
+                                titleAttribute: 'name',
+                                // Hide deleted authors, but keep the edited article's current author selectable.
+                                modifyQueryUsing: fn ($query, ?Article $record) => $query->where(fn ($query) => $query
+                                    ->whereNull('deleted_at')
+                                    ->when($record, fn ($query) => $query->orWhere('id', $record->author_id))),
+                            )
                             ->searchable()
                             ->preload()
                             ->required(),
