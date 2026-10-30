@@ -5,8 +5,10 @@ namespace App\Filament\Resources\Books\Schemas;
 use App\Enums\CategoryType;
 use App\Enums\PublicationStatus;
 use App\Filament\Support\MediaUpload;
+use App\Models\Author;
 use App\Rules\CategoryMatchesType;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -61,6 +63,34 @@ class BookForm
                             ->required()
                             ->default(0)
                             ->helperText('Nominal Rupiah tanpa desimal.'),
+                    ]),
+
+                Section::make('Penulis')
+                    ->visibleOn('create')
+                    ->description('Setelah buku disimpan, penulis dikelola di tabel Penulis pada halaman edit buku.')
+                    ->schema([
+                        Repeater::make('author_entries')
+                            ->hiddenLabel()
+                            ->columns(2)
+                            ->defaultItems(1)
+                            ->reorderable(false)
+                            ->addActionLabel('Tambah Penulis')
+                            ->schema([
+                                Select::make('author_id')
+                                    ->label('Penulis')
+                                    ->options(fn (): array => Author::query()->orderBy('name')->pluck('name', 'id')->all())
+                                    ->searchable()
+                                    ->preload()
+                                    ->required()
+                                    ->distinct()
+                                    ->disableOptionsWhenSelectedInSiblingRepeaterItems(),
+                                Select::make('sort_order')
+                                    ->label('Urutan')
+                                    ->options(fn (): array => collect(range(0, 20))
+                                        ->mapWithKeys(fn (int $order): array => [$order => (string) $order])
+                                        ->all())
+                                    ->default(0),
+                            ]),
                     ]),
 
                 Section::make('Relasi')

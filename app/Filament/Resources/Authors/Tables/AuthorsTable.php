@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Authors\Tables;
 
+use App\Filament\Resources\Authors\AuthorDeletionGuard;
 use App\Models\Author;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -15,6 +16,7 @@ use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Collection;
 
 class AuthorsTable
 {
@@ -45,7 +47,8 @@ class AuthorsTable
             ])
             ->recordActions([
                 EditAction::make(),
-                DeleteAction::make(),
+                DeleteAction::make()
+                    ->before(fn (Author $record, DeleteAction $action) => AuthorDeletionGuard::forRecord($record, $action)),
                 RestoreAction::make(),
                 ForceDeleteAction::make()
                     ->before(function (Author $record, ForceDeleteAction $action): void {
@@ -62,7 +65,8 @@ class AuthorsTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->before(fn (Collection $records, DeleteBulkAction $action) => AuthorDeletionGuard::forRecords($records, $action)),
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
                 ]),

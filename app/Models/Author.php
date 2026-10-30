@@ -50,4 +50,12 @@ class Author extends Model
     {
         return $this->hasMany(Article::class);
     }
+
+    /**
+     * Whether the author still has books or articles that are not in the trash.
+     */
+    public function hasWorks(): bool
+    {
+        return $this->books()->exists() || $this->articles()->exists();
+    }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Authors\Pages;
 
+use App\Filament\Resources\Authors\AuthorDeletionGuard;
 use App\Filament\Resources\Authors\AuthorResource;
+use App\Models\Author;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
@@ -15,7 +17,8 @@ class EditAuthor extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->before(fn (Author $record, DeleteAction $action) => AuthorDeletionGuard::forRecord($record, $action)),
             ForceDeleteAction::make(),
             RestoreAction::make(),
         ];
